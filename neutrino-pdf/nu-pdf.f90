@@ -8,6 +8,7 @@ PROGRAM nupdf
    CHARACTER(LEN=80) :: fmt
    INTEGER :: argc,u,status,nline,i,j
    LOGICAL :: exists
+   REAL(KIND=dp) :: xsec,evrate
    INTERFACE 
       SUBROUTINE readflux(filename,dat)
          INTEGER,PARAMETER :: dp=SELECTED_REAL_KIND(14,200)
@@ -26,12 +27,20 @@ PROGRAM nupdf
    CALL GETARG(3,filename1)
    CALL GETARG(4,filename2)
    CALL GETARG(5,filename3)
+
    status=0
    READ(tmp,*,IOSTAT=status) s
    IF(status.NE.0)THEN
       WRITE(*,*) "Could not parse value given for energy"
       STOP
    END IF
+   CALL GETARG(6,tmp)
+   READ(tmp,*,IOSTAT=status) xsec
+   CALL checkread(status)
+   CALL GETARG(7,tmp)
+   READ(tmp,*,IOSTAT=status) evrate
+   CALL checkread(status)
+
    CALL checkfilename(filename1)
    CALL checkfilename(filename2)
    CALL checkfilename(filename3)
@@ -52,9 +61,9 @@ PROGRAM nupdf
    ALLOCATE(E(LBOUND(dat1,1):UBOUND(dat1,2)))
    E(:)=dat1(2,:)+dat1(1,:)
    E=E/2.0_dp/s
-   dat1(3,:)=dat1(3,:)/2.0_dp*E(:)
-   dat2(3,:)=dat2(3,:)/2.0_dp*E(:)
-   dat3(3,:)=dat3(3,:)/2.0_dp*E(:)
+   dat1(3,:)=dat1(3,:)/2.0_dp*E(:)/xsec*evrate
+   dat2(3,:)=dat2(3,:)/2.0_dp*E(:)/xsec*evrate
+   dat3(3,:)=dat3(3,:)/2.0_dp*E(:)/xsec*evrate
    WRITE(tmp,*) INT(SIZE(E),KIND=4)
    fmt="("//ADJUSTL(TRIM(tmp))
    fmt=ADJUSTL(TRIM(fmt))//"E14.7)"
@@ -117,3 +126,11 @@ SUBROUTINE checkfilename(filename)
       STOP
    END IF
 END SUBROUTINE checkfilename
+
+SUBROUTINE checkread(status)
+   INTEGER(KIND=4),INTENT(IN) :: status
+   IF(status.NE.0)THEN
+      WRITE(*,*) "Could not parse value given for energy"
+      STOP
+   END IF
+END SUBROUTINE checkread
