@@ -1,13 +1,14 @@
 PROGRAM nupdf
    IMPLICIT NONE
    INTEGER,PARAMETER :: dp=SELECTED_REAL_KIND(14,200)
-   REAL(KIND=dp),DIMENSION(:,:),ALLOCATABLE :: dat1,dat2,dat3
+   REAL(KIND=dp),DIMENSION(:,:),ALLOCATABLE :: dat1,dat2,dat3,datm,datp
    REAL(KIND=dp) :: s
-   REAL(KIND=dp),DIMENSION(:),ALLOCATABLE :: E
+   REAL(KIND=dp),DIMENSION(:),ALLOCATABLE :: E,r
    CHARACTER(LEN=80) :: filename1,filename2,filename3,tmp,outname
-   CHARACTER(LEN=80) :: fmt
+   CHARACTER(LEN=80) :: fmt,fname
    INTEGER :: argc,u,status,nline,i,j
-   LOGICAL :: exists
+   LOGICAL :: exists,replica
+   INTEGER(KIND=4) :: nrep
    REAL(KIND=dp) :: xsec,evrate
    INTERFACE 
       SUBROUTINE readflux(filename,dat)
@@ -15,13 +16,30 @@ PROGRAM nupdf
          CHARACTER(LEN=80),INTENT(IN) :: filename
          REAL(KIND=dp),DIMENSION(:,:),INTENT(INOUT) :: dat
       END SUBROUTINE readflux
+      SUBROUTINE readuncert(filename,datm,datp)
+         INTEGER,PARAMETER :: dp=SELECTED_REAL_KIND(14,200)
+         CHARACTER(LEN=80),INTENT(IN) :: filename
+         REAL(KIND=dp),DIMENSION(:,:),INTENT(INOUT) :: datm,datp
+      END SUBROUTINE readuncert
+      SUBROUTINE box_muller(r)
+         INTEGER,PARAMETER :: dp=SELECTED_REAL_KIND(14,200)
+         REAL(KIND=dp),DIMENSION(:),INTENT(INOUT) :: r
+      END SUBROUTINE box_muller
    END INTERFACE
    argc=COMMAND_ARGUMENT_COUNT()
-   IF(argc.LT.3)THEN
+   IF(argc.LT.5)THEN
       WRITE(*,*) "Provide a file and a centre of mass energy and lhapdf &
         &file name as input."
       STOP
    END IF
+   replica=.FALSE.
+   IF(argc.EQ.8)THEN
+      replica=.TRUE.
+      CALL GETARG(8,tmp)
+      READ(tmp,*,IOSTAT=status) nrep
+      CALL checkread(status)
+   END IF
+
    CALL GETARG(1,outname)
    CALL GETARG(2,tmp)
    CALL GETARG(3,filename1)
@@ -50,20 +68,56 @@ PROGRAM nupdf
    ALLOCATE(dat2(4,nline))
    CALL getnlines(filename3,nline)
    ALLOCATE(dat3(4,nline))
+   ALLOCATE(datp(4,nline))
+   ALLOCATE(datm(4,nline))
+   ALLOCATE(r(nline))
    CALL readflux(filename1,dat1)
    CALL readflux(filename2,dat2)
    CALL readflux(filename3,dat3)
+
    ! should check that the binning is the same.
+
+   WRITE(tmp,"(I4.4)") nrep
+   outname=ADJUSTL(TRIM(outname))//"_"// &
+      ADJUSTL(TRIM(tmp))//".dat"
    OPEN(NEWUNIT=u,FILE=outname,STATUS="NEW",ACTION="WRITE")
-   WRITE(u,"(A)") "PdfType: central"
-   WRITE(u,"(A)") "Format: lhagrid1"
-   WRITE(u,"(A)") "---"
    ALLOCATE(E(LBOUND(dat1,1):UBOUND(dat1,2)))
    E(:)=dat1(2,:)+dat1(1,:)
    E=E/2.0_dp/s
    dat1(3,:)=dat1(3,:)/2.0_dp*E(:)/xsec*evrate
    dat2(3,:)=dat2(3,:)/2.0_dp*E(:)/xsec*evrate
    dat3(3,:)=dat3(3,:)/2.0_dp*E(:)/xsec*evrate
+   CALL readuncert(filename1,datm,datp)
+   datm(3,:)=datm(3,:)/2.0_dp*E(:)/xsec*evrate
+   datp(3,:)=datp(3,:)/2.0_dp*E(:)/xsec*evrate
+   IF(replica)THEN
+      CALL box_muller(r)
+      IF(nrep.EQ.0) r=0.0_dp
+      dat1(3,:)=dat1(3,:)+r(:)*(datp(3,:)-datm(3,:))/2.0_dp
+   END IF
+   CALL readuncert(filename2,datm,datp)
+   datm(3,:)=datm(3,:)/2.0_dp*E(:)/xsec*evrate
+   datp(3,:)=datp(3,:)/2.0_dp*E(:)/xsec*evrate
+   IF(replica)THEN
+      CALL box_muller(r)
+      IF(nrep.EQ.0) r=0.0_dp
+      dat2(3,:)=dat2(3,:)+r(:)*(datp(3,:)-datm(3,:))/2.0_dp
+   END IF
+   CALL readuncert(filename3,datm,datp)
+   datm(3,:)=datm(3,:)/2.0_dp*E(:)/xsec*evrate
+   datp(3,:)=datp(3,:)/2.0_dp*E(:)/xsec*evrate
+   IF(replica)THEN
+      CALL box_muller(r)
+      IF(nrep.EQ.0) r=0.0_dp
+      dat3(3,:)=dat3(3,:)+r(:)*(datp(3,:)-datm(3,:))/2.0_dp
+   END IF
+   IF(.NOT.replica)THEN
+      WRITE(u,"(A)") "PdfType: central"
+   ELSE
+      WRITE(u,"(A)") "PdfType: replica"
+   END IF
+   WRITE(u,"(A)") "Format: lhagrid1"
+   WRITE(u,"(A)") "---"
    WRITE(tmp,*) INT(SIZE(E),KIND=4)
    fmt="("//ADJUSTL(TRIM(tmp))
    fmt=ADJUSTL(TRIM(fmt))//"E14.7)"
@@ -81,6 +135,8 @@ PROGRAM nupdf
    DEALLOCATE(dat1)
    DEALLOCATE(dat2)
    DEALLOCATE(dat3)
+   DEALLOCATE(datp)
+   DEALLOCATE(datm)
    CLOSE(u)
 END PROGRAM nupdf
 
@@ -97,6 +153,30 @@ SUBROUTINE readflux(filename,dat)
    END DO
    CLOSE(u)
 END SUBROUTINE readflux
+
+SUBROUTINE readuncert(filename,datm,datp)
+   IMPLICIT NONE
+   INTEGER,PARAMETER :: dp=SELECTED_REAL_KIND(14,200)
+   CHARACTER(LEN=80),INTENT(IN) :: filename
+   REAL(KIND=dp),DIMENSION(:,:),INTENT(INOUT) :: datm,datp
+   CHARACTER(LEN=80) :: fname
+   INTEGER(KIND=4) :: u,status,i,j,ind
+   ind=INDEX(filename,"11")
+   fname=filename(1:ind-1)//"min"//filename(ind+2:)
+   OPEN(NEWUNIT=u,FILE=TRIM(fname),STATUS="OLD",ACTION="READ")
+   DO i=1,UBOUND(datm,2)
+      READ(u,*,IOSTAT=status) (datm(j,i),j=1,UBOUND(datm,1))
+      IF(status.NE.0)EXIT
+   END DO
+   CLOSE(u)
+   fname=filename(1:ind-1)//"max"//filename(ind+2:)
+   OPEN(NEWUNIT=u,FILE=TRIM(fname),STATUS="OLD",ACTION="READ")
+   DO i=1,UBOUND(datp,2)
+      READ(u,*,IOSTAT=status) (datp(j,i),j=1,UBOUND(datp,1))
+      IF(status.NE.0)EXIT
+   END DO
+   CLOSE(u)
+END SUBROUTINE readuncert
 
 SUBROUTINE getnlines(filename,nline)
    IMPLICIT NONE
@@ -134,3 +214,16 @@ SUBROUTINE checkread(status)
       STOP
    END IF
 END SUBROUTINE checkread
+
+
+SUBROUTINE box_muller(r)
+   INTEGER,PARAMETER :: dp=SELECTED_REAL_KIND(14,200)
+   REAL(KIND=dp),DIMENSION(:),INTENT(INOUT) :: r
+   INTEGER(KIND=4) :: i
+   REAL(KIND=dp) :: u1,u2
+   DO i=1,UBOUND(r,1)
+      CALL RANDOM_NUMBER(u1)
+      CALL RANDOM_NUMBER(u2)
+      r(i)=DSQRT(-2*DLOG(u1))*DCOS(2*PI*u2)
+   END DO
+END SUBROUTINE box_muller 
