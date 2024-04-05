@@ -25,6 +25,9 @@ c compute Born amplitude squared for e q -> e q:
 c     (assume particles 1 and 3 are leptons, 2 and 4 are quarks)
 
       call compborn_eq(p,bflav,born)
+
+c     Sum over polarization for neutrino-induced is 1/2 not 1/4 (only left handed nu)
+      if(abs(bflav(1)).eq.12 .or. abs(bflav(1)).eq.14 ) born = born * 2 
       
       bmunu = 0d0      
       do j=1,nlegs

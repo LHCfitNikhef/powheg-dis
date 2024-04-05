@@ -79,6 +79,10 @@ c~          call compborn_eq(p,vflav,born)
 c~          virtual = -8d0*4d0/3d0*born
          
       endif
+
+c     Sum over polarization for neutrino-induced is 1/2 not 1/4 (only left handed nu)
+      if(abs(vflav(1)).eq.12 .or. abs(vflav(1)).eq.14 ) virtual = virtual * 2 
+
       
       return      
       end

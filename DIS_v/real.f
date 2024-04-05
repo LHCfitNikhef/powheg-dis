@@ -32,6 +32,9 @@ c
 c     cancel as/(2pi) associated with amp2. It will be put back by real_ampsq
       amp2 = amp2/(st_alpha/(2d0*pi))
 
+c     Sum over polarization for neutrino-induced is 1/2 not 1/4 (only left handed nu)
+      if(abs(fermion_flav(1)).eq.12 .or. abs(fermion_flav(1)).eq. 14) amp2 = amp2*2
+
       return
       end
 c
