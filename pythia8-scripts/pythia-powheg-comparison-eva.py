@@ -26,7 +26,7 @@ def y(x,q2):
 pp   = PdfPages('El-pythia-ycuts.pdf')
 tmp1 = plt.figure(1)
 tmp1.set_size_inches(8.00,6.00)
-plot = open('El-CC-nu-1tev-ycuts-0.dat')
+plot = open('pythia-El-data.dat')
 plot = [line.split() for line in plot]
 valx = [float(x[0]) for x in plot]
 valy = [float(x[1]) for x in plot]
