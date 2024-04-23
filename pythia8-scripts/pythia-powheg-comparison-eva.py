@@ -40,13 +40,13 @@ xsec = np.array(valy) / Ntot * sigtot / qbin
 
 # POWHEG+PYTHIA output
 
-Q2pwg1 = np.loadtxt('../../POWHEG-BOX-RES/DIS_v/fixednu09042024LO/pwgPOWHEG+PYTHIA8-output-11-Elout.dat', usecols=[0])
-Q2pwg2 = np.loadtxt('../../POWHEG-BOX-RES/DIS_v/fixednu09042024LO/pwgPOWHEG+PYTHIA8-output-11-Elout.dat', usecols=[1])
-outputpwg = np.loadtxt('../../POWHEG-BOX-RES/DIS_v/fixednu09042024LO/pwgLHEF_analysis-11-Elout.dat', usecols=[2])
+Q2pwg1 = np.loadtxt('./powheg-LHEF-Elout-LO.dat', usecols=[0])
+Q2pwg2 = np.loadtxt('./powheg-LHEF-Elout-LO.dat', usecols=[1])
+outputpwg = np.loadtxt('./powheg-LHEF-Elout-LO.dat', usecols=[2])
 
-Q2pwg12 = np.loadtxt('../../POWHEG-BOX-RES/DIS_v/fixednu09042024NLO/pwgPOWHEG+PYTHIA8-output-11-Elout.dat', usecols=[0])
-Q2pwg22 = np.loadtxt('../../POWHEG-BOX-RES/DIS_v/fixednu09042024NLO/pwgPOWHEG+PYTHIA8-output-11-Elout.dat', usecols=[1])
-outputpwg2 = np.loadtxt('../../POWHEG-BOX-RES/DIS_v/fixednu09042024NLO/pwgPOWHEG+PYTHIA8-output-11-Elout.dat', usecols=[2])
+Q2pwg12 = np.loadtxt('./powheg+pythia-Elout-NLO.dat', usecols=[0])
+Q2pwg22 = np.loadtxt('./powheg+pythia-Elout-NLO.dat', usecols=[1])
+outputpwg2 = np.loadtxt('./powheg+pythia-Elout-NLO.dat', usecols=[2])
 
 Q2pwg = 0.5*(Q2pwg1 + Q2pwg2)
 qbinpwg = Q2pwg2[2] - Q2pwg1[2]
