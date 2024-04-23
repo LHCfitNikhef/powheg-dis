@@ -59,7 +59,7 @@ xsecpwg2 = outputpwg2			# pb/ GeV
 
 # PLOT THE FIGURE
 
-plt.errorbar(np.array(valx), np.array(xsec), fmt='.',yerr=None, xerr=qbinpwg/2, label='Pythia')
+plt.errorbar(np.array(valx), np.array(xsec), fmt='.',yerr=None, xerr=qbin/2, label='Pythia')
 plt.errorbar(Q2pwg, xsecpwg, fmt='.', yerr=None, xerr=qbinpwg/2, label='POWHEG LO')
 plt.errorbar(Q2pwg2, xsecpwg2, fmt='.', yerr=None, xerr=qbinpwg/2, label='POWHEG NLO')
 plt.ylim( 0.0030, 0.0050)
