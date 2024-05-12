@@ -20,22 +20,22 @@ import numpy as np
 
 
 file_names_lo = [
-                '../DATA/x/LO/10cut.dat',
+                '../data/x/lo.dat',
                   ]
 
 file_names_nlo = [
-                  '../DATA/x/NLO/10cut.dat',                  
+                  '../data/x/nlo.dat',                  
                   ]
  
 file_names_min = [
-                  '../DATA/x/NLO/10cutmin.dat',
+                  '../data/x/nlo-min.dat',
                   ]
 
 file_names_max = [
-                  '../DATA/x/NLO/10cutmax.dat',
+                  '../data/x/nlo-max.dat',
                   ] 
 
-pythia_file = '../DATA/x/Pythia/10cut.dat'
+pythia_file = '../data/x/pythia.dat'
 
 
 #               EXTRACT DATA
