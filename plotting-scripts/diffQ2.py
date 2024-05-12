@@ -19,7 +19,7 @@ import numpy as np
 #                   NEUTRINO F I L E S
 
 file_names_lo = [
-                '../DATA/Q2/LO/q2min10.dat'
+                '../data/pwg-lo.dat'
                   ]
 
 file_names_nlo = [
