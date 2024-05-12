@@ -23,15 +23,15 @@ file_names_lo = [
                   ]
 
 file_names_nlo = [
-                  '../DATA/Q2/NLO/q2min10.dat',
+                  '../data/pwg-nlo.dat',
                   ]
  
 file_names_min = [
-                  '../DATA/Q2/NLO/q2min10min.dat',
+                  '../data/pwg-nlo-min.dat',
                   ]
 
 file_names_max = [
-                  '../DATA/Q2/NLO/q2min10max.dat',
+                  '../data/pwg-nlo-max.dat',
                   ] 
 
 pythia_file = '../DATA/Q2/Pythia/q2min10.dat'
