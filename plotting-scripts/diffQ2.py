@@ -19,22 +19,22 @@ import numpy as np
 #                   NEUTRINO F I L E S
 
 file_names_lo = [
-                '../data/pwg-lo.dat'
+                '../data/q2/pwg-lo.dat'
                   ]
 
 file_names_nlo = [
-                  '../data/pwg-nlo.dat',
+                  '../data/q2/pwg-nlo.dat',
                   ]
  
 file_names_min = [
-                  '../data/pwg-nlo-min.dat',
+                  '../data/q2/pwg-nlo-min.dat',
                   ]
 
 file_names_max = [
-                  '../data/pwg-nlo-max.dat',
+                  '../data/q2/pwg-nlo-max.dat',
                   ] 
 
-pythia_file = '../DATA/Q2/Pythia/q2min10.dat'
+pythia_file = '../data/q2/pythia.dat'
 
 
 #               EXTRACT DATA
