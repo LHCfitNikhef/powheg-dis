@@ -63,7 +63,7 @@ c 1: photon exchange only / 2: Z exchange only / 3: photon+Z exchange
       ph_Wwidth = powheginput("#Wwidth")
       if(ph_Wwidth<0d0) ph_Wwidth = 2.141d0
       ph_alphaem = powheginput("#alphaem")
-      if(ph_alphaem<00d0) ph_alphaem = 1d0/137d0
+      if(ph_alphaem<00d0) ph_alphaem = 0.00781751d0 ! 1d0/137d0
       ph_sthw2 = 1d0 - (ph_Wmass/ph_Zmass)**2 
 
 c     number of light flavors
