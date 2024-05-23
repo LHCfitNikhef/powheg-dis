@@ -72,7 +72,8 @@ c     if one of two parameters is missing, use the default ones
       ph_Wmass  = 80.398d0
       ph_Wwidth =  2.141d0
 !      ph_alphaem = 1d0/128.930d0
-      ph_alphaem = 1d0/137d0
+!      ph_alphaem = 1d0/137d0
+      ph_alphaem = 0.00781751d0
       ph_sthw2 = 1d0 - (ph_Wmass/ph_Zmass)**2 !0.23102d0
 
 c     number of light flavors
