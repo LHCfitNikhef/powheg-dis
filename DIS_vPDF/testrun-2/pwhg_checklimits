@@ -1,0 +1,668 @@
+ ******************************************
+            CHECK  SOFT LIMITS             
+
+  Random Born variables ====>   0.25930354333136663       0.95751839321077270       0.44906186911631352       0.55528154919769079     
+  Random radiation variables ====>   0.10000000000000001       0.62521072023039537       0.13122987678842435     
+  kn_branchfactor ====>   -1.0000000000000000     
+ ***********
+  emitter:           2
+  12  -4  11  -3   0
+   0   0   0   0   0
+  checksoft weight:  0.10103606855929685       soft:  0.10103971171336537       ratio:  0.99996394334458460     
+  checksoft weight:  0.10103963902083143       soft:  0.10103971171336537       ratio:  0.99999928055481646     
+  checksoft weight:  0.10103971071595132       soft:  0.10103971171336537       ratio:  0.99999999012849461     
+  checksoft weight:  0.10103971144069676       soft:  0.10103971171336537       ratio:  0.99999999730137190     
+  checksoft weight:  0.10103971144794900       soft:  0.10103971171336537       ratio:  0.99999999737314804     
+ ***********
+  emitter:           2
+  12  -2  11  -1   0
+   0   0   0   0   0
+  checksoft weight:  0.10103606855929685       soft:  0.10103971171336537       ratio:  0.99996394334458460     
+  checksoft weight:  0.10103963902083143       soft:  0.10103971171336537       ratio:  0.99999928055481646     
+  checksoft weight:  0.10103971071595132       soft:  0.10103971171336537       ratio:  0.99999999012849461     
+  checksoft weight:  0.10103971144069676       soft:  0.10103971171336537       ratio:  0.99999999730137190     
+  checksoft weight:  0.10103971144794900       soft:  0.10103971171336537       ratio:  0.99999999737314804     
+ ***********
+  emitter:           2
+  12   1  11   2   0
+   0   0   0   0   0
+  checksoft weight:  0.10103606855929685       soft:  0.10103971171336537       ratio:  0.99996394334458460     
+  checksoft weight:  0.10103963902083143       soft:  0.10103971171336537       ratio:  0.99999928055481646     
+  checksoft weight:  0.10103971071595132       soft:  0.10103971171336537       ratio:  0.99999999012849461     
+  checksoft weight:  0.10103971144069676       soft:  0.10103971171336537       ratio:  0.99999999730137190     
+  checksoft weight:  0.10103971144794900       soft:  0.10103971171336537       ratio:  0.99999999737314804     
+ ***********
+  emitter:           2
+  12   3  11   4   0
+   0   0   0   0   0
+  checksoft weight:  0.10103606855929685       soft:  0.10103971171336537       ratio:  0.99996394334458460     
+  checksoft weight:  0.10103963902083143       soft:  0.10103971171336537       ratio:  0.99999928055481646     
+  checksoft weight:  0.10103971071595132       soft:  0.10103971171336537       ratio:  0.99999999012849461     
+  checksoft weight:  0.10103971144069676       soft:  0.10103971171336537       ratio:  0.99999999730137190     
+  checksoft weight:  0.10103971144794900       soft:  0.10103971171336537       ratio:  0.99999999737314804     
+ emitter    2 , process   12  -4  11  -3   0
+ soft alr  4 emitter  2, process   12  -2  11  -1   0
+ == alr   2 emitter  2, process   12  -4  11  -3   0
+ soft alr  6 emitter  2, process   12   1  11   2   0
+ == alr   2 emitter  2, process   12  -4  11  -3   0
+ soft alr  8 emitter  2, process   12   3  11   4   0
+ == alr   2 emitter  2, process   12  -4  11  -3   0
+ alr=           2   0.0000000000000000      /   0.0000000000000000                     
+ alr=           2   0.0000000000000000      /   0.0000000000000000                     
+ alr=           2   0.0000000000000000      /   0.0000000000000000                     
+ alr=           2   0.0000000000000000      /   0.0000000000000000                     
+ alr=           2   0.0000000000000000      /   0.0000000000000000                     
+  Random Born variables ====>   0.23284357084768814       0.94720357979626257       0.46393343873753778       0.70038451645920219     
+  Random radiation variables ====>   0.10000000000000001        5.3867613563447492E-003  0.60768194502717066     
+  kn_branchfactor ====>   -1.0000000000000000     
+ ***********
+  emitter:           4
+  12  -4  11  -3   0
+   0   0   0   0   0
+  checksoft weight:  0.99977053126339688       soft:  0.99971610351525886       ratio:   1.0000544432043723     
+  checksoft weight:  0.99972181710655927       soft:  0.99971610351525886       ratio:   1.0000057152138295     
+  checksoft weight:  0.99971668269989644       soft:  0.99971610351525886       ratio:   1.0000005793491127     
+  checksoft weight:  0.99971616662399720       soft:  0.99971610351525886       ratio:   1.0000000631266597     
+  checksoft weight:  0.99971611499005009       soft:  0.99971610351525886       ratio:   1.0000000114780498     
+ ***********
+  emitter:           4
+  12  -2  11  -1   0
+   0   0   0   0   0
+  checksoft weight:  0.99977053126339688       soft:  0.99971610351525886       ratio:   1.0000544432043723     
+  checksoft weight:  0.99972181710655927       soft:  0.99971610351525886       ratio:   1.0000057152138295     
+  checksoft weight:  0.99971668269989644       soft:  0.99971610351525886       ratio:   1.0000005793491127     
+  checksoft weight:  0.99971616662399720       soft:  0.99971610351525886       ratio:   1.0000000631266597     
+  checksoft weight:  0.99971611499005009       soft:  0.99971610351525886       ratio:   1.0000000114780498     
+ ***********
+  emitter:           4
+  12   1  11   2   0
+   0   0   0   0   0
+  checksoft weight:  0.99977053126339688       soft:  0.99971610351525886       ratio:   1.0000544432043723     
+  checksoft weight:  0.99972181710655927       soft:  0.99971610351525886       ratio:   1.0000057152138295     
+  checksoft weight:  0.99971668269989644       soft:  0.99971610351525886       ratio:   1.0000005793491127     
+  checksoft weight:  0.99971616662399720       soft:  0.99971610351525886       ratio:   1.0000000631266597     
+  checksoft weight:  0.99971611499005009       soft:  0.99971610351525886       ratio:   1.0000000114780498     
+ ***********
+  emitter:           4
+  12   3  11   4   0
+   0   0   0   0   0
+  checksoft weight:  0.99977053126339688       soft:  0.99971610351525886       ratio:   1.0000544432043723     
+  checksoft weight:  0.99972181710655927       soft:  0.99971610351525886       ratio:   1.0000057152138295     
+  checksoft weight:  0.99971668269989644       soft:  0.99971610351525886       ratio:   1.0000005793491127     
+  checksoft weight:  0.99971616662399720       soft:  0.99971610351525886       ratio:   1.0000000631266597     
+  checksoft weight:  0.99971611499005009       soft:  0.99971610351525886       ratio:   1.0000000114780498     
+ emitter    4 , process   12  -4  11  -3   0
+ soft alr  3 emitter  4, process   12  -2  11  -1   0
+ == alr   1 emitter  4, process   12  -4  11  -3   0
+ soft alr  5 emitter  4, process   12   1  11   2   0
+ == alr   1 emitter  4, process   12  -4  11  -3   0
+ soft alr  7 emitter  4, process   12   3  11   4   0
+ == alr   1 emitter  4, process   12  -4  11  -3   0
+ alr=           1   0.0000000000000000      /   0.0000000000000000                     
+ alr=           1   0.0000000000000000      /   0.0000000000000000                     
+ alr=           1   0.0000000000000000      /   0.0000000000000000                     
+ alr=           1   0.0000000000000000      /   0.0000000000000000                     
+ alr=           1   0.0000000000000000      /   0.0000000000000000                     
+ ******************************************
+
+ ******************************************
+       CHECK  COLL. LIMITS FOR FSR       
+
+  Random Born variables ====>   0.80952289021687207       0.12378436617518318       0.90385013045397145       0.14331577858468236     
+  Random radiation variables ====>   0.45952572177318984       0.10000000000000001       0.39953590771568415     
+  checkcoll, jexp=           1  realsupp/bornsupp   1.0000000000000000     
+ ######### Check coll  0.10000000000000001     
+  checkcoll, jexp=           2  realsupp/bornsupp   1.0000000000000000     
+ ######### Check coll   1.0000000000000000E-002
+  checkcoll, jexp=           3  realsupp/bornsupp   1.0000000000000000     
+ ######### Check coll   1.0000000000000000E-003
+  checkcoll, jexp=           4  realsupp/bornsupp   1.0000000000000000     
+ ######### Check coll   1.0000000000000000E-004
+  checkcoll, jexp=           5  realsupp/bornsupp   1.0000000000000000     
+ ######### Check coll   1.0000000000000001E-005
+  checkcoll, jexp=           6  realsupp/bornsupp   1.0000000000000000     
+ ######### Check coll   9.9999999999999995E-007
+  checkcoll, jexp=           7  realsupp/bornsupp   1.0000000000000000     
+ ######### Check coll   9.9999999999999995E-008
+  checkcoll, jexp=           8  realsupp/bornsupp   1.0000000000000000     
+ ######### Check coll   1.0000000000000000E-008
+ ---           1
+  coll. weights:   0.98394149952019672       born:   1.0000000000000000       born/coll. weights:   1.0163205845953585     
+  coll. weights:   0.99984873776133776       born:   1.0000000000000000       born/coll. weights:   1.0001512851223886     
+  coll. weights:   0.99999824765913459       born:   1.0000000000000000       born/coll. weights:   1.0000017523439362     
+  coll. weights:   0.99999973471827219       born:   1.0000000000000000       born/coll. weights:   1.0000002652817981     
+  coll. weights:   0.99999974958692173       born:   1.0000000000000000       born/coll. weights:   1.0000002504131409     
+  coll. weights:   0.99999974973561545       born:   1.0000000000000000       born/coll. weights:   1.0000002502644472     
+  coll. weights:   0.99999974973710237       born:   1.0000000000000000       born/coll. weights:   1.0000002502629604     
+  coll. weights:   0.99999974973711725       born:   1.0000000000000000       born/coll. weights:   1.0000002502629455     
+ ---           3
+  coll. weights:   0.98394149952019672       born:   1.0000000000000000       born/coll. weights:   1.0163205845953585     
+  coll. weights:   0.99984873776133776       born:   1.0000000000000000       born/coll. weights:   1.0001512851223886     
+  coll. weights:   0.99999824765913459       born:   1.0000000000000000       born/coll. weights:   1.0000017523439362     
+  coll. weights:   0.99999973471827219       born:   1.0000000000000000       born/coll. weights:   1.0000002652817981     
+  coll. weights:   0.99999974958692173       born:   1.0000000000000000       born/coll. weights:   1.0000002504131409     
+  coll. weights:   0.99999974973561545       born:   1.0000000000000000       born/coll. weights:   1.0000002502644472     
+  coll. weights:   0.99999974973710237       born:   1.0000000000000000       born/coll. weights:   1.0000002502629604     
+  coll. weights:   0.99999974973711725       born:   1.0000000000000000       born/coll. weights:   1.0000002502629455     
+ ---           5
+  coll. weights:   0.98394149952019672       born:   1.0000000000000000       born/coll. weights:   1.0163205845953585     
+  coll. weights:   0.99984873776133776       born:   1.0000000000000000       born/coll. weights:   1.0001512851223886     
+  coll. weights:   0.99999824765913459       born:   1.0000000000000000       born/coll. weights:   1.0000017523439362     
+  coll. weights:   0.99999973471827219       born:   1.0000000000000000       born/coll. weights:   1.0000002652817981     
+  coll. weights:   0.99999974958692173       born:   1.0000000000000000       born/coll. weights:   1.0000002504131409     
+  coll. weights:   0.99999974973561545       born:   1.0000000000000000       born/coll. weights:   1.0000002502644472     
+  coll. weights:   0.99999974973710237       born:   1.0000000000000000       born/coll. weights:   1.0000002502629604     
+  coll. weights:   0.99999974973711725       born:   1.0000000000000000       born/coll. weights:   1.0000002502629455     
+ ---           7
+  coll. weights:   0.98394149952019672       born:   1.0000000000000000       born/coll. weights:   1.0163205845953585     
+  coll. weights:   0.99984873776133776       born:   1.0000000000000000       born/coll. weights:   1.0001512851223886     
+  coll. weights:   0.99999824765913459       born:   1.0000000000000000       born/coll. weights:   1.0000017523439362     
+  coll. weights:   0.99999973471827219       born:   1.0000000000000000       born/coll. weights:   1.0000002652817981     
+  coll. weights:   0.99999974958692173       born:   1.0000000000000000       born/coll. weights:   1.0000002504131409     
+  coll. weights:   0.99999974973561545       born:   1.0000000000000000       born/coll. weights:   1.0000002502644472     
+  coll. weights:   0.99999974973710237       born:   1.0000000000000000       born/coll. weights:   1.0000002502629604     
+  coll. weights:   0.99999974973711725       born:   1.0000000000000000       born/coll. weights:   1.0000002502629455     
+ coll  emitter  4, alr=   1, process   12  -4  11  -3   0
+ alr=           1   0.0000000000000000      *-WWARN-*      
+ alr=           1   0.0000000000000000                     
+ alr=           1   0.0000000000000000      *-WWWARN-*     
+ alr=           1   0.0000000000000000      *-WWWWWARN-*   
+ alr=           1   0.0000000000000000      *-WWWWWARN-*   
+ alr=           1   0.0000000000000000      *-WWWWWARN-*   
+ alr=           1   0.0000000000000000      *-WWWWWARN-*   
+ alr=           1   0.0000000000000000      *-WWWWWARN-*   
+ coll  emitter  4, alr=   3, process   12  -2  11  -1   0
+ alr=           3   0.0000000000000000      *-WWARN-*      
+ alr=           3   0.0000000000000000                     
+ alr=           3   0.0000000000000000      *-WWWARN-*     
+ alr=           3   0.0000000000000000      *-WWWWWARN-*   
+ alr=           3   0.0000000000000000      *-WWWWWARN-*   
+ alr=           3   0.0000000000000000      *-WWWWWARN-*   
+ alr=           3   0.0000000000000000      *-WWWWWARN-*   
+ alr=           3   0.0000000000000000      *-WWWWWARN-*   
+ coll  emitter  4, alr=   5, process   12   1  11   2   0
+ alr=           5   0.0000000000000000      *-WWARN-*      
+ alr=           5   0.0000000000000000                     
+ alr=           5   0.0000000000000000      *-WWWARN-*     
+ alr=           5   0.0000000000000000      *-WWWWWARN-*   
+ alr=           5   0.0000000000000000      *-WWWWWARN-*   
+ alr=           5   0.0000000000000000      *-WWWWWARN-*   
+ alr=           5   0.0000000000000000      *-WWWWWARN-*   
+ alr=           5   0.0000000000000000      *-WWWWWARN-*   
+ coll  emitter  4, alr=   7, process   12   3  11   4   0
+ alr=           7   0.0000000000000000      *-WWARN-*      
+ alr=           7   0.0000000000000000                     
+ alr=           7   0.0000000000000000      *-WWWARN-*     
+ alr=           7   0.0000000000000000      *-WWWWWARN-*   
+ alr=           7   0.0000000000000000      *-WWWWWARN-*   
+ alr=           7   0.0000000000000000      *-WWWWWARN-*   
+ alr=           7   0.0000000000000000      *-WWWWWARN-*   
+ alr=           7   0.0000000000000000      *-WWWWWARN-*   
+ ******************************************
+
+ ******************************************
+       CHECK  COLL. LIMITS FOR ISR       
+
+  Random Born variables ====>   0.30775312467113736       0.58922584808968637       0.71810584408101263       0.96381617500859562     
+  Random radiation variables ====>   0.77055966006722443       0.90000000000000002       0.96445131339279300     
+  checkcoll, jexp=           1  realsupp/bornsupp   1.0000000000000000     
+ ######### Check coll  0.90000000000000002     
+  checkcoll, jexp=           2  realsupp/bornsupp   1.0000000000000000     
+ ######### Check coll  0.98999999999999999     
+  checkcoll, jexp=           3  realsupp/bornsupp   1.0000000000000000     
+ ######### Check coll  0.99900000000000000     
+  checkcoll, jexp=           4  realsupp/bornsupp   1.0000000000000000     
+ ######### Check coll  0.99990000000000001     
+  checkcoll, jexp=           5  realsupp/bornsupp   1.0000000000000000     
+ ######### Check coll  0.99999000000000005     
+  checkcoll, jexp=           6  realsupp/bornsupp   1.0000000000000000     
+ ######### Check coll  0.99999899999999997     
+  checkcoll, jexp=           7  realsupp/bornsupp   1.0000000000000000     
+ ######### Check coll  0.99999990000000005     
+  checkcoll, jexp=           8  realsupp/bornsupp   1.0000000000000000     
+ ######### Check coll  0.99999998999999995     
+ ---           2
+  coll. weights:   0.83033258194101556       born:   1.0000000000000000       born/coll. weights:   1.2043366980281127     
+  coll. weights:   0.99785337927725648       born:   1.0000000000000000       born/coll. weights:   1.0021512386161364     
+  coll. weights:   0.99997493615572752       born:   1.0000000000000000       born/coll. weights:   1.0000250644724844     
+  coll. weights:   0.99999620413870738       born:   1.0000000000000000       born/coll. weights:   1.0000037958757013     
+  coll. weights:   0.99999641686596552       born:   1.0000000000000000       born/coll. weights:   1.0000035831468734     
+  coll. weights:   0.99999641899335501       born:   1.0000000000000000       born/coll. weights:   1.0000035810194687     
+  coll. weights:   0.99999641901463032       born:   1.0000000000000000       born/coll. weights:   1.0000035809981931     
+  coll. weights:   0.99999641901484182       born:   1.0000000000000000       born/coll. weights:   1.0000035809979817     
+ ---           4
+  coll. weights:   0.83033258194101556       born:   1.0000000000000000       born/coll. weights:   1.2043366980281127     
+  coll. weights:   0.99785337927725648       born:   1.0000000000000000       born/coll. weights:   1.0021512386161364     
+  coll. weights:   0.99997493615572752       born:   1.0000000000000000       born/coll. weights:   1.0000250644724844     
+  coll. weights:   0.99999620413870738       born:   1.0000000000000000       born/coll. weights:   1.0000037958757013     
+  coll. weights:   0.99999641686596552       born:   1.0000000000000000       born/coll. weights:   1.0000035831468734     
+  coll. weights:   0.99999641899335501       born:   1.0000000000000000       born/coll. weights:   1.0000035810194687     
+  coll. weights:   0.99999641901463032       born:   1.0000000000000000       born/coll. weights:   1.0000035809981931     
+  coll. weights:   0.99999641901484182       born:   1.0000000000000000       born/coll. weights:   1.0000035809979817     
+ ---           6
+  coll. weights:   0.83033258194101556       born:   1.0000000000000000       born/coll. weights:   1.2043366980281127     
+  coll. weights:   0.99785337927725648       born:   1.0000000000000000       born/coll. weights:   1.0021512386161364     
+  coll. weights:   0.99997493615572752       born:   1.0000000000000000       born/coll. weights:   1.0000250644724844     
+  coll. weights:   0.99999620413870738       born:   1.0000000000000000       born/coll. weights:   1.0000037958757013     
+  coll. weights:   0.99999641686596552       born:   1.0000000000000000       born/coll. weights:   1.0000035831468734     
+  coll. weights:   0.99999641899335501       born:   1.0000000000000000       born/coll. weights:   1.0000035810194687     
+  coll. weights:   0.99999641901463032       born:   1.0000000000000000       born/coll. weights:   1.0000035809981931     
+  coll. weights:   0.99999641901484182       born:   1.0000000000000000       born/coll. weights:   1.0000035809979817     
+ ---           8
+  coll. weights:   0.83033258194101556       born:   1.0000000000000000       born/coll. weights:   1.2043366980281127     
+  coll. weights:   0.99785337927725648       born:   1.0000000000000000       born/coll. weights:   1.0021512386161364     
+  coll. weights:   0.99997493615572752       born:   1.0000000000000000       born/coll. weights:   1.0000250644724844     
+  coll. weights:   0.99999620413870738       born:   1.0000000000000000       born/coll. weights:   1.0000037958757013     
+  coll. weights:   0.99999641686596552       born:   1.0000000000000000       born/coll. weights:   1.0000035831468734     
+  coll. weights:   0.99999641899335501       born:   1.0000000000000000       born/coll. weights:   1.0000035810194687     
+  coll. weights:   0.99999641901463032       born:   1.0000000000000000       born/coll. weights:   1.0000035809981931     
+  coll. weights:   0.99999641901484182       born:   1.0000000000000000       born/coll. weights:   1.0000035809979817     
+ ---           9
+  coll. weights:   0.93070151456928052       born:   1.0000000000000000       born/coll. weights:   1.0744583352943078     
+  coll. weights:   0.99922125520345895       born:   1.0000000000000000       born/coll. weights:   1.0007793517126320     
+  coll. weights:   0.99999091000504636       born:   1.0000000000000000       born/coll. weights:   1.0000090900775824     
+  coll. weights:   0.99999862323710265       born:   1.0000000000000000       born/coll. weights:   1.0000013767647928     
+  coll. weights:   0.99999870039156302       born:   1.0000000000000000       born/coll. weights:   1.0000012996101260     
+  coll. weights:   0.99999870116315082       born:   1.0000000000000000       born/coll. weights:   1.0000012988385361     
+  coll. weights:   0.99999870117086731       born:   1.0000000000000000       born/coll. weights:   1.0000012988308196     
+  coll. weights:   0.99999870117094392       born:   1.0000000000000000       born/coll. weights:   1.0000012988307430     
+ ---          10
+  coll. weights:   0.93070151456928052       born:   1.0000000000000000       born/coll. weights:   1.0744583352943078     
+  coll. weights:   0.99922125520345895       born:   1.0000000000000000       born/coll. weights:   1.0007793517126320     
+  coll. weights:   0.99999091000504636       born:   1.0000000000000000       born/coll. weights:   1.0000090900775824     
+  coll. weights:   0.99999862323710265       born:   1.0000000000000000       born/coll. weights:   1.0000013767647928     
+  coll. weights:   0.99999870039156302       born:   1.0000000000000000       born/coll. weights:   1.0000012996101260     
+  coll. weights:   0.99999870116315082       born:   1.0000000000000000       born/coll. weights:   1.0000012988385361     
+  coll. weights:   0.99999870117086731       born:   1.0000000000000000       born/coll. weights:   1.0000012988308196     
+  coll. weights:   0.99999870117094392       born:   1.0000000000000000       born/coll. weights:   1.0000012988307430     
+ ---          11
+  coll. weights:   0.93070151456928052       born:   1.0000000000000000       born/coll. weights:   1.0744583352943078     
+  coll. weights:   0.99922125520345895       born:   1.0000000000000000       born/coll. weights:   1.0007793517126320     
+  coll. weights:   0.99999091000504636       born:   1.0000000000000000       born/coll. weights:   1.0000090900775824     
+  coll. weights:   0.99999862323710265       born:   1.0000000000000000       born/coll. weights:   1.0000013767647928     
+  coll. weights:   0.99999870039156302       born:   1.0000000000000000       born/coll. weights:   1.0000012996101260     
+  coll. weights:   0.99999870116315082       born:   1.0000000000000000       born/coll. weights:   1.0000012988385361     
+  coll. weights:   0.99999870117086731       born:   1.0000000000000000       born/coll. weights:   1.0000012988308196     
+  coll. weights:   0.99999870117094392       born:   1.0000000000000000       born/coll. weights:   1.0000012988307430     
+ ---          12
+  coll. weights:   0.93070151456928052       born:   1.0000000000000000       born/coll. weights:   1.0744583352943078     
+  coll. weights:   0.99922125520345895       born:   1.0000000000000000       born/coll. weights:   1.0007793517126320     
+  coll. weights:   0.99999091000504636       born:   1.0000000000000000       born/coll. weights:   1.0000090900775824     
+  coll. weights:   0.99999862323710265       born:   1.0000000000000000       born/coll. weights:   1.0000013767647928     
+  coll. weights:   0.99999870039156302       born:   1.0000000000000000       born/coll. weights:   1.0000012996101260     
+  coll. weights:   0.99999870116315082       born:   1.0000000000000000       born/coll. weights:   1.0000012988385361     
+  coll. weights:   0.99999870117086731       born:   1.0000000000000000       born/coll. weights:   1.0000012988308196     
+  coll. weights:   0.99999870117094392       born:   1.0000000000000000       born/coll. weights:   1.0000012988307430     
+ coll-minus  emitter  2, alr=   2, process   12  -4  11  -3   0
+ coll-minus alr   4 emitter  2, process   12  -2  11  -1   0
+ ==  alr   2 emitter  2, process   12  -4  11  -3   0
+ coll-minus alr   6 emitter  2, process   12   1  11   2   0
+ ==  alr   2 emitter  2, process   12  -4  11  -3   0
+ coll-minus alr   8 emitter  2, process   12   3  11   4   0
+ ==  alr   2 emitter  2, process   12  -4  11  -3   0
+ coll-minus alr   9 emitter  2, process   12   0  11  -1   2
+ ==  alr   2 emitter  2, process   12  -4  11  -3   0
+ coll-minus alr  10 emitter  2, process   12   0  11   2  -1
+ ==  alr   2 emitter  2, process   12  -4  11  -3   0
+ coll-minus alr  11 emitter  2, process   12   0  11  -3   4
+ ==  alr   2 emitter  2, process   12  -4  11  -3   0
+ coll-minus alr  12 emitter  2, process   12   0  11   4  -3
+ ==  alr   2 emitter  2, process   12  -4  11  -3   0
+ alr=           2   0.0000000000000000      /   0.0000000000000000                     
+ alr=           2   0.0000000000000000      /   0.0000000000000000                     
+ alr=           2   0.0000000000000000      /   0.0000000000000000                     
+ alr=           2   0.0000000000000000      /   0.0000000000000000                     
+ alr=           2   0.0000000000000000      /   0.0000000000000000                     
+ alr=           2   0.0000000000000000      /   0.0000000000000000                     
+ alr=           2   0.0000000000000000      /   0.0000000000000000                     
+ alr=           2   0.0000000000000000      /   0.0000000000000000                     
+ ******************************************
+
+ ******************************************
+    CHECK  SOFT-COLL. LIMITS FOR FSR     
+
+  Random Born variables ====>   0.23705747628903140       0.51435154450569698       0.48907408209720415       0.50681173234119470     
+  Random radiation variables ====>   0.10000000000000001       0.75754927284551599       0.70602655309335560     
+  kn_branchfactor ====>   -1.0000000000000000     
+ ***********
+  emitter:           4
+  12  -4  11  -3   0
+   0   0   0   0   0
+  checksoft weight:  0.40746660563415438       soft:  0.34950047000687429       ratio:   1.1658542422736655     
+  checksoft weight:  0.35531932512068909       soft:  0.34950047000687429       ratio:   1.0166490623423206     
+  checksoft weight:  0.35008743074745663       soft:  0.34950047000687429       ratio:   1.0016794276144201     
+  checksoft weight:  0.34956439450673421       soft:  0.34950047000687429       ratio:   1.0001829024718012     
+  checksoft weight:  0.34951209272888939       soft:  0.34950047000687429       ratio:   1.0000332552400140     
+ ***********
+  emitter:           4
+  12  -2  11  -1   0
+   0   0   0   0   0
+  checksoft weight:  0.40746660563415438       soft:  0.34950047000687429       ratio:   1.1658542422736655     
+  checksoft weight:  0.35531932512068909       soft:  0.34950047000687429       ratio:   1.0166490623423206     
+  checksoft weight:  0.35008743074745663       soft:  0.34950047000687429       ratio:   1.0016794276144201     
+  checksoft weight:  0.34956439450673421       soft:  0.34950047000687429       ratio:   1.0001829024718012     
+  checksoft weight:  0.34951209272888939       soft:  0.34950047000687429       ratio:   1.0000332552400140     
+ ***********
+  emitter:           4
+  12   1  11   2   0
+   0   0   0   0   0
+  checksoft weight:  0.40746660563415438       soft:  0.34950047000687429       ratio:   1.1658542422736655     
+  checksoft weight:  0.35531932512068909       soft:  0.34950047000687429       ratio:   1.0166490623423206     
+  checksoft weight:  0.35008743074745663       soft:  0.34950047000687429       ratio:   1.0016794276144201     
+  checksoft weight:  0.34956439450673421       soft:  0.34950047000687429       ratio:   1.0001829024718012     
+  checksoft weight:  0.34951209272888939       soft:  0.34950047000687429       ratio:   1.0000332552400140     
+ ***********
+  emitter:           4
+  12   3  11   4   0
+   0   0   0   0   0
+  checksoft weight:  0.40746660563415438       soft:  0.34950047000687429       ratio:   1.1658542422736655     
+  checksoft weight:  0.35531932512068909       soft:  0.34950047000687429       ratio:   1.0166490623423206     
+  checksoft weight:  0.35008743074745663       soft:  0.34950047000687429       ratio:   1.0016794276144201     
+  checksoft weight:  0.34956439450673421       soft:  0.34950047000687429       ratio:   1.0001829024718012     
+  checksoft weight:  0.34951209272888939       soft:  0.34950047000687429       ratio:   1.0000332552400140     
+ emitter    4 , process   12  -4  11  -3   0
+ soft-coll alr  3 emitter  4, process   12  -2  11  -1   0
+ == alr   1 emitter  4, process   12  -4  11  -3   0
+ soft-coll alr  5 emitter  4, process   12   1  11   2   0
+ == alr   1 emitter  4, process   12  -4  11  -3   0
+ soft-coll alr  7 emitter  4, process   12   3  11   4   0
+ == alr   1 emitter  4, process   12  -4  11  -3   0
+ alr=           1   0.0000000000000000      /   0.0000000000000000                     
+ alr=           1   0.0000000000000000      /   0.0000000000000000                     
+ alr=           1   0.0000000000000000      /   0.0000000000000000                     
+ alr=           1   0.0000000000000000      /   0.0000000000000000                     
+ alr=           1   0.0000000000000000      /   0.0000000000000000                     
+ ******************************************
+
+ ******************************************
+    CHECK  SOFT-COLL. LIMITS FOR ISR +   
+
+ ******************************************
+
+ ******************************************
+    CHECK  SOFT-COLL. LIMITS FOR ISR -   
+
+  Random Born variables ====>   0.39736990928184923       0.37229889226290069       0.77047985017031095       0.69607072610347132     
+  Random radiation variables ====>   0.10000000000000001       0.39304881955038695       0.10456721404728597     
+  kn_branchfactor ====>   -1.0000000000000000     
+ ***********
+  emitter:           2
+  12  -4  11  -3   0
+   0   0   0   0   0
+  checksoft weight:   6.0766575962318124E-002  soft:   6.0699921422746501E-002  ratio:   1.0010980992727718     
+  checksoft weight:   6.0700596397665008E-002  soft:   6.0699921422746501E-002  ratio:   1.0000111198647821     
+  checksoft weight:   6.0699930464531461E-002  soft:   6.0699921422746501E-002  ratio:   1.0000001489587589     
+  checksoft weight:   6.0699923768384366E-002  soft:   6.0699921422746501E-002  ratio:   1.0000000386431780     
+  checksoft weight:   6.0699923701382573E-002  soft:   6.0699921422746501E-002  ratio:   1.0000000375393578     
+ ***********
+  emitter:           2
+  12  -2  11  -1   0
+   0   0   0   0   0
+  checksoft weight:   6.0766575962318124E-002  soft:   6.0699921422746501E-002  ratio:   1.0010980992727718     
+  checksoft weight:   6.0700596397665008E-002  soft:   6.0699921422746501E-002  ratio:   1.0000111198647821     
+  checksoft weight:   6.0699930464531461E-002  soft:   6.0699921422746501E-002  ratio:   1.0000001489587589     
+  checksoft weight:   6.0699923768384366E-002  soft:   6.0699921422746501E-002  ratio:   1.0000000386431780     
+  checksoft weight:   6.0699923701382573E-002  soft:   6.0699921422746501E-002  ratio:   1.0000000375393578     
+ ***********
+  emitter:           2
+  12   1  11   2   0
+   0   0   0   0   0
+  checksoft weight:   6.0766575962318124E-002  soft:   6.0699921422746501E-002  ratio:   1.0010980992727718     
+  checksoft weight:   6.0700596397665008E-002  soft:   6.0699921422746501E-002  ratio:   1.0000111198647821     
+  checksoft weight:   6.0699930464531461E-002  soft:   6.0699921422746501E-002  ratio:   1.0000001489587589     
+  checksoft weight:   6.0699923768384366E-002  soft:   6.0699921422746501E-002  ratio:   1.0000000386431780     
+  checksoft weight:   6.0699923701382573E-002  soft:   6.0699921422746501E-002  ratio:   1.0000000375393578     
+ ***********
+  emitter:           2
+  12   3  11   4   0
+   0   0   0   0   0
+  checksoft weight:   6.0766575962318124E-002  soft:   6.0699921422746501E-002  ratio:   1.0010980992727718     
+  checksoft weight:   6.0700596397665008E-002  soft:   6.0699921422746501E-002  ratio:   1.0000111198647821     
+  checksoft weight:   6.0699930464531461E-002  soft:   6.0699921422746501E-002  ratio:   1.0000001489587589     
+  checksoft weight:   6.0699923768384366E-002  soft:   6.0699921422746501E-002  ratio:   1.0000000386431780     
+  checksoft weight:   6.0699923701382573E-002  soft:   6.0699921422746501E-002  ratio:   1.0000000375393578     
+ emitter    2 , process   12  -4  11  -3   0
+ alr=           2  0.93888086644344060                     
+ alr=           2  0.99933172564183848                     
+ alr=           2  0.99999106208994515                     
+ alr=           2  0.99999769733214716                     
+ alr=           2  0.99999776372494009                     
+ emitter    2 , process   12  -2  11  -1   0
+ alr=           4  0.94037645624288557                     
+ alr=           4  0.99934831909285093                     
+ alr=           4  0.99999128405558679                     
+ alr=           4  0.99999775451709805                     
+ alr=           4  0.99999781926107911                     
+ emitter    2 , process   12   1  11   2   0
+ alr=           6  0.94301036893911894                     
+ alr=           6  0.99937744144759488                     
+ alr=           6  0.99999167360196883                     
+ alr=           6  0.99999785487579473                     
+ alr=           6  0.99999791672613569                     
+ emitter    2 , process   12   3  11   4   0
+ alr=           8  0.93991776142804762                     
+ alr=           8  0.99934341713862429                     
+ alr=           8  0.99999121851028394                     
+ alr=           8  0.99999773763074828                     
+ alr=           8  0.99999780286161322                     
+ ******************************************
+
+ ******************************************
+    CHECK  COLL.-SOFT LIMITS FOR FSR     
+
+  Random Born variables ====>   0.13326931040528933       0.83063942907158506       0.48793533687037538       0.14435838221159969     
+  Random radiation variables ====>   0.58451828271670792       0.10000000000000001       0.94954538330943095     
+  checkcoll, jexp=           1  realsupp/bornsupp   1.0000000000000000     
+ ######### Check coll  0.10000000000000001     
+  checkcoll, jexp=           2  realsupp/bornsupp   1.0000000000000000     
+ ######### Check coll   1.0000000000000000E-002
+  checkcoll, jexp=           3  realsupp/bornsupp   1.0000000000000000     
+ ######### Check coll   1.0000000000000000E-003
+  checkcoll, jexp=           4  realsupp/bornsupp   1.0000000000000000     
+ ######### Check coll   1.0000000000000000E-004
+  checkcoll, jexp=           5  realsupp/bornsupp   1.0000000000000000     
+ ######### Check coll   1.0000000000000001E-005
+  checkcoll, jexp=           6  realsupp/bornsupp   1.0000000000000000     
+ ######### Check coll   9.9999999999999995E-007
+  checkcoll, jexp=           7  realsupp/bornsupp   1.0000000000000000     
+ ######### Check coll   9.9999999999999995E-008
+  checkcoll, jexp=           8  realsupp/bornsupp   1.0000000000000000     
+ ######### Check coll   1.0000000000000000E-008
+ ---           1
+  coll. weights:   0.99213859443937547       born:   1.0000000000000000       born/coll. weights:   1.0079236969559346     
+  coll. weights:   0.99990894449357826       born:   1.0000000000000000       born/coll. weights:   1.0000910637982821     
+  coll. weights:   0.99999892163964121       born:   1.0000000000000000       born/coll. weights:   1.0000010783615216     
+  coll. weights:   0.99999983648208890       born:   1.0000000000000000       born/coll. weights:   1.0000001635179379     
+  coll. weights:   0.99999984564243705       born:   1.0000000000000000       born/coll. weights:   1.0000001543575867     
+  coll. weights:   0.99999984573404721       born:   1.0000000000000000       born/coll. weights:   1.0000001542659767     
+  coll. weights:   0.99999984573496337       born:   1.0000000000000000       born/coll. weights:   1.0000001542650605     
+  coll. weights:   0.99999984573497236       born:   1.0000000000000000       born/coll. weights:   1.0000001542650514     
+ ---           3
+  coll. weights:   0.99213859443937547       born:   1.0000000000000000       born/coll. weights:   1.0079236969559346     
+  coll. weights:   0.99990894449357826       born:   1.0000000000000000       born/coll. weights:   1.0000910637982821     
+  coll. weights:   0.99999892163964121       born:   1.0000000000000000       born/coll. weights:   1.0000010783615216     
+  coll. weights:   0.99999983648208890       born:   1.0000000000000000       born/coll. weights:   1.0000001635179379     
+  coll. weights:   0.99999984564243705       born:   1.0000000000000000       born/coll. weights:   1.0000001543575867     
+  coll. weights:   0.99999984573404721       born:   1.0000000000000000       born/coll. weights:   1.0000001542659767     
+  coll. weights:   0.99999984573496337       born:   1.0000000000000000       born/coll. weights:   1.0000001542650605     
+  coll. weights:   0.99999984573497236       born:   1.0000000000000000       born/coll. weights:   1.0000001542650514     
+ ---           5
+  coll. weights:   0.99213859443937547       born:   1.0000000000000000       born/coll. weights:   1.0079236969559346     
+  coll. weights:   0.99990894449357826       born:   1.0000000000000000       born/coll. weights:   1.0000910637982821     
+  coll. weights:   0.99999892163964121       born:   1.0000000000000000       born/coll. weights:   1.0000010783615216     
+  coll. weights:   0.99999983648208890       born:   1.0000000000000000       born/coll. weights:   1.0000001635179379     
+  coll. weights:   0.99999984564243705       born:   1.0000000000000000       born/coll. weights:   1.0000001543575867     
+  coll. weights:   0.99999984573404721       born:   1.0000000000000000       born/coll. weights:   1.0000001542659767     
+  coll. weights:   0.99999984573496337       born:   1.0000000000000000       born/coll. weights:   1.0000001542650605     
+  coll. weights:   0.99999984573497236       born:   1.0000000000000000       born/coll. weights:   1.0000001542650514     
+ ---           7
+  coll. weights:   0.99213859443937547       born:   1.0000000000000000       born/coll. weights:   1.0079236969559346     
+  coll. weights:   0.99990894449357826       born:   1.0000000000000000       born/coll. weights:   1.0000910637982821     
+  coll. weights:   0.99999892163964121       born:   1.0000000000000000       born/coll. weights:   1.0000010783615216     
+  coll. weights:   0.99999983648208890       born:   1.0000000000000000       born/coll. weights:   1.0000001635179379     
+  coll. weights:   0.99999984564243705       born:   1.0000000000000000       born/coll. weights:   1.0000001543575867     
+  coll. weights:   0.99999984573404721       born:   1.0000000000000000       born/coll. weights:   1.0000001542659767     
+  coll. weights:   0.99999984573496337       born:   1.0000000000000000       born/coll. weights:   1.0000001542650605     
+  coll. weights:   0.99999984573497236       born:   1.0000000000000000       born/coll. weights:   1.0000001542650514     
+ coll-soft  emitter  4, alr=   1, process   12  -4  11  -3   0
+ coll-soft alr   3 emitter  4, process   12  -2  11  -1   0
+ ==  alr   1 emitter  4, process   12  -4  11  -3   0
+ coll-soft alr   5 emitter  4, process   12   1  11   2   0
+ ==  alr   1 emitter  4, process   12  -4  11  -3   0
+ coll-soft alr   7 emitter  4, process   12   3  11   4   0
+ ==  alr   1 emitter  4, process   12  -4  11  -3   0
+ alr=           1   0.0000000000000000      /   0.0000000000000000                     
+ alr=           1   0.0000000000000000      /   0.0000000000000000                     
+ alr=           1   0.0000000000000000      /   0.0000000000000000                     
+ alr=           1   0.0000000000000000      /   0.0000000000000000                     
+ alr=           1   0.0000000000000000      /   0.0000000000000000                     
+ alr=           1   0.0000000000000000      /   0.0000000000000000                     
+ alr=           1   0.0000000000000000      /   0.0000000000000000                     
+ alr=           1   0.0000000000000000      /   0.0000000000000000                     
+ ******************************************
+
+ ******************************************
+    CHECK  COLL.-SOFT LIMITS FOR ISR     
+
+  Random Born variables ====>   0.55473948816322860       0.18240041649608685       0.86388838499545528       0.15497327545901385     
+  Random radiation variables ====>   0.81516683437983417       0.90000000000000002       0.16560915629647965     
+  checkcoll, jexp=           1  realsupp/bornsupp   1.0000000000000000     
+ ######### Check coll  0.90000000000000002     
+  checkcoll, jexp=           2  realsupp/bornsupp   1.0000000000000000     
+ ######### Check coll  0.98999999999999999     
+  checkcoll, jexp=           3  realsupp/bornsupp   1.0000000000000000     
+ ######### Check coll  0.99900000000000000     
+  checkcoll, jexp=           4  realsupp/bornsupp   1.0000000000000000     
+ ######### Check coll  0.99990000000000001     
+  checkcoll, jexp=           5  realsupp/bornsupp   1.0000000000000000     
+ ######### Check coll  0.99999000000000005     
+  checkcoll, jexp=           6  realsupp/bornsupp   1.0000000000000000     
+ ######### Check coll  0.99999899999999997     
+  checkcoll, jexp=           7  realsupp/bornsupp   1.0000000000000000     
+ ######### Check coll  0.99999990000000005     
+  checkcoll, jexp=           8  realsupp/bornsupp   1.0000000000000000     
+ ######### Check coll  0.99999998999999995     
+ ---           2
+  coll. weights:   0.87246587705114975       born:   1.0000000000000000       born/coll. weights:   1.1461766314344617     
+  coll. weights:   0.99823758896469428       born:   1.0000000000000000       born/coll. weights:   1.0017655226118398     
+  coll. weights:   0.99997907225403571       born:   1.0000000000000000       born/coll. weights:   1.0000209281839441     
+  coll. weights:   0.99999682641191756       born:   1.0000000000000000       born/coll. weights:   1.0000031735981540     
+  coll. weights:   0.99999700419496584       born:   1.0000000000000000       born/coll. weights:   1.0000029958140091     
+  coll. weights:   0.99999700597292462       born:   1.0000000000000000       born/coll. weights:   1.0000029940360395     
+  coll. weights:   0.99999700599070407       born:   1.0000000000000000       born/coll. weights:   1.0000029940182600     
+  coll. weights:   0.99999700599088159       born:   1.0000000000000000       born/coll. weights:   1.0000029940180826     
+ ---           4
+  coll. weights:   0.87246587705114975       born:   1.0000000000000000       born/coll. weights:   1.1461766314344617     
+  coll. weights:   0.99823758896469428       born:   1.0000000000000000       born/coll. weights:   1.0017655226118398     
+  coll. weights:   0.99997907225403571       born:   1.0000000000000000       born/coll. weights:   1.0000209281839441     
+  coll. weights:   0.99999682641191756       born:   1.0000000000000000       born/coll. weights:   1.0000031735981540     
+  coll. weights:   0.99999700419496584       born:   1.0000000000000000       born/coll. weights:   1.0000029958140091     
+  coll. weights:   0.99999700597292462       born:   1.0000000000000000       born/coll. weights:   1.0000029940360395     
+  coll. weights:   0.99999700599070407       born:   1.0000000000000000       born/coll. weights:   1.0000029940182600     
+  coll. weights:   0.99999700599088159       born:   1.0000000000000000       born/coll. weights:   1.0000029940180826     
+ ---           6
+  coll. weights:   0.87246587705114975       born:   1.0000000000000000       born/coll. weights:   1.1461766314344617     
+  coll. weights:   0.99823758896469428       born:   1.0000000000000000       born/coll. weights:   1.0017655226118398     
+  coll. weights:   0.99997907225403571       born:   1.0000000000000000       born/coll. weights:   1.0000209281839441     
+  coll. weights:   0.99999682641191756       born:   1.0000000000000000       born/coll. weights:   1.0000031735981540     
+  coll. weights:   0.99999700419496584       born:   1.0000000000000000       born/coll. weights:   1.0000029958140091     
+  coll. weights:   0.99999700597292462       born:   1.0000000000000000       born/coll. weights:   1.0000029940360395     
+  coll. weights:   0.99999700599070407       born:   1.0000000000000000       born/coll. weights:   1.0000029940182600     
+  coll. weights:   0.99999700599088159       born:   1.0000000000000000       born/coll. weights:   1.0000029940180826     
+ ---           8
+  coll. weights:   0.87246587705114975       born:   1.0000000000000000       born/coll. weights:   1.1461766314344617     
+  coll. weights:   0.99823758896469428       born:   1.0000000000000000       born/coll. weights:   1.0017655226118398     
+  coll. weights:   0.99997907225403571       born:   1.0000000000000000       born/coll. weights:   1.0000209281839441     
+  coll. weights:   0.99999682641191756       born:   1.0000000000000000       born/coll. weights:   1.0000031735981540     
+  coll. weights:   0.99999700419496584       born:   1.0000000000000000       born/coll. weights:   1.0000029958140091     
+  coll. weights:   0.99999700597292462       born:   1.0000000000000000       born/coll. weights:   1.0000029940360395     
+  coll. weights:   0.99999700599070407       born:   1.0000000000000000       born/coll. weights:   1.0000029940182600     
+  coll. weights:   0.99999700599088159       born:   1.0000000000000000       born/coll. weights:   1.0000029940180826     
+ ---           9
+  coll. weights:   0.95319070358023961       born:   1.0000000000000000       born/coll. weights:   1.0491080077092043     
+  coll. weights:   0.99941050256727604       born:   1.0000000000000000       born/coll. weights:   1.0005898451449227     
+  coll. weights:   0.99999299972437050       born:   1.0000000000000000       born/coll. weights:   1.0000070003246337     
+  coll. weights:   0.99999893834844689       born:   1.0000000000000000       born/coll. weights:   1.0000010616526802     
+  coll. weights:   0.99999899781998225       born:   1.0000000000000000       born/coll. weights:   1.0000010021810222     
+  coll. weights:   0.99999899841474116       born:   1.0000000000000000       born/coll. weights:   1.0000010015862619     
+  coll. weights:   0.99999899842068873       born:   1.0000000000000000       born/coll. weights:   1.0000010015803145     
+  coll. weights:   0.99999899842074813       born:   1.0000000000000000       born/coll. weights:   1.0000010015802550     
+ ---          10
+  coll. weights:   0.95319070358023961       born:   1.0000000000000000       born/coll. weights:   1.0491080077092043     
+  coll. weights:   0.99941050256727604       born:   1.0000000000000000       born/coll. weights:   1.0005898451449227     
+  coll. weights:   0.99999299972437050       born:   1.0000000000000000       born/coll. weights:   1.0000070003246337     
+  coll. weights:   0.99999893834844689       born:   1.0000000000000000       born/coll. weights:   1.0000010616526802     
+  coll. weights:   0.99999899781998225       born:   1.0000000000000000       born/coll. weights:   1.0000010021810222     
+  coll. weights:   0.99999899841474116       born:   1.0000000000000000       born/coll. weights:   1.0000010015862619     
+  coll. weights:   0.99999899842068873       born:   1.0000000000000000       born/coll. weights:   1.0000010015803145     
+  coll. weights:   0.99999899842074813       born:   1.0000000000000000       born/coll. weights:   1.0000010015802550     
+ ---          11
+  coll. weights:   0.95319070358023961       born:   1.0000000000000000       born/coll. weights:   1.0491080077092043     
+  coll. weights:   0.99941050256727604       born:   1.0000000000000000       born/coll. weights:   1.0005898451449227     
+  coll. weights:   0.99999299972437050       born:   1.0000000000000000       born/coll. weights:   1.0000070003246337     
+  coll. weights:   0.99999893834844689       born:   1.0000000000000000       born/coll. weights:   1.0000010616526802     
+  coll. weights:   0.99999899781998225       born:   1.0000000000000000       born/coll. weights:   1.0000010021810222     
+  coll. weights:   0.99999899841474116       born:   1.0000000000000000       born/coll. weights:   1.0000010015862619     
+  coll. weights:   0.99999899842068873       born:   1.0000000000000000       born/coll. weights:   1.0000010015803145     
+  coll. weights:   0.99999899842074813       born:   1.0000000000000000       born/coll. weights:   1.0000010015802550     
+ ---          12
+  coll. weights:   0.95319070358023961       born:   1.0000000000000000       born/coll. weights:   1.0491080077092043     
+  coll. weights:   0.99941050256727604       born:   1.0000000000000000       born/coll. weights:   1.0005898451449227     
+  coll. weights:   0.99999299972437050       born:   1.0000000000000000       born/coll. weights:   1.0000070003246337     
+  coll. weights:   0.99999893834844689       born:   1.0000000000000000       born/coll. weights:   1.0000010616526802     
+  coll. weights:   0.99999899781998225       born:   1.0000000000000000       born/coll. weights:   1.0000010021810222     
+  coll. weights:   0.99999899841474116       born:   1.0000000000000000       born/coll. weights:   1.0000010015862619     
+  coll. weights:   0.99999899842068873       born:   1.0000000000000000       born/coll. weights:   1.0000010015803145     
+  coll. weights:   0.99999899842074813       born:   1.0000000000000000       born/coll. weights:   1.0000010015802550     
+ coll-minus-soft  emitter  2, alr=   2, process   12  -4  11  -3   0
+ alr=           2  0.76439153061049359      *-WWARN-*      
+ alr=           2  0.97519838741514875                     
+ alr=           2  0.99731957083416289                     
+ alr=           2  0.99895681057978236                     
+ alr=           2  0.99898646196153984                     
+ alr=           2  0.99898676271023301                     
+ alr=           2  0.99898676571439404                     
+ alr=           2  0.99898676571952860                     
+ coll-minus-soft  emitter  2, alr=   4, process   12  -2  11  -1   0
+ alr=           4  0.76439153061049359      *-WWARN-*      
+ alr=           4  0.97519838741514875                     
+ alr=           4  0.99731957083416278                     
+ alr=           4  0.99895681057978236                     
+ alr=           4  0.99898646196153973                     
+ alr=           4  0.99898676271023301                     
+ alr=           4  0.99898676571439393                     
+ alr=           4  0.99898676571952860                     
+ coll-minus-soft  emitter  2, alr=   6, process   12   1  11   2   0
+ alr=           6  0.76439153061049370      *-WWARN-*      
+ alr=           6  0.97519838741514875                     
+ alr=           6  0.99731957083416278                     
+ alr=           6  0.99895681057978225                     
+ alr=           6  0.99898646196153962                     
+ alr=           6  0.99898676271023301                     
+ alr=           6  0.99898676571439404                     
+ alr=           6  0.99898676571952860                     
+ coll-minus-soft  emitter  2, alr=   8, process   12   3  11   4   0
+ alr=           8  0.76439153061049370      *-WWARN-*      
+ alr=           8  0.97519838741514853                     
+ alr=           8  0.99731957083416278                     
+ alr=           8  0.99895681057978225                     
+ alr=           8  0.99898646196153973                     
+ alr=           8  0.99898676271023301                     
+ alr=           8  0.99898676571439404                     
+ alr=           8  0.99898676571952849                     
+ coll-minus-soft  emitter  2, alr=   9, process   12   0  11  -1   2
+ coll-minus-soft alr  10 emitter  2, process   12   0  11   2  -1
+ ==  alr   9 emitter  2, process   12   0  11  -1   2
+ coll-minus-soft alr  11 emitter  2, process   12   0  11  -3   4
+ ==  alr   9 emitter  2, process   12   0  11  -1   2
+ coll-minus-soft alr  12 emitter  2, process   12   0  11   4  -3
+ ==  alr   9 emitter  2, process   12   0  11  -1   2
+ alr=           9   0.0000000000000000      /   0.0000000000000000                     
+ alr=           9   0.0000000000000000      /   0.0000000000000000                     
+ alr=           9   0.0000000000000000      /   0.0000000000000000                     
+ alr=           9   0.0000000000000000      /   0.0000000000000000                     
+ alr=           9   0.0000000000000000      /   0.0000000000000000                     
+ alr=           9   0.0000000000000000      /   0.0000000000000000                     
+ alr=           9   0.0000000000000000      /   0.0000000000000000                     
+ alr=           9   0.0000000000000000      /   0.0000000000000000                     
+  ****************** End Checks *****************

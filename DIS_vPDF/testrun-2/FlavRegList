@@ -1,0 +1,144 @@
+*** alr region:     1*******************************
+ ve  c~   ==>  e-  (s~ ) g       | mult=  1
+               0    0    0
+ ve  c~   ==>  e-   s~      | uborn, mult=  1, bornmult=  1
+               0    0
+ alr region: (  4  5);  all regions:   4  5   2  5
+ Competing resonance histories
+ ve  c~   ==>  e-   s~   g       |   ptr=  1
+               0    0    0
+ all regions:   4  5   2  5
+ End competing resonance histories
+
+*** alr region:     2*******************************
+ ve (c~ ) ==>  e-   s~   g       | mult=  1
+               0    0    0
+ ve  c~   ==>  e-   s~      | uborn, mult=  1, bornmult=  1
+               0    0
+ alr region: (  2  5);  all regions:   4  5   2  5
+ Competing resonance histories
+ ve  c~   ==>  e-   s~   g       |   ptr=  1
+               0    0    0
+ all regions:   4  5   2  5
+ End competing resonance histories
+
+*** alr region:     3*******************************
+ ve  u~   ==>  e-  (d~ ) g       | mult=  1
+               0    0    0
+ ve  u~   ==>  e-   d~      | uborn, mult=  1, bornmult=  1
+               0    0
+ alr region: (  4  5);  all regions:   4  5   2  5
+ Competing resonance histories
+ ve  u~   ==>  e-   d~   g       |   ptr=  2
+               0    0    0
+ all regions:   4  5   2  5
+ End competing resonance histories
+
+*** alr region:     4*******************************
+ ve (u~ ) ==>  e-   d~   g       | mult=  1
+               0    0    0
+ ve  u~   ==>  e-   d~      | uborn, mult=  1, bornmult=  1
+               0    0
+ alr region: (  2  5);  all regions:   4  5   2  5
+ Competing resonance histories
+ ve  u~   ==>  e-   d~   g       |   ptr=  2
+               0    0    0
+ all regions:   4  5   2  5
+ End competing resonance histories
+
+*** alr region:     5*******************************
+ ve  d    ==>  e-  (u  ) g       | mult=  1
+               0    0    0
+ ve  d    ==>  e-   u       | uborn, mult=  1, bornmult=  1
+               0    0
+ alr region: (  4  5);  all regions:   4  5   2  5
+ Competing resonance histories
+ ve  d    ==>  e-   u    g       |   ptr=  3
+               0    0    0
+ all regions:   4  5   2  5
+ End competing resonance histories
+
+*** alr region:     6*******************************
+ ve (d  ) ==>  e-   u    g       | mult=  1
+               0    0    0
+ ve  d    ==>  e-   u       | uborn, mult=  1, bornmult=  1
+               0    0
+ alr region: (  2  5);  all regions:   4  5   2  5
+ Competing resonance histories
+ ve  d    ==>  e-   u    g       |   ptr=  3
+               0    0    0
+ all regions:   4  5   2  5
+ End competing resonance histories
+
+*** alr region:     7*******************************
+ ve  s    ==>  e-  (c  ) g       | mult=  1
+               0    0    0
+ ve  s    ==>  e-   c       | uborn, mult=  1, bornmult=  1
+               0    0
+ alr region: (  4  5);  all regions:   4  5   2  5
+ Competing resonance histories
+ ve  s    ==>  e-   c    g       |   ptr=  4
+               0    0    0
+ all regions:   4  5   2  5
+ End competing resonance histories
+
+*** alr region:     8*******************************
+ ve (s  ) ==>  e-   c    g       | mult=  1
+               0    0    0
+ ve  s    ==>  e-   c       | uborn, mult=  1, bornmult=  1
+               0    0
+ alr region: (  2  5);  all regions:   4  5   2  5
+ Competing resonance histories
+ ve  s    ==>  e-   c    g       |   ptr=  4
+               0    0    0
+ all regions:   4  5   2  5
+ End competing resonance histories
+
+*** alr region:     9*******************************
+ ve (g  ) ==>  e-   d~   u       | mult=  1
+               0    0    0
+ ve  u~   ==>  e-   d~      | uborn, mult=  1, bornmult=  1
+               0    0
+ alr region: (  2  5);  all regions:   2  4   2  5
+ Competing resonance histories
+ ve  g    ==>  e-   d~   u       |   ptr=  5
+               0    0    0
+ all regions:   2  4   2  5
+ End competing resonance histories
+
+*** alr region:    10*******************************
+ ve (g  ) ==>  e-   u    d~      | mult=  1
+               0    0    0
+ ve  d    ==>  e-   u       | uborn, mult=  1, bornmult=  1
+               0    0
+ alr region: (  2  5);  all regions:   2  4   2  5
+ Competing resonance histories
+ ve  g    ==>  e-   u    d~      |   ptr=  6
+               0    0    0
+ all regions:   2  4   2  5
+ End competing resonance histories
+
+*** alr region:    11*******************************
+ ve (g  ) ==>  e-   s~   c       | mult=  1
+               0    0    0
+ ve  c~   ==>  e-   s~      | uborn, mult=  1, bornmult=  1
+               0    0
+ alr region: (  2  5);  all regions:   2  4   2  5
+ Competing resonance histories
+ ve  g    ==>  e-   s~   c       |   ptr=  7
+               0    0    0
+ all regions:   2  4   2  5
+ End competing resonance histories
+
+*** alr region:    12*******************************
+ ve (g  ) ==>  e-   c    s~      | mult=  1
+               0    0    0
+ ve  s    ==>  e-   c       | uborn, mult=  1, bornmult=  1
+               0    0
+ alr region: (  2  5);  all regions:   2  4   2  5
+ Competing resonance histories
+ ve  g    ==>  e-   c    s~      |   ptr=  8
+               0    0    0
+ all regions:   2  4   2  5
+ End competing resonance histories
+
