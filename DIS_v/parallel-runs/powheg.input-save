@@ -18,8 +18,8 @@ q2suppr 200d0
 
 ! To be set only if using LHA pdfs
 ! 10050 cteq6m
-lhans1   331100
-lhans2   331100    ! pdf set for hadron 2 (LHA numbering)	
+lhans1   275200
+lhans2   275200    ! pdf set for hadron 2 (LHA numbering)	
 
 
 alphas_from_pdf 1

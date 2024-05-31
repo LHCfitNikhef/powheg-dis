@@ -1,18 +1,19 @@
       subroutine pdfcall(ih,x0,pdf)
       implicit none
       include 'pwhg_pdf.h'
-      integer ih,nupdf
+      integer ih
       real * 8 x0,x,pdf(-pdf_nparton:pdf_nparton)
       logical, external :: pwhg_isfinite
       logical, save :: ini = .true.
       logical, save :: fixed_lepton_beam = .true.
       real*8, external:: powheginput
+      integer :: pdfnu
       include 'pwhg_st.h'
       
       if(ini) then
          ini = .false.
          fixed_lepton_beam = (powheginput("#fixed_lepton_beam").ne.0d0)
-         nupdf=powheginput("#nupdf")
+         pdfnu=powheginput("#nupdf")
       endif
       
       if(x0<0 .or. x0>1 .or. (.not. pwhg_isfinite(x0))) then
@@ -30,11 +31,14 @@
          if(fixed_lepton_beam) then
             pdf = 1d0
          else
-            if(nupdf.gt.0)then
-               call genericpdf0(nupdf,pdf_ih2,st_mufact2,x,pdf)
-            else
-               call pdf_lepton_beam(pdf_ih1, st_mufact2, x, pdf)
-            endif
+            pdf = 1e-8  !Do not set it to 0 otherwise the checklims is broken 
+!     COMMENT -- ADD THE FUNCTIONAL FORM YOU PREFER FOR THE FLAVOURS YOU NEED          
+            pdf(11)  = exp(-1d0/x**2)
+            pdf(-11)  = exp(-1d0/x**2)
+            pdf(12)  = 1d0
+            pdf(-12) = 1d0
+! call the neutrino pdf.
+            call genericpdf0(pdfnu,pdf_ih2,st_mufact2,x,pdf)
          endif
       elseif(ih.eq.2) then
          call genericpdf0(pdf_ndns2,pdf_ih2,st_mufact2,x,pdf)

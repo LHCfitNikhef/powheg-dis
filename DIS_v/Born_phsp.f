@@ -14,7 +14,7 @@
       real * 8 vec(3), beta
 ! DIS variables
       real * 8 x,Q2,s,y, xl
-      real * 8 jac, Eh, El
+      real * 8 xljac, jac, Eh, El
 !     Limits on Q2 and x
       real * 8 Q2min, Q2max, xmin, xmax, ymin, ymax,ymn,ymx, xminl, xmaxl,
      $     xlm, xlp
@@ -58,7 +58,8 @@ C -   Set initial- and final-state masses for Born and real
          s = 4d0 * Eh * El
 
 !     Sanity checks
-         if(Q2min.lt.0d0) stop 'Q2min negative'
+!         if(Q2min.lt.0d0) stop 'Q2min negative'
+         if(Q2min.lt.1d0) stop 'Qmin must be at least 1 GeV'
          if(xmin.lt.0d0) stop 'xmin negative'
          if(ymin.lt.0d0) stop 'ymin negative'
          if(Q2min.gt.Q2max) stop 'Q2min > Q2max'
@@ -144,8 +145,10 @@ c~       jac = 1d0/(16d0*pi)
          endif
          xlm = max(Q2min/x/s/ymax, xminl)
          
-         xl = xlm + (xlp-xlm) * xborn(ixb)
-         jac = jac * (xlp-xlm)
+!xl = xlm + (xlp-xlm) * xborn(ixb)
+!jac = jac * (xlp-xlm)
+         call sample_x_lepton(xborn(ixb), xlm, xlp, xl, xljac)
+         jac = jac * xljac
       endif   
          
       
@@ -326,18 +329,25 @@ c$$$  read(*,*)
       logical, save :: ini
       integer, save :: runningscales
       real * 8, external:: powheginput
+      real * 8, save :: boson_mass
       data ini/.true./
       if (ini) then
          runningscales = powheginput('#runningscales')
-         muf = ph_Zmass ! First call is a dummy call - no momenta!
+         if(powheginput("#channel_type") .eq. 3d0) then
+            boson_mass = ph_Wmass
+         else
+            boson_mass = ph_Zmass
+         endif
+
          ini =.false.
          return
       endif
 
-      muf = ph_Zmass
-      mur = muf
 
       if(runningscales.lt.1) then
+         muf = boson_mass
+         mur = muf
+         mur = muf
          return
       else
          if ((flg_btildepart.eq.'r').or.(flg_btildepart.eq.'R')) then

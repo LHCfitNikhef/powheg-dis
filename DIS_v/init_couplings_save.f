@@ -63,21 +63,34 @@ c 1: photon exchange only / 2: Z exchange only / 3: photon+Z exchange
       ph_Wwidth = powheginput("#Wwidth")
       if(ph_Wwidth<0d0) ph_Wwidth = 2.141d0
       ph_alphaem = powheginput("#alphaem")
-      if(ph_alphaem<00d0) ph_alphaem = 0.00781751d0 ! 1d0/137d0
+      if(ph_alphaem<0d0) ph_alphaem = 1d0/137d0
       ph_sthw2 = 1d0 - (ph_Wmass/ph_Zmass)**2 
+
+      ! For CC process
 
 c     number of light flavors
       st_nlight = 5
 
-      ph_CKM(1,1)=0.9748 	
-      ph_CKM(1,2)=0.2225  	 
-      ph_CKM(1,3)=0.0036  	
-      ph_CKM(2,1)=0.2225  	
-      ph_CKM(2,2)=0.9740 	
-      ph_CKM(2,3)=0.041	
-      ph_CKM(3,1)=0.009    
-      ph_CKM(3,2)=0.0405   
-      ph_CKM(3,3)=0.9992
+C       ph_CKM(1,1)=0.9748
+C       ph_CKM(1,2)=0.2225
+C       ph_CKM(1,3)=0.0036
+C       ph_CKM(2,1)=0.2225
+C       ph_CKM(2,2)=0.9740
+C       ph_CKM(2,3)=0.041
+C       ph_CKM(3,1)=0.009    
+C       ph_CKM(3,2)=0.0405   
+C       ph_CKM(3,3)=0.9992
+
+c     RG: implement simpler CKM matrix for validation
+      ph_CKM(1,1)=0.97446d0
+      ph_CKM(1,2)=0.224561d0
+      ph_CKM(1,3)=0d0
+      ph_CKM(2,1)=0.224561d0
+      ph_CKM(2,2)=0.97446d0
+      ph_CKM(2,3)=0d0
+      ph_CKM(3,1)=0d0
+      ph_CKM(3,2)=0d0
+      ph_CKM(3,3)=1d0 
 
 c     initialize CKM with flavor indexes
       call inizialize_ph_CKM_matrix

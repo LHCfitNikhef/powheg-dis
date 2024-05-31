@@ -36,8 +36,8 @@ endif
 ifeq ("$(shell whoami)", "siferrar")
 POWHEGPATH = /afs/cern.ch/work/s/siferrar/private/POWHEG-BOX/RES
 endif
-ifeq ("$(shell whoami)", "krack")
-POWHEGPATH=/Users/krack/POWHEG-BOX-RES
+ifeq ("$(shell whoami)", "pkrack")
+POWHEGPATH = /data/theorie/pkrack/POWHEG-BOX-RES
 endif
 
 

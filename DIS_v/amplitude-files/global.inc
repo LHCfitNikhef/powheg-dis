@@ -19,7 +19,7 @@ c Subamplitudes will be set to zero if photon virtuality falls below
 c qsqAmin
       double precision qsqAmin
 c default:
-      parameter (qsqAmin=4d0)
+      parameter (qsqAmin=1.41d0)
 c test:
 c      parameter (qsqAmin=10d0)
 c test:

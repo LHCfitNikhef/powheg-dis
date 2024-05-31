@@ -79,10 +79,6 @@ c~          call compborn_eq(p,vflav,born)
 c~          virtual = -8d0*4d0/3d0*born
          
       endif
-
-c     Sum over polarization for neutrino-induced is 1/2 not 1/4 (only left handed nu)
-      if(abs(vflav(1)).eq.12 .or. abs(vflav(1)).eq.14 ) virtual = virtual * 2 
-
       
       return      
       end
@@ -209,6 +205,10 @@ c use value of bflav to select appropriate uucc, uuss etc.
       
       call qq_ee_vv_custom(pbar,fsign,1,1,k,id_beam,res)
 
+c     Sum over polarization for neutrino-induced is 1/2 (only left handed nu),
+c     for charged leptons it is 1/4:                                      
+      polcol = polcol*dble(2-id_beam)
+      
       virtual = res*polcol
 
       return

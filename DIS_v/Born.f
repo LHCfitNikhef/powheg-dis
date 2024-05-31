@@ -26,9 +26,6 @@ c     (assume particles 1 and 3 are leptons, 2 and 4 are quarks)
 
       call compborn_eq(p,bflav,born)
 
-c     Sum over polarization for neutrino-induced is 1/2 not 1/4 (only left handed nu)
-      if(abs(bflav(1)).eq.12 .or. abs(bflav(1)).eq.14 ) born = born * 2 
-      
       bmunu = 0d0      
       do j=1,nlegs
          if(abs(bflav(j)).le.6) then
@@ -138,7 +135,7 @@ c get the amplitude squared:
          do i = 1,4
             pbar(mu,physToDiag(i))=p(mu,i)
          enddo
-      enddo	 
+      enddo 
 
 c
 c eq->eq or eq->vq (for v-beam: vq->vq or vq->eq):
@@ -165,6 +162,10 @@ c use value of bflav to select appropriate uucc, uuss etc.
      &    (abs(bflav(1)).eq.16)) id_beam=0 !v beam
       
       call qq_ee_vv_custom(pbar,fsign,0,1,k,id_beam,res)
+
+c     Sum over polarization for neutrino-induced is 1/2 (only left handed nu),
+c     for charged leptons it is 1/4:                                      
+      polcol = polcol*dble(2-id_beam)
       
       born = res*polcol
 

@@ -198,14 +198,14 @@ c
                         emit_Wm_lower = (jj.eq.j+1)                 
                      endif
 
-                     print*, 'ferm_charge(1)', ferm_charge(1)
-                     print*, 'ferm_charge(2)', ferm_charge(2)
-                     print*, 'ferm_charge(3)', ferm_charge(3)
-                     print*, 'ferm_charge(4)', ferm_charge(4)
-                     print*, 'emit_Wp_upper', emit_Wp_upper
-                     print*, 'emit_Wm_upper', emit_Wm_upper
-                     print*, 'emit_Wp_lower', emit_Wp_lower
-                     print*, 'emit_Wm_lower', emit_Wm_lower
+!                     print*, 'ferm_charge(1)', ferm_charge(1)
+!                     print*, 'ferm_charge(2)', ferm_charge(2)
+!                     print*, 'ferm_charge(3)', ferm_charge(3)
+!                     print*, 'ferm_charge(4)', ferm_charge(4)
+!                     print*, 'emit_Wp_upper', emit_Wp_upper
+!                     print*, 'emit_Wm_upper', emit_Wm_upper
+!                     print*, 'emit_Wp_lower', emit_Wp_lower
+!                     print*, 'emit_Wm_lower', emit_Wm_lower
 
                      
                      condition = 
@@ -222,7 +222,7 @@ c     W- emission from upper leg
 c     W+ emission from lower leg                        
      #                    ((ferm_charge(2)-(ferm_charge(4)+3)
      #                    .eq.0).and.(emit_Wp_lower)))
-                     print*, 'condition', condition
+!                     print*, 'condition', condition
                      !stop
                      if (.not.condition) goto 600
 

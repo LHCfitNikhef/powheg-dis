@@ -14,6 +14,8 @@
          call inihists
          
          call bookupeqbins('sigtot',1d0,0d0,1d0)
+         call bookupeqbins('Q',  0.5d0, 2d0, 20d0)
+
          call bookupeqbins('Q2', (1000d0-25d0)/20d0, 25d0, 1000d0)
          call bookupeqbins('y',  (0.95d0-0.04d0)/20d0 , 0.04d0, 0.95d0)
          call bookupeqbins('x',  0.05d0 , 0d0, 1d0)
@@ -86,9 +88,10 @@
          if(whcprg.eq.'NLO   '.or.whcprg.eq.'LHE   '
      $        .or.whcprg.eq.'PYTHIA') then
             do i=1,nhep
+               !if(idhep(i).eq.11) print*, phep(1:4,i), eta(phep(:,i)), sqrt(kt2(phep(:,i)))
    !     Initial states
                if(isthep(i).eq.-1.or.isthep(i).eq.21) then
-                  if(abs(idhep(i)).le.16 .and.abs(idhep(i)).gt.11 ) then
+                  if(abs(idhep(i)).le.16 .and.abs(idhep(i)).ge.11 ) then
                      plis(1:4) = phep(1:4,i)
                   else if(abs(idhep(i)).le.5.or.idhep(i).eq.21) then
                      ppis(1:4) = phep(1:4,i)
@@ -141,16 +144,17 @@
          
          y = phepdot(ppis,q) / phepdot(ppis,plis)      
          x = Q2 / (sbeams * y * xl)
-   
+    
          
          call filld('sigtot',0.5d0,dsig)   
          call filld('Q2', Q2, dsig)
+         call filld('Q', sqrt(Q2), dsig)
          call filld('x', x, dsig)
          call filld('y', y, dsig)
          call filld('xl', xl, dsig)
 
          ptl  = sqrt(kt2(plephard(:)))
-         etal = eta(plephard(:))
+         call getrapidity(plephard(:),etal)
          call filld('ptl', ptl, dsig)
          call filld('etal', etal, dsig)
 
@@ -191,7 +195,7 @@ c$$$         print *, "refout.m2 = ", phepdot(refout,refout)
   
       function kt2(p)
          implicit none
-         real * 8 kt2, p(0:3)
+         real * 8 kt2, p(1:4)
    
          kt2 = p(1)**2 + p(2)**2
       end

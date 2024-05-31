@@ -1,8 +1,7 @@
 #-*- Makefile -*-
 ###USER specific 
 POWHEGPATH=$(PWD)/..
-POWHEGPATH = $(HOME)/work/POWHEG/RES
-POWHEGPATH=/Users/krack/POWHEG-BOX-RES
+POWHEGPATH=/data/theorie/pkrack/POWHEG-BOX-RES/
 LHAPDF_CONFIG=$(shell which lhapdf-config)
 FASTJET_CONFIG=$(shell which fastjet-config)
 PYTHIA8_CONFIG=$(shell which pythia8-config)
@@ -16,13 +15,11 @@ COMPILER=gfortran
 #ANALYSIS=vbf
 #ANALYSIS=caesar
 #ANALYSIS=eic
-ANALYSIS=dummy
+#ANALYSIS=dummy
 ANALYSIS=flux
 
 ifeq ("$(COMPILER)","gfortran")	
 F77= gfortran -fno-automatic 	-ffixed-line-length-none
-CC=gcc-13
-CXX=g++-13
 ## NOTE: -fbounds-check sometimes causes a compilation error
 ## due to non-lazy evaluation of boolean in gfortran.
 # FFLAGS= -Wall -Wimplicit-interface
@@ -47,9 +44,6 @@ STD=-lstdc++
 UNAME_S := $(shell uname -s)
 ifeq ($(UNAME_S),Darwin)
 STD=-lc++
-endif
-ifeq ("$(shell whoami)","krack")
-STD=-lstdc++
 endif
 
 PWD=$(shell pwd)
@@ -115,7 +109,7 @@ PWHGANAL+=multi_plot.o
 LIBSAMP=-Lamplitude-files -lamplitude 
 LIBS+=-lz 
 USER=init_couplings.o init_processes.o Born_phsp.o Born.o virtual.o	\
-     real.o lepton_flux.o $(PWHGANAL)
+     real.o $(PWHGANAL)
 AMP=braket_vbf.o help_hh.o qq_ee.o qqj_ee.o
 
 PWHG=pwhg_main.o pwhg_init.o bbinit.o btilde.o lhefwrite.o		\

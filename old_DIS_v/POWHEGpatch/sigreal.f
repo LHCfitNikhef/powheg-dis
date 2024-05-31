@@ -836,16 +836,6 @@ c     endif
       endif
       end
 
-      pure logical function neutrinopdf() 
-      implicit none
-      include 'pwhg_pdf.h'
-      neutrinopdf=.TRUE.
-      if(abs(pdf_ih1).eq.12.or.abs(pdf_ih1).eq.14.or.abs(pdf_ih1).eq.16)then
-         neutrinopdf=.TRUE.
-      else
-         neutrinopdf=.FALSE.
-      end if
-      end function neutrinopdf
 
       logical function bad_born_kin(tolpar)
       implicit none
@@ -857,8 +847,6 @@ c     endif
       include 'pwhg_st.h'
       include 'pwhg_pdf.h'
       logical isnotres(nlegborn)
-      logical neutrinopdf
-      external neutrinopdf
       real * 8 p(0:3,nlegborn)
       real * 8 pdf(-pdf_nparton:pdf_nparton), save_stmufact2, e
       integer m,l,k
@@ -881,12 +869,10 @@ c     exclude zero pdf's
       e = p(0,1)+p(0,2)
       save_stmufact2=st_mufact2
       st_mufact2 = e**2
-      if(.not.neutrinopdf())then
-         call pdfcall(1,kn_xb1,pdf)
-         do k=-3,3
-            if(pdf(k) == 0) return
-         enddo
-      endif
+      call pdfcall(1,kn_xb1,pdf)
+      do k=-3,3
+         if(pdf(k) == 0) return
+      enddo
       call pdfcall(2,kn_xb2,pdf)
       st_mufact2 = save_stmufact2
       do k=-3,3
@@ -910,7 +896,6 @@ c     any transverse momentum of a pair is too small
       bad_born_kin = .false.
       end
 
-
       logical function bad_real_kin(tolpar)
       implicit none
       real * 8 tolpar
@@ -921,8 +906,6 @@ c     any transverse momentum of a pair is too small
       include 'pwhg_st.h'
       include 'pwhg_pdf.h'
       logical isnotres(nlegreal)
-      logical neutrinopdf
-      external neutrinopdf
       real * 8 p(0:3,nlegreal)
       real * 8 pdf(-pdf_nparton:pdf_nparton), save_stmufact2, e
       integer m,l,k
@@ -946,13 +929,11 @@ c     exclude zero pdf's
       e = p(0,1)+p(0,2)
       save_stmufact2=st_mufact2
       st_mufact2 = e**2
-      if(.not.neutrinopdf())then
-         call pdfcall(1,kn_x1,pdf)
+      call pdfcall(1,kn_x1,pdf)
 c tolerate zero pdf only for heavy quarks
-         do k=-3,3
-            if(pdf(k) == 0) return
-         enddo
-      end if
+      do k=-3,3
+         if(pdf(k) == 0) return
+      enddo
       call pdfcall(2,kn_x2,pdf)
       st_mufact2 = save_stmufact2
       do k=-3,3

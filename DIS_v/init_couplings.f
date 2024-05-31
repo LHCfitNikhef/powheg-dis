@@ -67,27 +67,50 @@ c     if one of two parameters is missing, use the default ones
 
       
       
-      ph_Zmass  = 91.1876d0
-      ph_Zwidth =  2.4952d0
-      ph_Wmass  = 80.398d0
-      ph_Wwidth =  2.141d0
-!      ph_alphaem = 1d0/128.930d0
-!      ph_alphaem = 1d0/137d0
-      ph_alphaem = 0.00781751d0
-      ph_sthw2 = 1d0 - (ph_Wmass/ph_Zmass)**2 !0.23102d0
+      ! RG: Allow to over write the hardcoded values
+      ! Can in principle provide the pole masses (rather than OS) in powheg.input
+      ! m_pole = m_os / sqrt(1 + (G_os/M_os)^2), G_pole = G_os / sqrt(1 + (G_os/M_os)^2)
+      ph_Zmass = powheginput("#Zmass")
+      if(ph_Zmass<0d0) ph_Zmass  = 91.1876d0
+      ph_Zwidth = powheginput("#Zwidth")
+      if(ph_Zwidth<0d0) ph_Zwidth =  2.4952d0
+      ph_Wmass = powheginput("#Wmass")
+      if(ph_Wmass<0d0) ph_Wmass  = 80.398d0
+      ph_Wwidth = powheginput("#Wwidth")
+      if(ph_Wwidth<0d0) ph_Wwidth = 2.141d0
+      ! For the CC process, it is preferable to include top mass and 
+      ! fermion mass effects. So use:
+      ! alpha_GF = sqrt(2) / M_PI * gf * fabs( MW2C * SW2_OS )
+      ph_alphaem = powheginput("#alphaem")
+      if(ph_alphaem<0d0) ph_alphaem = 1d0/137d0
+      ! In principle use the all-order on-shell relation for S2W
+      ! At LO in EW, for better accuracy one can instead fix s2w or 
+      ! include rho-parameter corrections
+      ph_sthw2 = powheginput("#s2w")
+      if(ph_sthw2<0d0) ph_sthw2 = 1d0 - (ph_Wmass/ph_Zmass)**2
 
 c     number of light flavors
       st_nlight = 5
 
-      ph_CKM(1,1)=0.9748 	
-      ph_CKM(1,2)=0.2225  	 
-      ph_CKM(1,3)=0.0036  	
-      ph_CKM(2,1)=0.2225  	
-      ph_CKM(2,2)=0.9740 	
-      ph_CKM(2,3)=0.041	
-      ph_CKM(3,1)=0.009    
-      ph_CKM(3,2)=0.0405   
-      ph_CKM(3,3)=0.9992
+C       ph_CKM(1,1)=0.9748 	
+C       ph_CKM(1,2)=0.2225  	 
+C       ph_CKM(1,3)=0.0036  	
+C       ph_CKM(2,1)=0.2225  	
+C       ph_CKM(2,2)=0.9740 	
+C       ph_CKM(2,3)=0.041	
+C       ph_CKM(3,1)=0.009    
+C       ph_CKM(3,2)=0.0405   
+C       ph_CKM(3,3)=0.9992
+c     RG: implement simpler CKM matrix for validation
+      ph_CKM(1,1)=0.97446d0
+      ph_CKM(1,2)=0.224561d0
+      ph_CKM(1,3)=0d0
+      ph_CKM(2,1)=0.224561d0
+      ph_CKM(2,2)=0.97446d0
+      ph_CKM(2,3)=0d0
+      ph_CKM(3,1)=0d0
+      ph_CKM(3,2)=0d0
+      ph_CKM(3,3)=1d0 
 
 c     initialize CKM with flavor indexes
       call inizialize_ph_CKM_matrix

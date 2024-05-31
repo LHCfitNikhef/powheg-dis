@@ -1,27 +1,25 @@
 numevts 20000        ! number of events to be generated
 ih1 12
 ih2  1               ! hadron 2 (1 for protons, -1 for antiprotons)
-ebeam1 14000.469d0         ! energy of beam 1 (electron)
-ebeam2 0.469d0
+ebeam1 27.6d0         ! energy of beam 1 (electron)
+ebeam2 920d0
 bornktmin 0d0       ! (default 0d0) Generation cut: minimum kt in underlying Born
 bornsuppfact 0d0  ! (default 0d0) Mass parameter for Born suppression factor.
                      ! If < 0 suppfact = 1.
-Qmin 1.41d0
-Qmax 2500d0
+Qmin 10d0
+Qmax 250d0
 xmin 0d0
 xmax 1d0
 ymin 0d0
 ymax 1d0
-fixed_lepton_beam 0
-
-nupdf 50000001
+fixed_lepton_beam 0 
 
 q2suppr 200d0
 
 ! To be set only if using LHA pdfs
 ! 10050 cteq6m
-lhans1   93100	
-lhans2   93100	    ! pdf set for hadron 2 (LHA numbering)	
+lhans1   331100
+lhans2   331100    ! pdf set for hadron 2 (LHA numbering)	
 
 
 alphas_from_pdf 1
@@ -33,22 +31,22 @@ renscfact  1d0      ! (default 1d0) ren scale factor: muren  = muref * renscfact
 facscfact  1d0      ! (default 1d0) fac scale factor: mufact = muref * facscfact 
 
 ! Parameters to allow or not the use of stored data
-use-old-grid    0    ! If 1 use old grid if file pwggrids.dat is present (<> 1 regenerate)
-use-old-ubound  0    ! If 1 use norm of upper bounding function stored
+use-old-grid    1    ! If 1 use old grid if file pwggrids.dat is present (<> 1 regenerate)
+use-old-ubound  1    ! If 1 use norm of upper bounding function stored
                      ! in pwgubound.dat, if present; <> 1 regenerate
  
 ! A typical call uses 1/1400 seconds (1400 calls per second)
-ncall1 125000         ! No. calls for the construction of the importance sampling grid
-itmx1 5              ! No. iterations for grid: total 100000 calls ~ 70 seconds
-ncall2 250000         ! No. calls for the computation of the upper bounding
+ncall1 50000         ! No. calls for the construction of the importance sampling grid
+itmx1 1              ! No. iterations for grid: total 100000 calls ~ 70 seconds
+ncall2 100000         ! No. calls for the computation of the upper bounding
                      ! envelope for the generation of radiation
 itmx2 1              ! No. iterations for the above
 
 ! Notice: the total number of calls is ncall2*itmx2*foldcsi*foldy*foldphi
 ! these folding numbers yield a negative fraction of 0.5% with bornktmin=10 GeV.
 ! With these settings: ncall2*itmx2*foldcsi*foldy*foldphi=5M, 60 minutes
-foldcsi 5            ! No. folds on csi integration
-foldy   5            ! No. folds on  y  integration
+foldcsi 1            ! No. folds on csi integration
+foldy   1            ! No. folds on  y  integration
 foldphi 1            ! No. folds on phi integration
 
 nubound 20000       ! No. calls to set up the upper bounding norms for radiation.
@@ -67,8 +65,6 @@ bornzerodamp  1
 withnegweights 1     ! (default 0). If 1 use negative weights.
 #bornonly 0          ! (default 0). If 1 compute underlying Born using LO
                      ! cross section only.
-
-#LOevents 1
 #btildeborn 1
 #btildevirt 1
 #btildecoll 1
@@ -84,7 +80,7 @@ xupbound 2d0        ! increase upper bound for radiation generation
 iseed    12          ! Start the random number generator with seed iseed
 #rand1     0         ! skipping  rand2*100000000+rand1 numbers (see RM48
 #rand2     0         ! short writeup in CERNLIB).              
-manyseeds 0         ! Used to perform multiple runs with different random
+manyseeds 1         ! Used to perform multiple runs with different random
                      ! seeds in the same directory.
                      ! If set to 1, the program asks for an integer j;
                      ! The file pwgseeds.dat at line j is read, and the
@@ -109,8 +105,8 @@ vtype 3 ! 1: photon exchange only, 2: Z exchange only, 3: photon+Z exchange
 smartsig 1
 nores 1
 
-#parallelstage 1
-#xgriditeration 2
+parallelstage 1
+xgriditeration 2
 
 
 #######################################

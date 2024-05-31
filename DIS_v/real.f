@@ -32,9 +32,6 @@ c
 c     cancel as/(2pi) associated with amp2. It will be put back by real_ampsq
       amp2 = amp2/(st_alpha/(2d0*pi))
 
-c     Sum over polarization for neutrino-induced is 1/2 not 1/4 (only left handed nu)
-      if(abs(fermion_flav(1)).eq.12 .or. abs(fermion_flav(1)).eq. 14) amp2 = amp2*2
-
       return
       end
 c
@@ -265,10 +262,13 @@ C*****************  end of process evaluation  **********************
       qbar(4) = 0d0
 
          
-c      print*,'call reals with k=',k
 c k-ordering is: eueu,eded,euvd
       call qqj_ee_vv_custom(pbar,fsign,qbar,gsign,k,id_beam,res(1))
-      
+
+c     Sum over polarization for neutrino-induced is 1/2 (only left handed nu),
+c     for charged leptons it is 1/4:                                      
+      polcol = polcol*dble(2-id_beam)
+            
       amp2 = res(1)*polcol
 
       return
