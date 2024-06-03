@@ -50,7 +50,7 @@ c 1: photon exchange only / 2: Z exchange only / 3: photon+Z exchange
       ph_Hmass = powheginput("#hmass")
       ph_Hwidth = powheginput("#hwidth")
       
-      ph_topmass = 173d0 !172.5d0 is powheg default
+      ph_topmass = powheginput('#topmass') !172.5d0 is powheg default
 
 c     if one of two parameters is missing, use the default ones
       if ((ph_Hmass.lt.0d0).or.(ph_Hwidth.lt.0d0)) then
@@ -148,14 +148,14 @@ c      ph_Hmass2high=kn_sbeams/4
          physpar_mq = 0d0
       else    
 c     Set here lepton and quark masses for momentum reshuffle in the LHE event file
-         physpar_ml(1) = 0.511d-3!0.51099891d-3
-         physpar_ml(2) = 0.10566d0!0.1056583668d0
-         physpar_ml(3) = 1.77682d0!1.77684d0
-         physpar_mq(1) = 0.33d0!0.33d0 ! down
-         physpar_mq(2) = 0.33d0!0.33d0 ! up
-         physpar_mq(3) = 0.50d0!0.50d0 ! strange
-         physpar_mq(4) = 1.50d0!1.50d0 ! charm
-         physpar_mq(5) = 4.8d0!4.5d0  ! bottom
+         physpar_ml(1) = powheginput('#electronmass')!0.51099891d-3
+         physpar_ml(2) = powheginput('#muonmass')!0.1056583668d0
+         physpar_ml(3) = powheginput('#taumass')!1.77684d0
+         physpar_mq(1) = powheginput('#downmass')!0.33d0 ! down
+         physpar_mq(2) = powheginput('#upmass')!0.33d0 ! up
+         physpar_mq(3) = powheginput('#strangemass')!0.50d0 ! strange
+         physpar_mq(4) = powheginput('#charmmass')!1.50d0 ! charm
+         physpar_mq(5) = powheginput('#bottommass')!4.5d0  ! bottom
       endif
          
 
