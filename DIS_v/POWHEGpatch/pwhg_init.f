@@ -250,6 +250,12 @@ c     electrons
       elseif(abs(pdf_ih1).eq.12) then
 c     neutrinos                                                                       
          idbmup(1) = 12*pdf_ih1/abs(pdf_ih1)
+      elseif(abs(pdf_ih1).eq.14) then
+c     neutrinos                                                                       
+         idbmup(1) = 14*pdf_ih1/abs(pdf_ih1)
+      elseif(abs(pdf_ih1).eq.16) then
+c     neutrinos                                                                       
+         idbmup(1) = 16*pdf_ih1/abs(pdf_ih1)
       else
          write(*,*) ' unimplemented hadron 1 ',pdf_ih1
          call pwhg_exit(-1)
