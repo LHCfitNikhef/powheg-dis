@@ -100,7 +100,9 @@
                   endif
    !     Final states
                else if(isthep(i).eq.1) then
-                  if(abs(idhep(i)).eq.11 .or. abs(idhep(i)).eq.12) then
+                  if(abs(idhep(i)).eq.11 .or. abs(idhep(i)).eq.12.or.
+     1            abs(idhep(i)).eq.14.or.abs(idhep(i)).eq.16.or.
+     2            abs(idhep(i)).eq.13.or.abs(idhep(i)).eq.15) then
                      nlep = nlep + 1
                      plep(1:4,nlep) = phep(1:4,i)
                   elseif (abs(idhep(i)) <= 9 .or. abs(idhep(i)) == 21 .or. abs(idhep(i)) > 100 ) then 
