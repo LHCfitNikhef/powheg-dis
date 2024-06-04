@@ -306,7 +306,8 @@ c     fill basic parameters:
       sin2w  = 1.d0 - cw**2
       sw     = sqrt(sin2w)
       
-      gfermi = alfa*pi/dsqrt(2d0)/xm2(3)/(1d0-xm2(3)/xm2(2))
+      gfermi = ph_gfermi
+      if (gfermi == 0d0) gfermi = alfa*pi/dsqrt(2d0)/xm2(3)/(1d0-xm2(3)/xm2(2))
       
 c     fill masses:
       hmass = sqrt(xm2(6))
