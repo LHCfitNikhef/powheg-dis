@@ -88,29 +88,31 @@ c     if one of two parameters is missing, use the default ones
       ! include rho-parameter corrections
       ph_sthw2 = powheginput("#s2w")
       if(ph_sthw2<0d0) ph_sthw2 = 1d0 - (ph_Wmass/ph_Zmass)**2
+      ph_gfermi = powheginput("#GF")
+      if (ph_gfermi < 0) ph_gfermi = 0d0 ! set to 0 if no value is specified in the input card, so that the relevant if condition is triggered in convert_coup.f
 
 c     number of light flavors
       st_nlight = 5
 
-C       ph_CKM(1,1)=0.9748 	
-C       ph_CKM(1,2)=0.2225  	 
-C       ph_CKM(1,3)=0.0036  	
-C       ph_CKM(2,1)=0.2225  	
-C       ph_CKM(2,2)=0.9740 	
-C       ph_CKM(2,3)=0.041	
-C       ph_CKM(3,1)=0.009    
-C       ph_CKM(3,2)=0.0405   
-C       ph_CKM(3,3)=0.9992
-c     RG: implement simpler CKM matrix for validation
-      ph_CKM(1,1)=0.97446d0
-      ph_CKM(1,2)=0.224561d0
-      ph_CKM(1,3)=0d0
-      ph_CKM(2,1)=0.224561d0
-      ph_CKM(2,2)=0.97446d0
-      ph_CKM(2,3)=0d0
-      ph_CKM(3,1)=0d0
-      ph_CKM(3,2)=0d0
-      ph_CKM(3,3)=1d0 
+       ph_CKM(1,1) = powheginput("#Vud")
+       if (ph_CKM(1,1) < 0d0) ph_CKM(1,1) = 0.97383
+       ph_CKM(1,2) = powheginput("#Vus")
+       if (ph_CKM(1,2) < 0d0) ph_CKM(1,2) = 0.2272
+       ph_CKM(1,3) = powheginput("#Vub")
+       if (ph_CKM(1,3) < 0d0) ph_CKM(1,3) = 0.00396
+       ph_CKM(2,1) = powheginput("#Vcd")
+       if (ph_CKM(2,1) < 0d0) ph_CKM(2,1) = 0.2271
+       ph_CKM(2,2) = powheginput("#Vcs")
+       if (ph_CKM(2,2) < 0d0) ph_CKM(2,2) = 0.97296
+       ph_CKM(2,3) = powheginput("#Vcb")
+       if (ph_CKM(2,3)< 0d0) ph_CKM(2,3) = 0.04221
+       ph_CKM(3,1) = powheginput("#Vtd")
+       if (ph_CKM(3,1) < 0d0) ph_CKM(3,1) = 0.00814
+       ph_CKM(3,2) = powheginput("#Vts")
+       if (ph_CKM(3,2) < 0d0) ph_CKM(3,2) = 0.04161
+       ph_CKM(3,3) = powheginput("#Vtb")
+       if (ph_CKM(3,3) < 0d0) ph_CKM(3,3) = 0.9991
+
 
 c     initialize CKM with flavor indexes
       call inizialize_ph_CKM_matrix
@@ -148,14 +150,22 @@ c      ph_Hmass2high=kn_sbeams/4
          physpar_mq = 0d0
       else    
 c     Set here lepton and quark masses for momentum reshuffle in the LHE event file
-         physpar_ml(1) = 0.51099891d-3
-         physpar_ml(2) = 0.1056583668d0
-         physpar_ml(3) = 1.77684d0
-         physpar_mq(1) = 0.33d0 ! down
-         physpar_mq(2) = 0.33d0 ! up
-         physpar_mq(3) = 0.50d0 ! strange
-         physpar_mq(4) = 1.50d0 ! charm
-         physpar_mq(5) = 4.5d0  ! bottom
+         physpar_ml(1) = powheginput("#electronmass")
+         if (physpar_ml(1) < 0d0) physpar_ml(1) = 0.51099891d-3  ! electron
+         physpar_ml(2) = powheginput("#muonmass")
+         if (physpar_ml(2)< 0d0) physpar_ml(2) = 0.1056583668d0 ! muon
+         physpar_ml(3) = powheginput("#taumass")
+         if (physpar_ml(3) < 0d0) physpar_ml(3) = 1.77684d0	 ! tau
+         physpar_mq(1) = powheginput("#downmass")
+         if (physpar_mq(1) < 0d0) physpar_mq(1) = 0.33d0 ! down
+         physpar_mq(2) = powheginput("#upmass")
+         if (physpar_mq(2) < 0d0) physpar_mq(2) = 0.33d0 ! up
+         physpar_mq(3) = powheginput("#strangemass")
+         if (physpar_mq(3) < 0d0) physpar_mq(3) = 0.50d0 ! strange
+         physpar_mq(4) = powheginput("#charmmass")
+         if (physpar_mq(4) < 0d0) physpar_mq(4) = 1.50d0 ! charm
+         physpar_mq(5) = powheginput("#bottommass")
+         if (physpar_mq(5) < 0d0) physpar_mq(5) = 4.5d0  ! bottom
       endif
          
 
