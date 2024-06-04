@@ -1,26 +1,25 @@
-numevts 100000        ! number of events to be generated
+numevts 20000        ! number of events to be generated
 ih1 12
 ih2  1               ! hadron 2 (1 for protons, -1 for antiprotons)
-ebeam1 1000d0         ! energy of beam 1 (electron)
-ebeam2 0.938d0
+ebeam1 27.6d0         ! energy of beam 1 (electron)
+ebeam2 920d0
 bornktmin 0d0       ! (default 0d0) Generation cut: minimum kt in underlying Born
 bornsuppfact 0d0  ! (default 0d0) Mass parameter for Born suppression factor.
                      ! If < 0 suppfact = 1.
-Qmin 3.16d0
-Qmax 10000d0
+Qmin 10d0
+Qmax 250d0
 xmin 0d0
 xmax 1d0
 ymin 0d0
 ymax 1d0
-fixed_lepton_beam 1 
-fixed_target 1
+fixed_lepton_beam 0 
 
 q2suppr 200d0
 
 ! To be set only if using LHA pdfs
 ! 10050 cteq6m
-lhans1   331100
-lhans2   331100    ! pdf set for hadron 2 (LHA numbering)	
+lhans1   275200
+lhans2   275200    ! pdf set for hadron 2 (LHA numbering)	
 
 
 alphas_from_pdf 1
@@ -61,42 +60,8 @@ storeinfo_rwgt 1   ! store info to allow for reweighting
 hdamp 0
 bornzerodamp  1
 
-! INIT_COUPLINGS PARAMETERS, change to whatever you want
-
-alphaem 0.00781751d0
-gfermi 0.0000116637d0
-
-CKM_11 0.97383d0
-CKM_12 0.2272d0
-CKM_13 0.00396d0
-CKM_21 0.2271d0
-CKM_22 0.97296d0
-CKM_23 0.04221d0
-CKM_31 0.00814d0
-CKM_32 0.04161d0
-CKM_33 0.9991d0
-
-electronmass 0.511d-3
-muonmass 0.10566d0
-taumass 1.77682d0
-
-downmass 0.33d0
-upmass 0.33d0
-strangemass 0.50d0
-charmmass 1.50d0
-bottommass 4.8d0
-topmass 173d0
-
-Zmass 91.1876d0
-Zwidth 2.5041897d0
-Wmass 80.385d0
-Wwidth 2.0952845d0
-
-s2w 0.2312d0
-
 ! OPTIONAL PARAMETERS
 
-LOevents 1
 withnegweights 1     ! (default 0). If 1 use negative weights.
 #bornonly 0          ! (default 0). If 1 compute underlying Born using LO
                      ! cross section only.
@@ -131,7 +96,7 @@ doublefsr 0          ! Default 0; if 1 use new mechanism to generate regions
                      ! If set, it strongly reduces spikes on showered output.
 
 
-runningscales 0
+runningscales 1
 
 olddij 0
 
