@@ -50,7 +50,8 @@ c 1: photon exchange only / 2: Z exchange only / 3: photon+Z exchange
       ph_Hmass = powheginput("#hmass")
       ph_Hwidth = powheginput("#hwidth")
       
-      ph_topmass = 172.5d0
+      ph_topmass = powheginput("#topmass")
+      if(ph_topmass<0d0) ph_topmass = 172d0
 
 c     if one of two parameters is missing, use the default ones
       if ((ph_Hmass.lt.0d0).or.(ph_Hwidth.lt.0d0)) then
