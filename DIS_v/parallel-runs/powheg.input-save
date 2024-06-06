@@ -12,8 +12,8 @@ xmin 0d0
 xmax 1d0
 ymin 0d0
 ymax 1d0
-fixed_lepton_beam 1 
-fixed_target 1
+fixed_lepton_beam 1    ! If 1 Lepton beam has a single, fixed energy
+fixed_target 1         ! If 1 the beam 2 particle is at rest, with mass = ebeam2
 
 q2suppr 200d0
 
@@ -61,45 +61,34 @@ storeinfo_rwgt 1   ! store info to allow for reweighting
 hdamp 0
 bornzerodamp  1
 
-! INIT_COUPLINGS PARAMETERS, change to whatever you want
-
-alphaem 0.00781751d0
-gfermi 0.0000116637d0
-
-CKM_11 0.97383d0
-CKM_12 0.2272d0
-CKM_13 0.00396d0
-CKM_21 0.2271d0
-CKM_22 0.97296d0
-CKM_23 0.04221d0
-CKM_31 0.00814d0
-CKM_32 0.04161d0
-CKM_33 0.9991d0
-
-electronmass 0.511d-3
-muonmass 0.10566d0
-taumass 1.77682d0
-
-downmass 0.33d0
-upmass 0.33d0
-strangemass 0.50d0
-charmmass 1.50d0
-bottommass 4.8d0
-topmass 173d0
-
-Zmass 91.1876d0
-Zwidth 2.5041897d0
-Wmass 80.385d0
-Wwidth 2.0952845d0
-
-s2w 0.2312d0
-
 ! OPTIONAL PARAMETERS
 
 LOevents 1
 withnegweights 1     ! (default 0). If 1 use negative weights.
 #bornonly 0          ! (default 0). If 1 compute underlying Born using LO
-                     ! cross section only.
+
+
+! set EW Parameters
+
+Zwidth 2.504189709593d0
+Wmass 80.385d0
+Wwidth 2.095284533539d0
+
+alphaem 0.00781751d0
+s2w 0.2312d0
+
+#Vud 0.97446d0        ! CKM matrix elements. More can be added accordingly
+#Vus 0.226
+
+GF 0.0000116637d0     ! G_fermi coupling constant
+
+topmass 173d0
+electronmass 0.000511d0
+muonmass 0.10566d0
+taumass 1.77682d0
+bottommass 4.8d0
+
+
 #btildeborn 1
 #btildevirt 1
 #btildecoll 1
