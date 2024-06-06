@@ -6,8 +6,7 @@ Format: lhagrid1
 DataVersion: 1
 NumMembers: 1
 Particle: 2212
-Flavors: [-12,12]
-####Flavors: [-16,-14,-12,12,14,16]
+Flavors: [-16,-14,-12,12,14,16]
 ####Flavors: [-15,-13,-11,11,13,15]
 OrderQCD: 2
 FlavorScheme: variable

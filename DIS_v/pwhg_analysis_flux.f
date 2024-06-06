@@ -53,12 +53,16 @@
          real * 8 plep(4,maxtrack), plephard(4),pquark(4,maxtrack),plis(4),ppis(4),q(4)              !momenta of lepton, quark, lepton initialstate, parton is, momentum transfere
          real * 8 El_hardest
          real * 8 plab(0:3,maxtrack), pjets(0:3,maxjet)
-         real * 8 y,x,Q2,sbeams, xl               !xs. inv mass of incoming parton-electron, momentum transfer variable Q2=-q^2
+         real * 8 y,x,Q2, xl               !xs. inv mass of incoming parton-electron, momentum transfer variable Q2=-q^2
          real * 8 ptj(maxjet),yj(maxjet),phij(maxjet), eta1, ptjetmin, absEtaMax
          real * 8 ptl, etal
          real * 8, external :: phepdot, eta, kt2
          real * 8 refin(1:4), refout(1:4)
          real * 8 alpha, beta, ptbreit
+         real * 8, save :: Eproton, Elepton, sbeams
+         logical, save :: fixed_target
+         real *8, external :: powheginput
+         
        
         
          dsig=0d0
@@ -75,6 +79,28 @@
                write (*,*) '           PYTHIA ANALYSIS            '
             endif
             ini=.false.
+
+            Elepton = powheginput("ebeam1")
+            Eproton = powheginput("ebeam2")
+            fixed_target = (powheginput("#fixed_target") .eq. 1d0)
+
+            if(fixed_target) then
+               sbeams = 2*Elepton*Eproton + Eproton**2
+            else
+               sbeams = 4 * Elepton * Eproton
+            endif
+
+
+            if(whcprg.eq.'NLO') then
+               if( abs( 4d0 * ebmup(1) * ebmup(2) - sbeams) .gt. 1d-4)
+     $              then
+                  write(*,*) "inconsistency in the calculation of ",
+     $                 "the partonic center-of-mass energy in the ",
+     $                 "analysis, aborting ..."
+                  stop
+               endif
+            endif
+            
          endif
    
          nlep = 0
@@ -100,9 +126,7 @@
                   endif
    !     Final states
                else if(isthep(i).eq.1) then
-                  if(abs(idhep(i)).eq.11 .or. abs(idhep(i)).eq.12.or.
-     1            abs(idhep(i)).eq.14.or.abs(idhep(i)).eq.16.or.
-     2            abs(idhep(i)).eq.13.or.abs(idhep(i)).eq.15) then
+                  if(abs(idhep(i)).ge.11 .and. abs(idhep(i)).le.16) then
                      nlep = nlep + 1
                      plep(1:4,nlep) = phep(1:4,i)
                   elseif (abs(idhep(i)) <= 9 .or. abs(idhep(i)) == 21 .or. abs(idhep(i)) > 100 ) then 
@@ -131,7 +155,6 @@
             endif
          end do
    
-         sbeams = 4d0 * ebmup(1) * ebmup(2)
    
          q(:) = plis(:) - plephard(:)
 
@@ -163,6 +186,7 @@
 
          if(npartons == 2) then
             refin  = x *ebmup(2) * (/ 0d0, 0d0, -1d0, 1d0/)
+            if(fixed_target) refin = refin/2d0 ! The fake massless beam has E = mp/2d0, hence the factor 2
             if(plis(3) < 0) refin(3)=-refin(3) ! Flip the sign of z if necessary
             refout = q(:) + refin
             

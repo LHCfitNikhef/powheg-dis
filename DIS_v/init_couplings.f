@@ -50,7 +50,7 @@ c 1: photon exchange only / 2: Z exchange only / 3: photon+Z exchange
       ph_Hmass = powheginput("#hmass")
       ph_Hwidth = powheginput("#hwidth")
       
-      ph_topmass = powheginput('#topmass') !172.5d0 is powheg default
+      ph_topmass = 172.5d0
 
 c     if one of two parameters is missing, use the default ones
       if ((ph_Hmass.lt.0d0).or.(ph_Hwidth.lt.0d0)) then
@@ -73,7 +73,7 @@ c     if one of two parameters is missing, use the default ones
       ph_Zmass = powheginput("#Zmass")
       if(ph_Zmass<0d0) ph_Zmass  = 91.1876d0
       ph_Zwidth = powheginput("#Zwidth")
-      if(ph_Zwidth<0d0) ph_Zwidth = 2.4952d0
+      if(ph_Zwidth<0d0) ph_Zwidth =  2.4952d0
       ph_Wmass = powheginput("#Wmass")
       if(ph_Wmass<0d0) ph_Wmass  = 80.398d0
       ph_Wwidth = powheginput("#Wwidth")
@@ -101,16 +101,16 @@ C       ph_CKM(2,3)=0.041
 C       ph_CKM(3,1)=0.009    
 C       ph_CKM(3,2)=0.0405   
 C       ph_CKM(3,3)=0.9992
-c     CKM matrix from powheg input
-      ph_CKM(1,1)=powheginput('#CKM_11')
-      ph_CKM(1,2)=powheginput('#CKM_12')
-      ph_CKM(1,3)=powheginput('#CKM_13')
-      ph_CKM(2,1)=powheginput('#CKM_21')
-      ph_CKM(2,2)=powheginput('#CKM_22')
-      ph_CKM(2,3)=powheginput('#CKM_23')
-      ph_CKM(3,1)=powheginput('#CKM_31')
-      ph_CKM(3,2)=powheginput('#CKM_32')
-      ph_CKM(3,3)=powheginput('#CKM_33') 
+c     RG: implement simpler CKM matrix for validation
+      ph_CKM(1,1)=0.97446d0
+      ph_CKM(1,2)=0.224561d0
+      ph_CKM(1,3)=0d0
+      ph_CKM(2,1)=0.224561d0
+      ph_CKM(2,2)=0.97446d0
+      ph_CKM(2,3)=0d0
+      ph_CKM(3,1)=0d0
+      ph_CKM(3,2)=0d0
+      ph_CKM(3,3)=1d0 
 
 c     initialize CKM with flavor indexes
       call inizialize_ph_CKM_matrix
@@ -148,14 +148,14 @@ c      ph_Hmass2high=kn_sbeams/4
          physpar_mq = 0d0
       else    
 c     Set here lepton and quark masses for momentum reshuffle in the LHE event file
-         physpar_ml(1) = powheginput('#electronmass')!0.51099891d-3
-         physpar_ml(2) = powheginput('#muonmass')!0.1056583668d0
-         physpar_ml(3) = powheginput('#taumass')!1.77684d0
-         physpar_mq(1) = powheginput('#downmass')!0.33d0 ! down
-         physpar_mq(2) = powheginput('#upmass')!0.33d0 ! up
-         physpar_mq(3) = powheginput('#strangemass')!0.50d0 ! strange
-         physpar_mq(4) = powheginput('#charmmass')!1.50d0 ! charm
-         physpar_mq(5) = powheginput('#bottommass')!4.5d0  ! bottom
+         physpar_ml(1) = 0.51099891d-3
+         physpar_ml(2) = 0.1056583668d0
+         physpar_ml(3) = 1.77684d0
+         physpar_mq(1) = 0.33d0 ! down
+         physpar_mq(2) = 0.33d0 ! up
+         physpar_mq(3) = 0.50d0 ! strange
+         physpar_mq(4) = 1.50d0 ! charm
+         physpar_mq(5) = 4.5d0  ! bottom
       endif
          
 
