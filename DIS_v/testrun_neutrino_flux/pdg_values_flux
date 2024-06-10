@@ -99,9 +99,9 @@ charmmass 1.27d0
 topmass 172.69d0
 bottommass 4.18d0
 
-electronmass 0.000511d0
-muonmass 0.10566d0
-taumass 1.77682d0
+electronmass 0.000548579909065d0
+muonmass 0.1134289259d0
+taumass 1.77686d0
 
 #btildeborn 1
 #btildevirt 1
