@@ -275,6 +275,7 @@ c     common blocks which need to be filled for HELAS
 c     (masses, widths, couplings):		
       include 'coupl_custom.inc'
       include 'pwhg_math.h'
+      include 'PhysPars.h'
       
       double precision g2,ee2,sw,cw,vv,sc2,g1,v_5,vev
       double precision cwwwl2,cwl2,cbl2,cpwwwl2,cpwl2
