@@ -130,7 +130,7 @@ vtype 3 ! 1: photon exchange only, 2: Z exchange only, 3: photon+Z exchange
 smartsig 1
 nores 1
 
-parallelstage 1
+parallelstage 4
 xgriditeration 2
 
 
