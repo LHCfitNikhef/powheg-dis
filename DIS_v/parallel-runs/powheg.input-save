@@ -6,12 +6,13 @@ ebeam2 0.938d0
 bornktmin 0d0       ! (default 0d0) Generation cut: minimum kt in underlying Born
 bornsuppfact 0d0  ! (default 0d0) Mass parameter for Born suppression factor.
                      ! If < 0 suppfact = 1.
-Qmin 3.16d0
+Qmin 2d0        ! Should always be greater or equal to 2d0
 Qmax 10000d0
 xmin 0d0
 xmax 1d0
 ymin 0d0
 ymax 1d0
+
 fixed_lepton_beam 1    ! If 1 Lepton beam has a single, fixed energy
 fixed_target 1         ! If 1 the beam 2 particle is at rest, with mass = ebeam2
 
@@ -64,7 +65,7 @@ bornzerodamp  1
 ! OPTIONAL PARAMETERS
 
 LOevents 1
-withnegweights 1     ! (default 0). If 1 use negative weights.
+#withnegweights 1     ! (default 0). If 1 use negative weights.
 #bornonly 0          ! (default 0). If 1 compute underlying Born using LO
 
 
