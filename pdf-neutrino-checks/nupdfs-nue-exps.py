@@ -26,17 +26,19 @@ nx=1000
 X = np.logspace(log(xmin),log(xmax),nx)
 lhapdf.setVerbosity(0)
 # number of experiments
-nexp=3
+nexp=4
 # number of neutrino flavours
 nfl=6
 fl=[12,14,16,-12,-14,-16]
 
 pdfset=["faserv",\
         "snd",\
-        "faserv2"]
+        "faserv2",\
+        "flare10"]
 pdfsetlab=[r"${\rm FASER}\nu$",\
            r"${\rm SND@LHC}$",\
-           r"${\rm FASER}\nu 2$"]
+           r"${\rm FASER}\nu 2$",\
+           r"${\rm FLArE}$"]
 
 for iset in range(nexp):
 
@@ -111,6 +113,12 @@ for ifl in range(nfl):
                color="C3"
     )
 
+    p4=ax.plot(X,
+               fit4[ifl],
+               ls="dashdot",
+               color="C4"
+    )
+
     ax.set_xscale('log')
     ax.set_yscale('log')
     
@@ -125,10 +133,10 @@ for ifl in range(nfl):
         ax.set_xlabel(r'$x_\nu$',fontsize=18)
     
     # Add the legend
-    if(ifl==0):
-        ax.legend([p1[0],p2[0],p3[0]],\
-                  [pdfsetlab[0],pdfsetlab[1],pdfsetlab[2]], \
-                  frameon=True,loc=2,prop={'size':11})
+    if(ifl==2):
+        ax.legend([p1[0],p2[0],p3[0],p4[0]],\
+                  [pdfsetlab[0],pdfsetlab[1],pdfsetlab[2],pdfsetlab[3]], \
+                  frameon=True,loc=2,prop={'size':13})
         
 
 py.tight_layout(pad=1.4, w_pad=1.0, h_pad=1.0)

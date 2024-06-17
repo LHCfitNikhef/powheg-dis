@@ -26,17 +26,19 @@ nx=1000
 X = np.logspace(log(xmin),log(xmax),nx)
 lhapdf.setVerbosity(0)
 # number of experiments
-nexp=3
+nexp=4
 # number of neutrino flavours
 nfl=6
 fl=[12,14,16,-12,-14,-16]
 
 pdfset=["faserv",\
         "snd",\
-        "faserv2"]
+        "faserv2",\
+        "flare10"]
 pdfsetlab=[r"${\rm FASER}\nu$",\
            r"${\rm SND@LHC}$",\
-           r"${\rm FASER}\nu 2$"]
+           r"${\rm FASER}\nu 2$",\
+           r"${\rm FLArE}$"]
 
 for iset in range(nexp):
 
@@ -68,18 +70,21 @@ for iset in range(nexp):
                 fit2[ifl][k] = p.xfxQ(fl[ifl],x,q)
             if(iset==2):
                 fit3[ifl][k] = p.xfxQ(fl[ifl],x,q)
+            if(iset==3):
+                fit4[ifl][k] = p.xfxQ(fl[ifl],x,q)
  
 
 print("\n\n")
 
 py.clf()
-ncols,nrows=3,1
+ncols,nrows=2,2
 py.figure(figsize=(ncols*5,nrows*3.5))
 gs = gridspec.GridSpec(nrows,ncols)
 rescolors = py.rcParams['axes.prop_cycle'].by_key()['color']
 
 # pdflabels
 labelpdf=[r"$f_{\nu_i}(x_{\nu})$",\
+    r"$f_{\nu_i}(x_{\nu})$",\
     r"$f_{\nu_i}(x_{\nu})$",\
     r"$f_{\nu_i}(x_{\nu})$"]
 
@@ -217,23 +222,70 @@ for iexp in range(nexp):
                color="C6"
         )
 
+    if(iexp==3):
+        ifl=0
+        p1=ax.plot(X,
+               fit4[ifl],
+               ls="dashed",
+               color="C1"
+        )
+    
+        ifl=3
+        p2=ax.plot(X,
+               fit4[ifl],
+               ls="dotted",
+               color="C2"
+        )
+
+        ifl=1
+        p3=ax.plot(X,
+               fit4[ifl],
+               ls="solid",
+               color="C3"
+        )
+
+        ifl=4
+        p4=ax.plot(X,
+               fit4[ifl],
+               ls="dashdot",
+               color="C4"
+        )
+
+        ifl=2
+        p5=ax.plot(X,
+               fit4[ifl],
+               ls="solid",
+               color="C5"
+        )
+
+        ifl=5
+        p6=ax.plot(X,
+               fit4[ifl],
+               ls="dashed",
+               color="C6"
+        )
+
     ax.set_xscale('log')
     ax.set_yscale('log')
     
     ax.set_xlim(xmin,xmax)
-    ax.set_ylim(1e-1,5e5)
+    ax.set_ylim(5e-1,5e6)
          
     ax.tick_params(which='both',direction='in',labelsize=12,right=True)
     ax.tick_params(which='major',length=7)
     ax.tick_params(which='minor',length=4)
-    ax.set_ylabel(labelpdf[iexp],fontsize=16)
-    ax.set_xlabel(r'$x_\nu$',fontsize=18)
+    if(iexp==0 or iexp==2):
+        ax.set_ylabel(labelpdf[iexp],fontsize=16)
+    if(iexp>1):
+        ax.set_xlabel(r'$x_\nu$',fontsize=18)
     if(iexp==0):
         ax.set_title(r"${\rm FASER}\nu$",fontsize=18)
     if(iexp==1):
         ax.set_title(r"${\rm SND@LHC}$",fontsize=18)
     if(iexp==2):
         ax.set_title(r"${\rm FASER}\nu 2$",fontsize=18)
+    if(iexp==3):
+        ax.set_title(r"${\rm FLArE}\nu 2$",fontsize=18)
     
     # Add the legend
     if(iexp==1):
@@ -241,7 +293,7 @@ for iexp in range(nexp):
                   [r"$\nu_e$",r"$\bar{\nu}_e$",\
                   r"$\nu_\mu$",r"$\bar{\nu}_\mu$",\
                   r"$\nu_\tau$",r"$\bar{\nu}_\tau$"], \
-                  frameon=True,loc=1,prop={'size':12})
+                  frameon=True,loc=1,prop={'size':13})
         
 
 py.tight_layout(pad=1.4, w_pad=1.0, h_pad=1.0)
