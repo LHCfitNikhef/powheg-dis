@@ -51,12 +51,12 @@ c 1: photon exchange only / 2: Z exchange only / 3: photon+Z exchange
       ph_Hwidth = powheginput("#hwidth")
       
       ph_topmass = powheginput("#topmass")
-      if(ph_topmass<0d0) ph_topmass = 172.5d0
+      if(ph_topmass<0d0) ph_topmass = 172.69d0
 
 c     if one of two parameters is missing, use the default ones
       if ((ph_Hmass.lt.0d0).or.(ph_Hwidth.lt.0d0)) then
-         ph_Hmass  = 125d0
-         ph_Hwidth = 4.14d-03
+         ph_Hmass  = 125.25d0
+         ph_Hwidth = 3.2d-03
       endif
 
       write(*,*) '**************************************'
@@ -74,16 +74,16 @@ c     if one of two parameters is missing, use the default ones
       ph_Zmass = powheginput("#Zmass")
       if(ph_Zmass<0d0) ph_Zmass  = 91.1876d0
       ph_Zwidth = powheginput("#Zwidth")
-      if(ph_Zwidth<0d0) ph_Zwidth =  2.4952d0
+      if(ph_Zwidth<0d0) ph_Zwidth =  2.4955d0
       ph_Wmass = powheginput("#Wmass")
-      if(ph_Wmass<0d0) ph_Wmass  = 80.398d0
+      if(ph_Wmass<0d0) ph_Wmass  = 80.377d0
       ph_Wwidth = powheginput("#Wwidth")
-      if(ph_Wwidth<0d0) ph_Wwidth = 2.141d0
+      if(ph_Wwidth<0d0) ph_Wwidth = 2.085d0
       ! For the CC process, it is preferable to include top mass and 
       ! fermion mass effects. So use:
       ! alpha_GF = sqrt(2) / M_PI * gf * fabs( MW2C * SW2_OS )
       ph_alphaem = powheginput("#alphaem")
-      if(ph_alphaem<0d0) ph_alphaem = 1d0/137d0
+      if(ph_alphaem<0d0) ph_alphaem = 0.0072973525693d0
       ! In principle use the all-order on-shell relation for S2W
       ! At LO in EW, for better accuracy one can instead fix s2w or 
       ! include rho-parameter corrections
@@ -96,23 +96,23 @@ c     number of light flavors
       st_nlight = 5
 
        ph_CKM(1,1) = powheginput("#Vud")
-       if (ph_CKM(1,1) < 0d0) ph_CKM(1,1) = 0.97383
+       if (ph_CKM(1,1) < 0d0) ph_CKM(1,1) = 0.97373
        ph_CKM(1,2) = powheginput("#Vus")
-       if (ph_CKM(1,2) < 0d0) ph_CKM(1,2) = 0.2272
+       if (ph_CKM(1,2) < 0d0) ph_CKM(1,2) = 0.2243
        ph_CKM(1,3) = powheginput("#Vub")
-       if (ph_CKM(1,3) < 0d0) ph_CKM(1,3) = 0.00396
+       if (ph_CKM(1,3) < 0d0) ph_CKM(1,3) = 0.00382
        ph_CKM(2,1) = powheginput("#Vcd")
-       if (ph_CKM(2,1) < 0d0) ph_CKM(2,1) = 0.2271
+       if (ph_CKM(2,1) < 0d0) ph_CKM(2,1) = 0.221
        ph_CKM(2,2) = powheginput("#Vcs")
-       if (ph_CKM(2,2) < 0d0) ph_CKM(2,2) = 0.97296
+       if (ph_CKM(2,2) < 0d0) ph_CKM(2,2) = 0.975
        ph_CKM(2,3) = powheginput("#Vcb")
-       if (ph_CKM(2,3)< 0d0) ph_CKM(2,3) = 0.04221
+       if (ph_CKM(2,3)< 0d0) ph_CKM(2,3) = 0.0408
        ph_CKM(3,1) = powheginput("#Vtd")
-       if (ph_CKM(3,1) < 0d0) ph_CKM(3,1) = 0.00814
+       if (ph_CKM(3,1) < 0d0) ph_CKM(3,1) = 0.0086
        ph_CKM(3,2) = powheginput("#Vts")
-       if (ph_CKM(3,2) < 0d0) ph_CKM(3,2) = 0.04161
+       if (ph_CKM(3,2) < 0d0) ph_CKM(3,2) = 0.0415
        ph_CKM(3,3) = powheginput("#Vtb")
-       if (ph_CKM(3,3) < 0d0) ph_CKM(3,3) = 0.9991
+       if (ph_CKM(3,3) < 0d0) ph_CKM(3,3) = 1.014
 
 
 c     initialize CKM with flavor indexes
@@ -152,11 +152,11 @@ c      ph_Hmass2high=kn_sbeams/4
       else    
 c     Set here lepton and quark masses for momentum reshuffle in the LHE event file
          physpar_ml(1) = powheginput("#electronmass")
-         if (physpar_ml(1) < 0d0) physpar_ml(1) = 0.51099891d-3  ! electron
+         if (physpar_ml(1) < 0d0) physpar_ml(1) = 0.511d-3  ! electron
          physpar_ml(2) = powheginput("#muonmass")
-         if (physpar_ml(2)< 0d0) physpar_ml(2) = 0.1056583668d0 ! muon
+         if (physpar_ml(2)< 0d0) physpar_ml(2) = 0.10566d0 ! muon
          physpar_ml(3) = powheginput("#taumass")
-         if (physpar_ml(3) < 0d0) physpar_ml(3) = 1.77684d0	 ! tau
+         if (physpar_ml(3) < 0d0) physpar_ml(3) = 1.77682d0	 ! tau
          physpar_mq(1) = powheginput("#downmass")
          if (physpar_mq(1) < 0d0) physpar_mq(1) = 0.33d0 ! down
          physpar_mq(2) = powheginput("#upmass")
@@ -164,9 +164,9 @@ c     Set here lepton and quark masses for momentum reshuffle in the LHE event f
          physpar_mq(3) = powheginput("#strangemass")
          if (physpar_mq(3) < 0d0) physpar_mq(3) = 0.50d0 ! strange
          physpar_mq(4) = powheginput("#charmmass")
-         if (physpar_mq(4) < 0d0) physpar_mq(4) = 1.50d0 ! charm
+         if (physpar_mq(4) < 0d0) physpar_mq(4) = 1.27d0 ! charm
          physpar_mq(5) = powheginput("#bottommass")
-         if (physpar_mq(5) < 0d0) physpar_mq(5) = 4.5d0  ! bottom
+         if (physpar_mq(5) < 0d0) physpar_mq(5) = 4.18d0  ! bottom
       endif
          
 
