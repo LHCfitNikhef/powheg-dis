@@ -249,6 +249,7 @@ axs[0].set_title(r'$E_\nu = \rm 1\ TeV$')
 
 
 axs[1].set_xlim(100, 820)
+axs[1].set_ylim(0.75,1.25)
 axs[1].set_xticks(np.arange(100, 820, 100))
 axs[1].set_xlabel(r'$E_l \ \mathrm{[GeV]}$')
 axs[1].set_ylabel(r'$\rm Ratio \ to \ PW \ LO$', fontsize=8, labelpad=13)
