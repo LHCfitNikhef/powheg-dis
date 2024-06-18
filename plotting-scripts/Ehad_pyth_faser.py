@@ -3,7 +3,7 @@
 #
 #                Outgoing Hadron Energy 
 #                
-#                  PWG+PY8 LO, NLO
+#             PWG+PY8 LO, NLO - faser cuts
 #
 #                Pythia8 Stand-alone
 #
