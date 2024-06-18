@@ -250,7 +250,7 @@ axs[0].set_title(r'$E_\nu = \rm 1\ TeV$')
 
 
 axs[1].set_xlim(190, 910)
-axs[1].set_ylim(0.8, 1.25)
+axs[1].set_ylim(0.75, 1.25)
 axs[1].set_xlabel(r'$E_h \ \mathrm{[GeV]}$')
 axs[1].set_ylabel(r'$\rm Ratio \ to \ PW \ LO$', fontsize=8, labelpad=12)
 axs[1].grid(linestyle='-', color='grey', linewidth=0.25)
