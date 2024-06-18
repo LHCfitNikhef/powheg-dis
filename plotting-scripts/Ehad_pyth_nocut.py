@@ -265,7 +265,6 @@ for ax in axs:
 
 for ax in axs:
     for label in ax.get_xticklabels() + ax.get_yticklabels():
-        label.set_fontname('Bodoni 72')
         label.set_fontsize(9.8)
 
 
