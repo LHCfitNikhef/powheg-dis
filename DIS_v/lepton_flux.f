@@ -53,10 +53,9 @@
          end subroutine xf_pdgid
       end interface
 
-      pdf = 1e-8                !Do not set light quark pdfs to 0 otherwise the checklims is broken. This is in any case not used
-
-!     COMMENT -- ADD THE FUNCTIONAL FORM YOU PREFER FOR THE FLAVOURS YOU NEED          
-
+      pdf = 1e-8                ! Do not set light quark pdfs to 0 otherwise
+                                ! the checklims is broken. This is in any 
+                                ! case not used
       if(ini)then
          nupdf=int(powheginput("#nupdf"),kind=4)
          if(nupdf.lt.0)then
@@ -71,7 +70,9 @@
          end if
          ini=.FALSE.
       end if
+
       call genericpdfset(nupdf)
       call xf_pdgid(iset,ih,x,mufact2,pdf(ih))
       pdf(ih)=pdf(ih)/x
+
       end
