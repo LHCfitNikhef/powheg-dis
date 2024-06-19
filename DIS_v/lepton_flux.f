@@ -15,20 +15,63 @@
 
 
       subroutine pdf_lepton_beam(ih, mufact2, x, pdf )
+      use iso_c_binding, only : c_bool,c_int
       implicit none
+      
       include 'pwhg_pdf.h'
-!     input
-      integer ih                !Index of the incoming beam
-      real * 8 mufact2          !factorisation scale (squared)
-      real * 8 x                !x fraction
-!     output
-      real *8 pdf(-pdf_nparton:pdf_nparton)   !Array of pdfs
+      real * 8 lam5
+      integer iord,iset,maxsets
+      common/cgenericpdf/lam5,iord,iset,maxsets
+
+      integer(kind=4),intent(in) :: ih        !Index of the incoming beam
+      real(kind=8),intent(in)    :: mufact2   !factorisation scale (squared)
+      real(kind=8),intent(in)    :: x         !x fraction
+      real(kind=8),dimension(-pdf_nparton:pdf_nparton),
+     1 intent(out)               :: pdf
+
+      integer(kind=4),save       :: nupdf=-1
+      logical,save               :: ini=.TRUE.
+      real(kind=8)               :: powheginput
+      logical(kind=c_bool)       :: generic_has_id
+
+      interface
+         function powheginput(stringa)
+            character(len=*),dimension(*),intent(in) :: stringa
+         end function powheginput
+         function generic_has_id(iset,id) bind(C,name="generic_has_id_")
+            use iso_c_binding, only: c_int
+            integer(kind=c_int),intent(in) :: iset,id
+         end function generic_has_id
+         subroutine genericpdfset(ndns)
+            integer(kind=4),intent(in) :: ndns
+         end subroutine genericpdfset
+         subroutine xf_pdgid(iset,id,x,q2,xf) bind(C,name="xf_pdgid_")
+            use iso_c_binding, only: c_int,c_double
+            integer(kind=c_int),intent(in) :: iset,id
+            real(kind=c_double),intent(in) :: x,q2 
+            real(kind=c_double),intent(out) :: xf
+         end subroutine xf_pdgid
+      end interface
 
       pdf = 1e-8                !Do not set light quark pdfs to 0 otherwise the checklims is broken. This is in any case not used
 
 !     COMMENT -- ADD THE FUNCTIONAL FORM YOU PREFER FOR THE FLAVOURS YOU NEED          
-      pdf(11)  = exp(-1d0/x**2)
-      pdf(-11)  = exp(-1d0/x**2)
-      pdf(12)  = 1d0
-      pdf(-12) = 1d0
+
+      if(ini)then
+         nupdf=int(powheginput("#nupdf"),kind=4)
+         if(nupdf.lt.0)then
+            write(*,"(A)") "ERROR: Keyword nupdf missing in input card."
+            stop
+         end if
+         call genericpdfset(nupdf)
+         if(.NOT.generic_has_id(iset,ih))then
+            write(*,"(A23,I4,A15)") "ERROR: Neutrino flavour",ih, 
+     1                            " not available."
+            stop
+         end if
+         ini=.FALSE.
+      end if
+      call genericpdfset(nupdf)
+      call xf_pdgid(iset,ih,x,mufact2,pdf(ih))
+      pdf(ih)=pdf(ih)/x
       end
