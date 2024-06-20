@@ -41,15 +41,6 @@
             use iso_c_binding, only: c_int, c_bool
             integer(kind=c_int),intent(in) :: iset,id
          end function generic_has_id
-         subroutine genericpdfset(ndns)
-            integer(kind=4),intent(in) :: ndns
-         end subroutine genericpdfset
-         subroutine xf_pdgid(iset,id,x,q2,xf) bind(C,name="xf_pdgid_")
-            use iso_c_binding, only: c_int,c_double
-            integer(kind=c_int),intent(in) :: iset,id
-            real(kind=c_double),intent(in) :: x,q2 
-            real(kind=c_double),intent(out) :: xf
-         end subroutine xf_pdgid
       end interface
 
       pdf = 1e-8                ! Do not set light quark pdfs to 0 otherwise
