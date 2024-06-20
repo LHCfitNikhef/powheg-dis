@@ -36,9 +36,9 @@
          real(kind=8) function powheginput(stringa)
             character(len=*),dimension(*),intent(in) :: stringa
          end function powheginput
-         logical(kind=4) function generic_has_id(iset,id) 
+         logical(kind=c_bool) function generic_has_id(iset,id) 
      1   bind(C,name="generic_has_id_")
-            use iso_c_binding, only: c_int
+            use iso_c_binding, only: c_int, c_bool
             integer(kind=c_int),intent(in) :: iset,id
          end function generic_has_id
          subroutine genericpdfset(ndns)
