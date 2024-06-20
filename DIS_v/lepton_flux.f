@@ -15,7 +15,6 @@
 
 
       subroutine pdf_lepton_beam(ih, mufact2, x, pdf )
-      use iso_c_binding, only : c_bool,c_int
       implicit none
       
       include 'pwhg_pdf.h'
