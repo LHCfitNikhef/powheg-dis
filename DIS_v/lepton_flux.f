@@ -31,14 +31,13 @@
 
       integer(kind=4),save       :: nupdf=-1
       logical,save               :: ini=.TRUE.
-      real(kind=8)               :: powheginput
-      logical(kind=c_bool)       :: generic_has_id
 
       interface
-         function powheginput(stringa)
+         real(kind=8) function powheginput(stringa)
             character(len=*),dimension(*),intent(in) :: stringa
          end function powheginput
-         function generic_has_id(iset,id) bind(C,name="generic_has_id_")
+         logical(kind=4) function generic_has_id(iset,id) 
+     1   bind(C,name="generic_has_id_")
             use iso_c_binding, only: c_int
             integer(kind=c_int),intent(in) :: iset,id
          end function generic_has_id
