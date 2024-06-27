@@ -59,7 +59,9 @@
          real * 8, external :: phepdot, eta, kt2
          real * 8 refin(1:4), refout(1:4)
          real * 8 alpha, beta, ptbreit
-       
+
+         logical, save :: fixed_target
+         real *8, external :: powheginput
         
          dsig=0d0
          call multi_plot_setup(dsig0,dsig, weights_max)
