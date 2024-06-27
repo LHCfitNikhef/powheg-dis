@@ -161,6 +161,7 @@
 
          if(npartons == 2) then
             refin  = x *ebmup(2) * (/ 0d0, 0d0, -1d0, 1d0/)
+            if(fixed_target) refin = refin/2d0 ! The fake massless beam has E = mp/2d0, hence the factor 2
             if(plis(3) < 0) refin(3)=-refin(3) ! Flip the sign of z if necessary
             refout = q(:) + refin
             
