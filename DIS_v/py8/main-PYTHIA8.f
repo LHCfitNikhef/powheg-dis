@@ -96,6 +96,7 @@ c particle masses for reshuffling
       do l=1,maxev
 
          call lhefreadev(iun)
+         call pythia_reinit ! Call again to reset the beams.
 
          NanInEvent=.false.
          do i1 =1, maxnup
@@ -148,6 +149,9 @@ c Insist to shower this event;
          if(iret.eq.1) then
             call pythia_to_hepevt(nmxhep,nhep,isthep,idhep,jmohep,
      1           jdahep,phep,vhep)
+C            if(nevhep.lt.6) then
+C           since we call pythia.init each time we shower an event do
+C           not print each time.
             if(nevhep.lt.6) then
                do j=1,nhep
                   write(*,100)j,isthep(j),idhep(j),jmohep(1,j),

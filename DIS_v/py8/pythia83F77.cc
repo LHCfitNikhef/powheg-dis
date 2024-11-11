@@ -52,7 +52,9 @@ class MyUserHooks : public UserHooks {
 
 public:
 
-  MyUserHooks() {cout << "Setting up Hook";}
+  MyUserHooks() {
+  //   cout << "Setting up Hook";
+  }
 
   // Destructor deletes anti-kT jet finder.
   ~MyUserHooks() {;}
@@ -80,8 +82,20 @@ extern "C" {
   void pythia_option0_(char *string) {
     pythia.readString(string);
   }
+  // Reinitialise the beams for each event.
+  void pythia_reinit_() {
+     pythia.reinit();
+  }
 
   void pythia_init_() {
+
+    // Print minimal output to disply during init
+    pythia.readString("Print:quiet = on");
+	 pythia.readString("Init:showProcesses = off");
+    pythia.readString("Init:showChangedSettings = off");
+    pythia.readString("Init:showChangedParticleData = off");    
+    pythia.readString("PDF:neutrino = on");
+    pythia.readString("PDF:lepton = on");
 
     // Vincia
     if(cpy8pars_.shower >= vincia){
@@ -100,28 +114,28 @@ extern "C" {
       }
       pythia.readString("PartonShowers:model = 2"); // Use Vincia’s shower model.
       if(cpy8pars_.QED ==0) {
-	std::cout<<"Switching OFF QED shower in Vincia \n"; 
+//	std::cout<<"Switching OFF QED shower in Vincia \n"; 
 	pythia.readString("Vincia:ewMode = 0");  // Switch off QED/EW showers.
       }else if(cpy8pars_.QED == 2) {
-	std::cout<<"Using the most ``coherent'' QED shower in Vincia \n"; 
+//	std::cout<<"Using the most ``coherent'' QED shower in Vincia \n"; 
 	pythia.readString("Vincia:ewMode = 2");  // Use most coherent QED
       }else{
-	std::cout<<"Using the fastest QED shower in Vincia \n"; 
+//	std::cout<<"Using the fastest QED shower in Vincia \n"; 
 	pythia.readString("Vincia:ewMode = 1");  // Default
       }
   
     }
     //Dipole shower
     else{
-      std::cout<<"Using standard Dipole shower";
+//      std::cout<<"Using standard Dipole shower";
       if(cpy8pars_.shower == dipole){
-	std::cout<<" with fully local recoil \n";
+//	std::cout<<" with fully local recoil \n";
 	pythia.readString("SpaceShower:dipoleRecoil = on");
       }else{
-	std::cout<<" with global recoil for IF\n";
+//	std::cout<<" with global recoil for IF\n";
       }	
       if(cpy8pars_.QED ==0) {
-	std::cout<<"Switching OFF QED shower in Standard dipole shower \n"; 
+//	std::cout<<"Switching OFF QED shower in Standard dipole shower \n"; 
 	pythia.readString("SpaceShower:QEDshowerByQ = off"); // From quarks.        
 	pythia.readString("SpaceShower:QEDshowerByL = off"); // From Leptons.      
 	pythia.readString("TimeShower:QEDshowerByQ = off"); // From quarks.         
@@ -129,7 +143,7 @@ extern "C" {
 	pythia.readString("TimeShower:QEDshowerByGamma = off"); // Prevent gamma -> f fbar
 	pythia.readString("TimeShower:QEDshowerByOther  = off");
       }else{
-	std::cout<<"Using QED shower in Standard dipole shower \n"; 
+//	std::cout<<"Using QED shower in Standard dipole shower \n"; 
       }
     }
 
@@ -151,18 +165,30 @@ extern "C" {
 
    if(cpy8pars_.had == 0) {
       pythia.readString("HadronLevel:All = off");
-      std::cout<<"Switching off hadronization \n";
+//      std::cout<<"Switching off hadronization \n";
    }else{
      if(cpy8pars_.had == 1){
-       std::cout<<"Including hadronization \n";
+//       std::cout<<"Including hadronization \n";
      }else{
-       std::cout<<"Including hadronization, but not the unstable hadrons decay \n";
+//       std::cout<<"Including hadronization, but not the unstable hadrons decay \n";
        pythia.readString("HadronLevel:Decay = off");  //switch off unstable hadron decay
      }
     }
     // uncomment to set pi0 stable (this avoid a plethora
     // of photons in the final state...)
-    //pythia.readString("111:mayDecay = off");
+    pythia.readString("111:mayDecay = off");
+    pythia.readString("211:mayDecay = off");
+    pythia.readString("-211:mayDecay = off");
+    // uncomment for the faser tune from arXiv:2309.08604
+    //pythia.readString("BeamRemnants:dampPopcorn = 0");
+    //pythia.readString("BeamRemnants:hardRemnantBaryon = On");
+    //pythia.readString("BeamRemnants:aRemnantBaryon = 0.68");
+    //pythia.readString("BeamRemnants:bRemnantBaryon = 1.22");
+    //pythia.readString("BeamRemnants:primordialKTsoft = 0.56");
+    //pythia.readString("BeamRemnants:primordialKThard = 1.8");
+    //pythia.readString("BeamRemnants:halfScaleForKT = 10");
+    //pythia.readString("BeamRemnants:halfMassForKT = 1");
+    //pythia.readString("BeamRemnants:primordialKTremnant = 0.56");
     // same for the higgs
     //pythia.readString("25:mayDecay = off");
     // //D,Ds hadrons
@@ -180,9 +206,9 @@ extern "C" {
     // pythia.readString("-433:mayDecay = off"); 
     
     if(cpy8pars_.MPI == 1){
-      std::cout<<"Include the underlying event \n";
+//      std::cout<<"Include the underlying event \n";
     }else{
-      std::cout<<"Switch off the underlying event \n";
+//      std::cout<<"Switch off the underlying event \n";
       pythia.readString("PartonLevel:MPI = off");
     }
 
@@ -191,7 +217,7 @@ extern "C" {
     // Load configuration file
     if(cpy8pars_.LO ==1){
 
-      cout<<"LO. powheg hooks not loaded. Use pTmaxMatch = 2 [max starting scale]"<<endl;
+//      cout<<"LO. powheg hooks not loaded. Use pTmaxMatch = 2 [max starting scale]"<<endl;
       if (cpy8pars_.shower >= vincia){
 	pythia.readString("Vincia:pTmaxMatch = 2");
       }else{
@@ -271,7 +297,7 @@ extern "C" {
       } else {
       // do this (wimpy shower) if hooks are not loaded.
       // (which can be obtained setting POWHEG:veto=0)
-	cout<<"powheg hooks not loaded. Use pTmaxMatch = 1 [scalup = starting scale]"<<endl;
+//	cout<<"powheg hooks not loaded. Use pTmaxMatch = 1 [scalup = starting scale]"<<endl;
 	if (cpy8pars_.shower >= vincia){
 	  pythia.readString("Vincia:pTmaxMatch = 1");
 	}else{
@@ -287,23 +313,25 @@ extern "C" {
     }
 
 
+    //pythia.readString("PartonLevel:Remnants = off");
+    //pythia.readString("PartonLevel:ISR = off");
+    //pythia.readString("Check:event = off");
     pythia.readString("Beams:frameType = 5");
-    pythia.readString("Check:beams False");
+    pythia.readString("Check:beams True");
     // Set up incoming beams, for frame with unequal beam energies.
     //pythia.readString("Beams:frameType = 2");
     //// BeamA = proton.
     //pythia.readString("Beams:idB = 2212");
-    //pythia.settings.parm("Beams:eB", 820.0);
+    //pythia.settings.parm("Beams:eB", 1.0);
     //// BeamB = electron.
-    //pythia.readString("Beams:idA = 11");
-    //pythia.settings.parm("Beams:eA", 27.5);
+    //pythia.readString("Beams:idA = 12");
+    //pythia.settings.parm("Beams:eA", 1394);
     ////    pythia.setUserHooksPtr(MyHook);
 
 
     pythia.setLHAupPtr(LHAinstance); 
     LHAinstance->setInit();  
 
- 
 
     pythia.init();
 
@@ -312,6 +340,7 @@ extern "C" {
 
   void pythia_next_(int & iret){
   // Begin event loop. Generate event. Skip if error. List first one.
+  
     iret = pythia.next();
     if(iret == 0) {
       // bad event
