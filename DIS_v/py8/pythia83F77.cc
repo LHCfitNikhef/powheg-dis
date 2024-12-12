@@ -52,7 +52,9 @@ class MyUserHooks : public UserHooks {
 
 public:
 
-  MyUserHooks() {cout << "Setting up Hook";}
+  MyUserHooks() {
+  //   cout << "Setting up Hook";
+  }
 
   // Destructor deletes anti-kT jet finder.
   ~MyUserHooks() {;}
@@ -62,7 +64,7 @@ private:
 
 };
 
-Pythia pythia;
+Pythia* pythia = new Pythia();
 
 // Add in user hooks for shower vetoing
 shared_ptr<UserHooks> powhegHooks;
@@ -78,58 +80,69 @@ std::shared_ptr<myLHAupFortran> LHAinstance{new myLHAupFortran()};
 extern "C" {
   // F77 interface to pythia8
   void pythia_option0_(char *string) {
-    pythia.readString(string);
+    pythia->readString(string);
   }
 
   void pythia_init_() {
 
+    // Print minimal output to disply during init
+    pythia->readString("Print:init = off");
+    pythia->readString("Print:quiet = on");
+	 pythia->readString("Init:showProcesses = off");
+    pythia->readString("Init:showChangedSettings = off");
+    pythia->readString("Init:showChangedParticleData = off");    
+    pythia->readString("Stat:showProcessLevel = off");    
+    pythia->readString("Init:showAllSettings = off");    
+    pythia->readString("PDF:neutrino = on");
+    pythia->readString("PDF:lepton = on");
+
     // Vincia
     if(cpy8pars_.shower >= vincia){
-      std::cout<<"Using Vincia shower";
+      //std::cout<<"Using Vincia shower";
       //use a massive charm
-      pythia.readString("Vincia:nFlavZeroMass = 3");
+      pythia->readString("Vincia:nFlavZeroMass = 3");
 
       if(cpy8pars_.shower == vinciaGlobal){
 	// transverse momentum imbalance due to ISR shared globally
-	pythia.readString("Vincia:kineMapIF = 2");  //Gluon emissions use a probabilistic selection between the global and local maps.
+	pythia->readString("Vincia:kineMapIF = 2");  //Gluon emissions use a probabilistic selection between the global and local maps.
 	                                            //Antennae that only contain initial-state singularities always use the global one.
 	                                            //Antennae that only contain final-state singularities always use the local one.
-	std::cout<<" with global recoil for IF \n";
+	//std::cout<<" with global recoil for IF \n";
       }else{
-	std::cout<<"\n";
+	//std::cout<<"\n";
       }
-      pythia.readString("PartonShowers:model = 2"); // Use Vincia’s shower model.
+      pythia->readString("PartonShowers:model = 2"); // Use Vincia’s shower model.
       if(cpy8pars_.QED ==0) {
-	std::cout<<"Switching OFF QED shower in Vincia \n"; 
-	pythia.readString("Vincia:ewMode = 0");  // Switch off QED/EW showers.
+//	std::cout<<"Switching OFF QED shower in Vincia \n"; 
+	pythia->readString("Vincia:ewMode = 0");  // Switch off QED/EW showers.
       }else if(cpy8pars_.QED == 2) {
-	std::cout<<"Using the most ``coherent'' QED shower in Vincia \n"; 
-	pythia.readString("Vincia:ewMode = 2");  // Use most coherent QED
+//	std::cout<<"Using the most ``coherent'' QED shower in Vincia \n"; 
+	pythia->readString("Vincia:ewMode = 2");  // Use most coherent QED
       }else{
-	std::cout<<"Using the fastest QED shower in Vincia \n"; 
-	pythia.readString("Vincia:ewMode = 1");  // Default
+//	std::cout<<"Using the fastest QED shower in Vincia \n"; 
+	pythia->readString("Vincia:ewMode = 1");  // Default
       }
   
     }
     //Dipole shower
     else{
-      std::cout<<"Using standard Dipole shower";
+//      std::cout<<"Using standard Dipole shower";
       if(cpy8pars_.shower == dipole){
-	std::cout<<" with fully local recoil \n";
-	pythia.readString("SpaceShower:dipoleRecoil = on");
+//	std::cout<<" with fully local recoil \n";
+	pythia->readString("SpaceShower:dipoleRecoil = on");
       }else{
-	std::cout<<" with global recoil for IF\n";
+//	std::cout<<" with global recoil for IF\n";
       }	
       if(cpy8pars_.QED ==0) {
-	std::cout<<"Switching OFF QED shower in Standard dipole shower \n"; 
-	pythia.readString("SpaceShower:QEDshowerByQ = off"); // From quarks.        
-	pythia.readString("SpaceShower:QEDshowerByL = off"); // From Leptons.      
-	pythia.readString("TimeShower:QEDshowerByQ = off"); // From quarks.         
-	pythia.readString("TimeShower:QEDshowerByL = off"); // From Leptons.
-	pythia.readString("TimeShower:QEDshowerByGamma = off"); // Prevent gamma -> f fbar
-	pythia.readString("TimeShower:QEDshowerByOther  = off");
+//	std::cout<<"Switching OFF QED shower in Standard dipole shower \n"; 
+	pythia->readString("SpaceShower:QEDshowerByQ = off"); // From quarks.        
+	pythia->readString("SpaceShower:QEDshowerByL = off"); // From Leptons.      
+	pythia->readString("TimeShower:QEDshowerByQ = off"); // From quarks.         
+	pythia->readString("TimeShower:QEDshowerByL = off"); // From Leptons.
+	pythia->readString("TimeShower:QEDshowerByGamma = off"); // Prevent gamma -> f fbar
+	pythia->readString("TimeShower:QEDshowerByOther  = off");
       }else{
-	std::cout<<"Using QED shower in Standard dipole shower \n"; 
+//	std::cout<<"Using QED shower in Standard dipole shower \n"; 
       }
     }
 
@@ -137,53 +150,65 @@ extern "C" {
     if(cpy8pars_.tune > 0) {
       std::stringstream ss;
       ss << cpy8pars_.tune;
-      pythia.readString("Tune:pp = "+ss.str());
-      cout << "pythia8F377: setting pythia tune "<<cpy8pars_.tune<<"\n";
+      pythia->readString("Tune:pp = "+ss.str());
+    //  cout << "pythia8F377: setting pythia tune "<<cpy8pars_.tune<<"\n";
     }
 
     // Change C hadronization parameters
-    /*pythia.readString("StringZ:rFactC  = 1.0");
-    pythia.readString("StringZ:useNonstandardC = on");
-    pythia.readString("StringZ:aNonstandardC = 1.827");
-    pythia.readString("StringZ:bNonstandardC = 0.837");*/
+    /*pythia->readString("StringZ:rFactC  = 1.0");
+    pythia->readString("StringZ:useNonstandardC = on");
+    pythia->readString("StringZ:aNonstandardC = 1.827");
+    pythia->readString("StringZ:bNonstandardC = 0.837");*/
 
     
 
    if(cpy8pars_.had == 0) {
-      pythia.readString("HadronLevel:All = off");
-      std::cout<<"Switching off hadronization \n";
+      pythia->readString("HadronLevel:All = off");
+//      std::cout<<"Switching off hadronization \n";
    }else{
      if(cpy8pars_.had == 1){
-       std::cout<<"Including hadronization \n";
+//       std::cout<<"Including hadronization \n";
      }else{
-       std::cout<<"Including hadronization, but not the unstable hadrons decay \n";
-       pythia.readString("HadronLevel:Decay = off");  //switch off unstable hadron decay
+//       std::cout<<"Including hadronization, but not the unstable hadrons decay \n";
+       pythia->readString("HadronLevel:Decay = off");  //switch off unstable hadron decay
      }
     }
     // uncomment to set pi0 stable (this avoid a plethora
     // of photons in the final state...)
-    //pythia.readString("111:mayDecay = off");
+    pythia->readString("111:mayDecay = off");
+    pythia->readString("211:mayDecay = off");
+    pythia->readString("-211:mayDecay = off");
+    // uncomment for the faser tune from arXiv:2309.08604
+    //pythia->readString("BeamRemnants:dampPopcorn = 0");
+    //pythia->readString("BeamRemnants:hardRemnantBaryon = On");
+    //pythia->readString("BeamRemnants:aRemnantBaryon = 0.68");
+    //pythia->readString("BeamRemnants:bRemnantBaryon = 1.22");
+    //pythia->readString("BeamRemnants:primordialKTsoft = 0.56");
+    //pythia->readString("BeamRemnants:primordialKThard = 1.8");
+    //pythia->readString("BeamRemnants:halfScaleForKT = 10");
+    //pythia->readString("BeamRemnants:halfMassForKT = 1");
+    //pythia->readString("BeamRemnants:primordialKTremnant = 0.56");
     // same for the higgs
-    //pythia.readString("25:mayDecay = off");
+    //pythia->readString("25:mayDecay = off");
     // //D,Ds hadrons
-    // pythia.readString("411:mayDecay = off");
-    // pythia.readString("421:mayDecay = off"); 
-    // pythia.readString("413:mayDecay = off"); 
-    // pythia.readString("423:mayDecay = off"); 
-    // pythia.readString("431:mayDecay = off"); 
-    // pythia.readString("433:mayDecay = off"); 
-    // pythia.readString("-411:mayDecay = off");
-    // pythia.readString("-421:mayDecay = off"); 
-    // pythia.readString("-413:mayDecay = off"); 
-    // pythia.readString("-423:mayDecay = off"); 
-    // pythia.readString("-431:mayDecay = off"); 
-    // pythia.readString("-433:mayDecay = off"); 
+    // pythia->readString("411:mayDecay = off");
+    // pythia->readString("421:mayDecay = off"); 
+    // pythia->readString("413:mayDecay = off"); 
+    // pythia->readString("423:mayDecay = off"); 
+    // pythia->readString("431:mayDecay = off"); 
+    // pythia->readString("433:mayDecay = off"); 
+    // pythia->readString("-411:mayDecay = off");
+    // pythia->readString("-421:mayDecay = off"); 
+    // pythia->readString("-413:mayDecay = off"); 
+    // pythia->readString("-423:mayDecay = off"); 
+    // pythia->readString("-431:mayDecay = off"); 
+    // pythia->readString("-433:mayDecay = off"); 
     
     if(cpy8pars_.MPI == 1){
-      std::cout<<"Include the underlying event \n";
+//      std::cout<<"Include the underlying event \n";
     }else{
-      std::cout<<"Switch off the underlying event \n";
-      pythia.readString("PartonLevel:MPI = off");
+//      std::cout<<"Switch off the underlying event \n";
+      pythia->readString("PartonLevel:MPI = off");
     }
 
 
@@ -191,32 +216,32 @@ extern "C" {
     // Load configuration file
     if(cpy8pars_.LO ==1){
 
-      cout<<"LO. powheg hooks not loaded. Use pTmaxMatch = 2 [max starting scale]"<<endl;
+//      cout<<"LO. powheg hooks not loaded. Use pTmaxMatch = 2 [max starting scale]"<<endl;
       if (cpy8pars_.shower >= vincia){
-	pythia.readString("Vincia:pTmaxMatch = 2");
+	pythia->readString("Vincia:pTmaxMatch = 2");
       }else{
-	pythia.readString("SpaceShower:pTmaxMatch = 2");
-	pythia.readString("TimeShower:pTmaxMatch = 2");
+	pythia->readString("SpaceShower:pTmaxMatch = 2");
+	pythia->readString("TimeShower:pTmaxMatch = 2");
       }
-      pythia.readString("MultipartonInteractions:pTmaxMatch = 2");
+      pythia->readString("MultipartonInteractions:pTmaxMatch = 2");
       
     }else{
 
           //POWHEG TAILORED SETTINGS
       // -----> from main31.cc
       // Add further settings that can be set in the configuration file
-      pythia.settings.addMode("POWHEG:nFinal",    2, true, false, 1, 10);  // 2 born level partons (undoing W decay)
-      pythia.settings.addMode("POWHEG:veto",      0, true, true,  0, 2);
-      pythia.settings.addMode("POWHEG:vetoCount", 10, true, false, 0, 0);  //check some emissions
-      pythia.settings.addMode("POWHEG:pThard",    0, true, true,  0, 2);
-      pythia.settings.addMode("POWHEG:pTemt",     0, true, true,  0, 2);
-      pythia.settings.addMode("POWHEG:emitted",   0, true, true,  0, 3);
-      pythia.settings.addMode("POWHEG:pTdef",     0, true, true,  0, 2);
-      pythia.settings.addMode("POWHEG:MPIveto",   0, true, true,  0, 1);
-      pythia.settings.addMode("POWHEG:QEDveto",   0, true, true,  0, 2);   // 0= do not veto QED radiation
-      pythia.settings.addMode("POWHEG:dis_map",   1, true, true,  0, 2);
+      pythia->settings.addMode("POWHEG:nFinal",    2, true, false, 1, 10);  // 2 born level partons (undoing W decay)
+      pythia->settings.addMode("POWHEG:veto",      0, true, true,  0, 2);
+      pythia->settings.addMode("POWHEG:vetoCount", 10, true, false, 0, 0);  //check some emissions
+      pythia->settings.addMode("POWHEG:pThard",    0, true, true,  0, 2);
+      pythia->settings.addMode("POWHEG:pTemt",     0, true, true,  0, 2);
+      pythia->settings.addMode("POWHEG:emitted",   0, true, true,  0, 3);
+      pythia->settings.addMode("POWHEG:pTdef",     0, true, true,  0, 2);
+      pythia->settings.addMode("POWHEG:MPIveto",   0, true, true,  0, 1);
+      pythia->settings.addMode("POWHEG:QEDveto",   0, true, true,  0, 2);   // 0= do not veto QED radiation
+      pythia->settings.addMode("POWHEG:dis_map",   1, true, true,  0, 2);
       
-      pythia.readFile("main31.cmnd");
+      pythia->readFile("main31.cmnd");
 
 
 
@@ -232,15 +257,15 @@ extern "C" {
       }
       std::stringstream ds;
       ds << dis_map;
-      pythia.readString("POWHEG:dis_map = "+ds.str());
+      pythia->readString("POWHEG:dis_map = "+ds.str());
       
 
     // Read in main settings
-      int nEvent      = pythia.settings.mode("Main:numberOfEvents");
-      int nError      = pythia.settings.mode("Main:timesAllowErrors");
-      // Read in POWHEG settings
-      int vetoMode    = pythia.settings.mode("POWHEG:veto");
-      int MPIvetoMode = pythia.settings.mode("POWHEG:MPIveto");
+      int nEvent      = pythia->settings.mode("Main:numberOfEvents");
+      int nError      = pythia->settings.mode("Main:timesAllowErrors");
+    // Read in POWHEG settings
+      int vetoMode    = pythia->settings.mode("POWHEG:veto");
+      int MPIvetoMode = pythia->settings.mode("POWHEG:MPIveto");
       loadHooks  = (vetoMode > 0 || MPIvetoMode > 0);
       
     
@@ -250,15 +275,15 @@ extern "C" {
 	// Set ISR and FSR to start at the kinematical limit
 	if (vetoMode > 0) {
 	  if(cpy8pars_.shower >= vincia){
-	    pythia.readString("Vincia:pTmaxMatch = 2");
+	    pythia->readString("Vincia:pTmaxMatch = 2");
 	  }else{
-	    pythia.readString("SpaceShower:pTmaxMatch = 2");
-	    pythia.readString("TimeShower:pTmaxMatch = 2");
+	    pythia->readString("SpaceShower:pTmaxMatch = 2");
+	    pythia->readString("TimeShower:pTmaxMatch = 2");
 	  }
 	}
 	// Set MPI to start at the kinematical limit
 	if (MPIvetoMode > 0) {
-	  pythia.readString("MultipartonInteractions:pTmaxMatch = 2");
+	  pythia->readString("MultipartonInteractions:pTmaxMatch = 2");
 	}
 	
 	if (cpy8pars_.shower >= vincia){
@@ -267,16 +292,16 @@ extern "C" {
 	  powhegHooks = make_shared<PowhegHooks>();
 	}
 	
-	pythia.setUserHooksPtr((UserHooksPtr)powhegHooks);
+	pythia->setUserHooksPtr((UserHooksPtr)powhegHooks);
       } else {
       // do this (wimpy shower) if hooks are not loaded.
       // (which can be obtained setting POWHEG:veto=0)
-	cout<<"powheg hooks not loaded. Use pTmaxMatch = 1 [scalup = starting scale]"<<endl;
+//	cout<<"powheg hooks not loaded. Use pTmaxMatch = 1 [scalup = starting scale]"<<endl;
 	if (cpy8pars_.shower >= vincia){
-	  pythia.readString("Vincia:pTmaxMatch = 1");
+	  pythia->readString("Vincia:pTmaxMatch = 1");
 	}else{
-	  pythia.readString("SpaceShower:pTmaxMatch = 1");
-	  pythia.readString("TimeShower:pTmaxMatch = 1");
+	  pythia->readString("SpaceShower:pTmaxMatch = 1");
+	  pythia->readString("TimeShower:pTmaxMatch = 1");
 	}
       }
     }
@@ -287,35 +312,50 @@ extern "C" {
     }
 
 
-    pythia.readString("Beams:frameType = 5");
-    pythia.readString("Check:beams False");
+    //pythia->readString("PartonLevel:Remnants = off");
+    //pythia->readString("PartonLevel:ISR = off");
+    //pythia->readString("Check:event = off");
+    pythia->readString("Beams:frameType = 5");
+    pythia->readString("Check:beams True");
     // Set up incoming beams, for frame with unequal beam energies.
-    //pythia.readString("Beams:frameType = 2");
+    //pythia->readString("Beams:frameType = 2");
     //// BeamA = proton.
-    //pythia.readString("Beams:idB = 2212");
-    //pythia.settings.parm("Beams:eB", 820.0);
+    //pythia->readString("Beams:idB = 2212");
+    //pythia->settings.parm("Beams:eB", 1.0);
     //// BeamB = electron.
-    //pythia.readString("Beams:idA = 11");
-    //pythia.settings.parm("Beams:eA", 27.5);
-    ////    pythia.setUserHooksPtr(MyHook);
+    //pythia->readString("Beams:idA = 12");
+    //pythia->settings.parm("Beams:eA", 1394);
+    ////    pythia->setUserHooksPtr(MyHook);
 
 
-    pythia.setLHAupPtr(LHAinstance); 
+    pythia->setLHAupPtr(LHAinstance); 
     LHAinstance->setInit();  
 
- 
-
-    pythia.init();
-
-    
+    pythia->init();
   }
+  // Reinitialise the beams for each event.
+  void pythia_reinit_() {
+     delete pythia;
+     stringstream splashBuf;
+     streambuf* sBuf = cout.rdbuf();
+     cout.rdbuf(splashBuf.rdbuf());
+     pythia = new Pythia;
+     cout.rdbuf(sBuf);
+     ostream cnull(NULL);
+     cnull << splashBuf.str();
+     pythia_init_();
+  }
+  //void pythia_reinit_() {
+  //   pythia.reinit();
+  //}
 
   void pythia_next_(int & iret){
   // Begin event loop. Generate event. Skip if error. List first one.
-    iret = pythia.next();
+  
+    iret = pythia->next();
     if(iret == 0) {
       // bad event
-      if (pythia.info.atEndOfFile()) {
+      if (pythia->info.atEndOfFile()) {
 	cout << "Info: end of Les Houches file reached" << endl;
 	iret=-1;
 	return ;
@@ -327,7 +367,7 @@ extern "C" {
 	// Units will be as chosen for HepMC build, but can be changed
 	// by arguments, e.g. GenEvt( HepMC::Units::GEV, HepMC::Units::MM)
 	HepMC::GenEvent* hepmcevt = new HepMC::GenEvent();
-	toHepMC->fill_next_event( pythia , hepmcevt );
+	toHepMC->fill_next_event( *pythia , hepmcevt );
 	// // FIX BELOW to allow multiple weights  ---> NOT TESTED
 	// HepMC::WeightContainer& weights = hepmcevt->weights();
 	// weights.clear();
@@ -356,36 +396,36 @@ extern "C" {
 			 int * idhep,
 			 int  (*jmohep)[2], int (*jdahep)[2],
 			 double (*phep)[5], double (*vhep)[4]) {
-    nhep = pythia.event.size();
+    nhep = pythia->event.size();
     if(nhep>nmxhep) {cout << "too many particles!" ; exit(-1); }
-    for (int i = 0; i < pythia.event.size(); ++i) {
-      *(isthep+i) = pythia.event[i].statusHepMC(); //!ER: !!!!!!
-      //*(isthep+i) = pythia.event[i].status();
+    for (int i = 0; i < pythia->event.size(); ++i) {
+      *(isthep+i) = pythia->event[i].statusHepMC(); //!ER: !!!!!!
+      //*(isthep+i) = pythia->event[i].status();
       
-      *(idhep+i) = pythia.event[i].id();
+      *(idhep+i) = pythia->event[i].id();
       // All pointers should be increased by 1, since here we follow
       // the c/c++ convention of indeces from 0 to n-1, but i fortran
       // they are from 1 to n.
-      (*(jmohep+i))[0] = pythia.event[i].mother1() + 1;
-      (*(jmohep+i))[1] = pythia.event[i].mother2() + 1;
-      (*(jdahep+i))[0] = pythia.event[i].daughter1() + 1;
-      (*(jdahep+i))[1] = pythia.event[i].daughter2() + 1;
-      (*(phep+i))[0] = pythia.event[i].px();
-      (*(phep+i))[1] = pythia.event[i].py();
-      (*(phep+i))[2] = pythia.event[i].pz();
-      (*(phep+i))[3] = pythia.event[i].e();
-      (*(phep+i))[4] = pythia.event[i].m();
+      (*(jmohep+i))[0] = pythia->event[i].mother1() + 1;
+      (*(jmohep+i))[1] = pythia->event[i].mother2() + 1;
+      (*(jdahep+i))[0] = pythia->event[i].daughter1() + 1;
+      (*(jdahep+i))[1] = pythia->event[i].daughter2() + 1;
+      (*(phep+i))[0] = pythia->event[i].px();
+      (*(phep+i))[1] = pythia->event[i].py();
+      (*(phep+i))[2] = pythia->event[i].pz();
+      (*(phep+i))[3] = pythia->event[i].e();
+      (*(phep+i))[4] = pythia->event[i].m();
     }
     // override mother of very first event, set to 0
     *(jmohep)[0] = 0 ;
     *(jmohep)[1] = 0 ;
 
     // print every event 
-    //pythia.event.list(); 
+    //pythia->event.list(); 
   }
 
   void pythia_stat_() {
-    pythia.stat();
+    pythia->stat();
 
   }
 
