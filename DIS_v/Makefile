@@ -1,7 +1,7 @@
 #-*- Makefile -*-
 ###USER specific 
 POWHEGPATH=$(PWD)/..
-POWHEGPATH = $(HOME)/work/POWHEG/RES
+POWHEGPATH=/data/theorie/pkrack/POWHEG-BOX-RES
 LHAPDF_CONFIG=$(shell which lhapdf-config)
 FASTJET_CONFIG=$(shell which fastjet-config)
 PYTHIA8_CONFIG=$(shell which pythia8-config)
@@ -29,10 +29,10 @@ F77= gfortran -fno-automatic 	-ffixed-line-length-none
 ## Use -O2 to be on the safe side
 OPT=-O3
 ## For debugging uncomment the following
-#DEBUG= -ggdb 
+DEBUG= -ggdb
 ifdef DEBUG
 OPT=-O0
-FPE=-ffpe-trap=invalid,zero,overflow
+#FPE=-ffpe-trap=invalid,zero,overflow
 #,underflow
 endif
 endif
@@ -54,7 +54,8 @@ INCLUDE0=$(PWD)
 INCLUDE1=$(PWD)/POWHEGpatch
 INCLUDE2=$(POWHEGPATH)/include
 INCLUDE3=amplitude-files
-FF=$(F77) $(FFLAGS) $(FPE) $(OPT) $(DEBUG) -I$(INCLUDE0) -I$(INCLUDE1) -I$(INCLUDE2) -I$(INCLUDE3) 
+INCLUDE4=$(PWD)/fastkernel
+FF=$(F77) $(FFLAGS) $(FPE) $(OPT) $(DEBUG) -I$(INCLUDE0) -I$(INCLUDE1) -I$(INCLUDE2) -I$(INCLUDE3) -I$(INCLUDE4)
 
 
 INCLUDE =$(wildcard $(POWHEGPATH)/include/*.h *.h include/*.h amplitude-files/*.h)
@@ -122,11 +123,11 @@ PWHG=pwhg_main.o pwhg_init.o bbinit.o btilde.o lhefwrite.o		\
 	setstrongcoupl.o integrator.o newunit.o mwarn.o sigsoftvirt.o	\
 	sigcollsoft.o sigvirtual.o reshufflemoms.o ubprojections-new.o      \
 	setlocalscales.o mint_upb.o opencount.o          \
-	validflav.o $(PDFPACK) $(USER) $(FPEOBJ) lhefread.o pwhg_io_interface.o \
+	validflav.o $(PDFPACK) kinds.o interpolation.o $(USER) $(FPEOBJ) lhefread.o pwhg_io_interface.o \
 	rwl_weightlists.o rwl_setup_param_weights.o rwl_setup_param_weights_user.o \
 	mintwrapper.o fullrwgt.o locks.o cache_similar.o sigequiv_hook.o fill_res_histories.o \
 	resweights.o sigregular.o genericphsp.o boostrot4.o PhaseSpaceUtils.o\
-	convert_coup.o utils.o bra_ket_subroutines.o elliptc_fns.o $(AMP)
+	convert_coup.o utils.o bra_ket_subroutines.o elliptc_fns.o $(AMP) 
 
 
 # target to generate LHEF output
