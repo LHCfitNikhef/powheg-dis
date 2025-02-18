@@ -1,7 +1,6 @@
-SetDesc: "NNPDF4.0 NNLO global fit, alphas(MZ)=0.1180. mem=0 => average on replicas; mem=1-100 => PDF replicas"
-SetIndex: 50000004
-Authors: NNPDF Collaboration. R.D. Ball, S. Carrazza, J. Cruz-Martinez, L. Del Debbio, S. Forte, T. Giani, S. Iranipour, Z. Kassabov, J.I. Latorre, E. Nocera, R.L. Pearson, J. Rojo, R. Stegeman, C. Schwan, M. Ubiali, C. Voisey and M. Wilson
-Reference: arXiv:2109.02653
+SetDesc: "Neutrino flux at FASERv2"
+SetIndex: 40011900
+Reference: arXiv:2407.09611
 Format: lhagrid1
 DataVersion: 1
 NumMembers: 1
