@@ -10,13 +10,9 @@ PYTHIA8_CONFIG=$(shell which pythia8-config)
 COMPILER=gfortran
 
 ## Choose Analysis: none, default
-#ANALYSIS=sigmaR
-#ANALYSIS=H1
-#ANALYSIS=vbf
-#ANALYSIS=caesar
-#ANALYSIS=eic
-ANALYSIS=dummy
-ANALYSIS=flux
+#ANALYSIS=flux
+ANALYSIS=forwardhadron
+#ANALYSIS=test
 
 ifeq ("$(COMPILER)","gfortran")	
 F77= gfortran -fno-automatic 	-ffixed-line-length-none
@@ -31,7 +27,7 @@ OPT=-O3
 ## For debugging uncomment the following
 DEBUG= -ggdb
 ifdef DEBUG
-OPT=-O0
+OPT=-O2
 #FPE=-ffpe-trap=invalid,zero,overflow
 #,underflow
 endif
@@ -54,8 +50,7 @@ INCLUDE0=$(PWD)
 INCLUDE1=$(PWD)/POWHEGpatch
 INCLUDE2=$(POWHEGPATH)/include
 INCLUDE3=amplitude-files
-INCLUDE4=$(PWD)/fastkernel
-FF=$(F77) $(FFLAGS) $(FPE) $(OPT) $(DEBUG) -I$(INCLUDE0) -I$(INCLUDE1) -I$(INCLUDE2) -I$(INCLUDE3) -I$(INCLUDE4)
+FF=$(F77) $(FFLAGS) $(FPE) $(OPT) $(DEBUG) -I$(INCLUDE0) -I$(INCLUDE1) -I$(INCLUDE2) -I$(INCLUDE3)
 
 
 INCLUDE =$(wildcard $(POWHEGPATH)/include/*.h *.h include/*.h amplitude-files/*.h)
@@ -72,24 +67,12 @@ else
 	LIBSFASTJET += $(shell $(FASTJET_CONFIG) --libs --plugins ) $(STD)
 	FJCXXFLAGS+= $(shell $(FASTJET_CONFIG) --cxxflags)
 	PWHGANAL=fastjetfortran.o pwhg_bookhist-multi.o 
-	ifeq ("$(ANALYSIS)","H1")
-		PWHGANAL+=pwhg_analysis_H1_2006.o event_shapes.o
-	endif	
-	ifeq ("$(ANALYSIS)","vbf")
-		PWHGANAL+=pwhg_analysis_vbf.o 
-	endif
-	ifeq ("$(ANALYSIS)","sigmaR")
-		PWHGANAL+=pwhg_analysis_inclusive_sigma.o 
-	endif
-	ifeq ("$(ANALYSIS)","caesar")
-		PWHGANAL+=pwhg_analysis_caesar.o event_shapes.o
-	endif
-	ifeq ("$(ANALYSIS)","eic")
-		PWHGANAL+=pwhg_analysis_eic.o 
-	endif
-        ifeq ("$(ANALYSIS)","flux")
-                PWHGANAL+=pwhg_analysis_flux.o
-        endif
+   ifeq ("$(ANALYSIS)","flux")
+			 PWHGANAL+=pwhg_analysis_flux.o
+   endif
+   ifeq ("$(ANALYSIS)","forwardhadron")
+	  PWHGANAL+=pwhg_analysis_forwardhadron.o
+   endif
 endif
 
 PWHGANAL+=multi_plot.o 

@@ -6,12 +6,14 @@
       logical, external :: pwhg_isfinite
       logical, save :: ini = .true.
       logical, save :: fixed_lepton_beam = .true.
+      logical, save :: fastkernel = .true.
       real*8, external:: powheginput
       include 'pwhg_st.h'
       
       if(ini) then
          ini = .false.
          fixed_lepton_beam = (powheginput("#fixed_lepton_beam").ne.0d0)
+         fastkernel = (powheginput("#fastkernel").ne.0d0)
       endif
       
       if(x0<0 .or. x0>1 .or. (.not. pwhg_isfinite(x0))) then
@@ -28,6 +30,8 @@
 !     call genericpdf0(pdf_ndns1,pdf_ih1,st_mufact2,x,pdf)
          if(fixed_lepton_beam) then
             pdf = 1d0
+         else if(fastkernel)then
+            call pdf_lepton_interpolation_beam(pdf_ih1, st_mufact2, x, pdf)
          else
             call pdf_lepton_beam(pdf_ih1, st_mufact2, x, pdf)
          endif

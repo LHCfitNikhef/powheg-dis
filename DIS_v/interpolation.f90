@@ -43,22 +43,43 @@ MODULE interpolation
          DO i=LBOUND(x,1),UBOUND(x,1)
             ri=REAL(i-1,KIND=dp)
             x(i)=DEXP(lowx-ri*incexp)
-            write(*,*) x(i)
+            write(*,*) i, x(i)
          END DO
          x(n)=1.0_dp ! set to exactly one.
       END SUBROUTINE logspaced_grid
 
-      ! Set up derived type to perform the interpolation of a function f(x)
-      ! arr should contain the interpolation grid in x
-      ! farr should be an array containing f(arr)
+      SUBROUTINE logspaced_subgrids(n1,n2,lowx1,lowx2,x)
+         INTEGER(KIND=4),INTENT(IN) :: n1,n2,lowx1,lowx2
+         REAL(KIND=dp),DIMENSION(n1+n2),INTENT(OUT) :: x
+         INTEGER(KIND=4) :: i
+         REAL(KIND=dp) :: inc1,inc2
+         REAL(KIND=dp) :: rlowx1,rlowx2,ri,rn1,rn2
+         rn1=REAL(n1,KIND=dp)
+         rn2=REAL(n2,KIND=dp)
+         rlowx1=REAL(lowx1,KIND=dp)
+         rlowx2=REAL(lowx2,KIND=dp)
+         inc1=(rlowx1-rlowx2)/rn1
+         inc2=rlowx2/rn2
+         write(*,*) "logspaced"
+         write(*,*) rn1, rn2, inc1, inc2
+         DO i=1,n1
+            ri=REAL(i-1,KIND=dp)
+            x(i)=DEXP(lowx1-inc1*ri)
+            write(*,*) i, x(i)
+         END DO
+         DO i=1,n2
+            ri=REAL(i-1,KIND=dp)
+            x(i+n1)=DEXP(lowx2-inc2*ri)
+            write(*,*) i+n1, x(i+n1)
+         END DO
+      END SUBROUTINE logspaced_subgrids
+
       TYPE(interpolation_grid) FUNCTION new_xgrid(arr,farr,bs) RESULT(res)
          REAL(KIND=dp),DIMENSION(:),INTENT(IN) :: arr,farr
          INTEGER(KIND=4),OPTIONAL :: bs
          ALLOCATE(res%x,SOURCE=arr)
          ALLOCATE(res%fx,SOURCE=farr)
          IF(PRESENT(bs)) res%BLOCKSIZE=bs
-         ! TODO check if the grid is increasing in x
-         ! x1 < x2 < x3 ...
       END FUNCTION new_xgrid
       
       REAL(KIND=dp) FUNCTION interpolated_function(self,x) RESULT(res)
@@ -119,8 +140,8 @@ MODULE interpolation
          res=1.0_dp
          DO i=area-l,area+u
             IF(i.NE.j)THEN
-               !res=res*(DLOG(x)-DLOG(self%x(i)))/(DLOG(self%x(j))-DLOG(self%x(i)))
-               res=res*(x-self%x(i))/(self%x(j)-self%x(i))
+               !res=res*(x-self%x(i))/(self%x(j)-self%x(i))
+               res=res*(LOG(x)-LOG(self%x(i)))/(LOG(self%x(j))-LOG(self%x(i)))
             END IF
          END DO
          RETURN

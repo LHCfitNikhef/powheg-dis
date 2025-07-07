@@ -71,6 +71,7 @@ c
 ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
 c
 c strong coupling from powheg:
+      st_muren2=ph_Wmass
       call setscalesbtilde
 
 c masses and widths:

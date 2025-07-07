@@ -113,13 +113,10 @@ C     Replace the neutrino flux by an interpolation polynomial
       if(ini)then
          ! Set up the interpolation polynomial.
          write(*,"(A)") "Setting up interpolation grid."
-         call logspaced_grid(NARR,-5,arr)
+         !call logspaced_grid(NARR,-5,arr)
+         call logspaced_subgrids(NARR/2,NARR/2,-5,-2,arr)
          if(.not.allocated(intrpln%x)) call init_interpolation_grid(arr)
          ipoly=int(powheginput("#ipoly"),kind=4)
-         if(ipoly.lt.0)then
-            write(*,*) "ERROR: Keyword alpha missing in input card."
-            stop
-         end if
          ini=.FALSE.
       end if
 
@@ -154,7 +151,8 @@ C     Replace the neutrino flux by an interpolation polynomial
       if(ini)then
          ! Set up the interpolation polynomial.
          write(*,"(A)") "Setting up interpolation grid."
-         call logspaced_grid(NARR,-5,arr)
+         !call logspaced_grid(NARR,-5,arr)
+         call logspaced_subgrids(NARR/2,NARR/2,-5,-2,arr)
          call init_interpolation_grid(arr)
          ipoly=int(powheginput("#ipoly"),kind=4)
          if(ipoly.lt.0)then

@@ -14,22 +14,19 @@
          call inihists
          
          call bookupeqbins('sigtot',1d0,0d0,1d0)
-
          call bookupeqbins('sigfaserv',1d0,0d0,1d0)
-         call bookupeqbins('sigfaserv2',1d0,0d0,1d0)
-         call bookupeqbins('sigsnde',1d0,0d0,1d0)
-         call bookupeqbins('sigsndmu',1d0,0d0,1d0)
-         call bookupeqbins('sigflaree',1d0,0d0,1d0)
-         call bookupeqbins('sigflaremu',1d0,0d0,1d0)
-
          call bookupeqbins('Q',  0.5d0, 2d0, 20d0)
-
          call bookupeqbins('Q2', (2000d0-25d0)/40d0, 25d0, 2000d0)
          call bookupeqbins('yadQ2', (310d0-10d0)/30d0, 10d0, 310d0)
-         call bookupeqbins('El', (2000d0-25d0)/40d0, 25d0, 2000d0)
-         call bookupeqbins('Eh', (2000d0-25d0)/40d0, 25d0, 2000d0)
-         call bookupeqbins('Enu', (6000d0-25d0)/120d0, 25d0, 6000d0)
-         call bookupeqbins('tantheta', 0.001d0, 0d0, 0.05d0)
+         call bookupeqlogbinsperdecade('El', 50, 0, 4)
+         call bookupeqlogbinsperdecade('Eh', 50, 0, 4)
+         call bookupeqlogbinsperdecade('Enu', 50, 0, 4)
+         call bookupeqlogbinsperdecade('coarseEnu', 10, 0, 4)
+         call bookupeqlogbinsperdecade('coarseEl', 10, 0, 4)
+         call bookupeqlogbinsperdecade('coarseEh', 10, 0, 4)
+         call bookupeqlogbinsperdecade('recoEnu', 50, 0, 4)
+         call bookupeqlogbinsperdecade('nuflux', 50, 0, 4)
+         call bookupeqbins('tantheta', 0.001d0, 0d0, 0.1d0)
 C         call bookupeqbins('theta', 0.001d0, 0d0, 0.5d0)
          call bookupeqbins('Epion', (2000d0-25d0)/40d0, 25d0, 2000d0)
          call bookupeqbins('ptpion', 0.5d0, 0d0, 15d0)
@@ -53,7 +50,7 @@ C        add distributions for the comparison to faser data from 2403.12520
          call bookupeqbins('multiplicity', 1d0, 0d0,100d0)
          call bookupeqbins('dphi',10d0,0d0,180d0) 
          call bookupeqbins('ptlepton',100d0,0d0,2000d0)
-         call bookupeqbins('theta', 0.005d0, 0d0, 0.1d0)
+         call bookupeqbins('theta', 0.005d0, 0d0, 0.25d0)
 
       end
        
@@ -85,6 +82,7 @@ C        add distributions for the comparison to faser data from 2403.12520
          ! data WHCPRG/'NLO   '/
          integer nlep, npartons,nunident                         !lepton, quark, lepton initialstate, parton initialstate 
          real * 8 plep(4,maxtrack), plephard(4),pquark(4,maxtrack),plis(4),ppis(4),q(4)              !momenta of lepton, quark, lepton initialstate, parton is, momentum transfere
+         real * 8 pcharged(4)
          real * 8 El_hardest,Eh,theta,theta2
          real * 8 plab(0:3,maxtrack), pjets(0:3,maxjet)
          real * 8 y,x,Q2,xl               !xs. inv mass of incoming parton-electron, momentum transfer variable Q2=-q^2
@@ -175,6 +173,7 @@ C        add distributions for the comparison to faser data from 2403.12520
          ppis = 0d0
          plis = 0d0
          pquark = 0d0
+         pcharged = 0d0
          nunident = 0
          npion=0
          ppion=0d0
@@ -210,7 +209,7 @@ C        add distributions for the comparison to faser data from 2403.12520
                   endif
    !     Final states
                else if(isthep(i).eq.1) then
-                  if(charged(idhep(i)))then
+                  if(charged(idhep(i)).and.phep(4,i).ge.2d0)then
                      nchargedparticles=nchargedparticles+1d0
                      ncp=ncp+1
                      icharged(ncp)=i
@@ -248,6 +247,9 @@ C        add distributions for the comparison to faser data from 2403.12520
                         ppion(1:4,npion)=phep(1:4,i)
                         ipion(npion)=i
                      end if
+                     if(charged(idhep(i)))then
+                        pcharged=pcharged+phep(1:4,i)
+                     end if
                   else
                      nunident = nunident + 1
                      ! print*, 'idhep(i)', idhep(i)
@@ -276,21 +278,6 @@ C        add distributions for the comparison to faser data from 2403.12520
             call sortbypt(ncp,icharged(ncp))
          endif
          ptmax=DSQRT(phep(1,icharged(1))**2+phep(2,icharged(1))**2)
-
-C cuts for vertex selection from 2403.12520
-!         ntracks05=0
-!         ntracks01=0
-!         do i=1,ncp
-!            theta=datan(dsqrt(phep(1,icharged(i))**2+phep(2,icharged(i))
-!     1                        **2)/phep(3,icharged(i)))
-!            if(dtan(theta).le.0.5d0)then
-!               ntracks05=ntracks05+1
-!            end if
-!            if(dtan(theta).le.0.1d0)then
-!               ntracks01=ntracks01+1
-!            end if
-!         end do
-!C -------------------------------------------------
 
          if(nlepton.gt.1) call sortbypt(nlepton,ilepton(1:nlepton))
 ! Dressed lepton.
@@ -330,6 +317,7 @@ C cuts for vertex selection from 2403.12520
             CALL getdphi(plephard,pquark(1:4,i),dphi)
             IF(dphi.LT.minaziangle) minaziangle=dphi
          end do
+
 ! Kaon,neutron
          do i=1,nkaon
             if(pkaon(4,i).gt.Ekaon) Ekaon=pkaon(4,i)
@@ -340,8 +328,8 @@ C cuts for vertex selection from 2403.12520
          do i=1,nneutron
             if(pneutron(4,i).gt.Eneutron) Eneutron=pneutron(4,i)
          end do
-! PION STUFF
 
+! PION STUFF
          if(npion.gt.1) call sortbypt(npion,ipion(1:npion))
          if(npion.ge.1)then
             Epion_hardest=phep(4,ipion(1))
@@ -364,12 +352,8 @@ C cuts for vertex selection from 2403.12520
          Q2 = -Q2
 
 
-!         theta=2d0*DASIN(DSQRT(Q2/4d0/(Eh+El_hardest)/El_hardest))
          theta=DATAN(DSQRT(plephard(1)**2+plephard(2)**2)/plephard(3))
          IF(theta.GT.pi/2d0) theta=pi-theta
-!     Q^2 = xl xdis y S
-!     x = Q^2/(S*y*xdis)
-!     y = (q.P)/(l/in.P)
          
          y = phepdot(ppis,q) / phepdot(ppis,plis)      
          x = Q2 / (sbeams * y * xl)
@@ -381,21 +365,13 @@ C cuts for vertex selection from 2403.12520
          call getrapidity(plephard(:),etal)
          call filld('ptl', ptl, dsig)
          call filld('etal', etal, dsig)
-C     Comparison to real FASERv data
-C     compute the angle between the final state lepton and the sum of
-C     all other particles
-         call getdphi(plephard,psum,dphi)
+         call getdphi(plephard,pcharged,dphi)
          call getyetaptmass(plephard,ylep,etalep,ptlep,masslep)
 
-
-!         if(El_hardest.ge.100d0)then
-!         end if
-!         if(Eh.ge.100d0)then
-!         end if
-!         if(DTAN(theta).le.0.025d0)then
-!            call filld("sigsndmu",0.5d0,dsig)
-!         end if
-         if(El_hardest.ge.100d0.and.Eh.ge.100d0.and.DTAN(theta).le.0.025)then
+         call filld('nuflux',plis(4), dsig)
+         if(El_hardest.ge.100d0
+     1      .and.nchargedparticles.ge.5
+     2      .and.dphi.ge.pi/2d0)then
             call filld("sigfaserv",0.5d0,dsig)                         
             call filld('Q', sqrt(Q2), dsig)
             call filld('Q2', Q2, dsig)
@@ -404,7 +380,11 @@ C     all other particles
             call filld('xl', xl, dsig)
             call filld('El', El_hardest, dsig)
             call filld('Eh', Eh, dsig)
+            call filld('coarseEl', El_hardest, dsig)
+            call filld('coarseEh', Eh, dsig)
             call filld('Enu',plis(4), dsig)
+            call filld('coarseEnu',plis(4), dsig)
+            call filld('recoEnu',El_hardest/0.8d0, dsig)
             call filld('tantheta', DTAN(theta), dsig)
             call filld('theta', theta, dsig)
             call filld('minaziangle',minaziangle,dsig)
@@ -425,22 +405,6 @@ C     all other particles
             call filld('dphi',dphi,dsig)
             call filld('ptlepton',ptlep,dsig)
          end if
-         if(El_hardest.ge.100d0.and.Eh.ge.100d0.and.DTAN(theta).le.0.5)then
-            call filld("sigfaserv2",0.5d0,dsig)
-         end if
-         ! SND e
-         if(El_hardest.ge.20d0.and.Eh.ge.20d0.and.theta.le.0.5)then
-            call filld("sigsnde",0.5d0,dsig)
-         end if
-         ! SND mu
-         if(El_hardest.ge.20d0.and.Eh.ge.20d0.and.theta.le.0.15)then
-         end if
-         if(El_hardest.ge.2d0.and.Eh.ge.2d0.and.theta.le.0.5.and.Eh.le.2000d0)then
-            call filld("sigflaree",0.5d0,dsig)
-         end if
-         if(El_hardest.ge.2d0.and.Eh.ge.2d0.and.theta.le.0.025)then
-            call filld("sigflaremu",0.5d0,dsig)
-         end if
 
 
          if(npartons == 2) then
@@ -457,18 +421,45 @@ C     all other particles
             ptbreit = 0d0
          endif
          call filld('ptj_overQ_breit', ptbreit, dsig)
-
-         
-         
-
-         
-c$$$         print *, "Check event!"
-c$$$         print *, "npartons = ", npartons
-c$$$         print *, "Q2 = ", Q2, 2* phepdot(refin, refout)
-c$$$         print *, "refout.m2 = ", phepdot(refout,refout) 
-  
       end
-  
+
+      subroutine bookupeqlogbins(string,nbin,plow,phigh)
+      implicit none
+      character *(*) string
+      real * 8 nbin,plow,phigh,inc
+      include 'pwhg_bookhist-multi.h'
+      integer, parameter :: maxbins=400
+      real * 8 xx(maxbins+1)
+      integer i
+      xx(1)=10**plow
+      inc=(phigh-plow)/nbin
+      do i=2,maxbins+1
+         xx(i)=10**(plow+inc*(i-1))
+         if (plow+inc*(i-1) -phigh .gt.0) goto 20
+      enddo
+ 20   continue
+      call bookup(string,i-1,xx)
+      end
+
+      subroutine bookupeqlogbinsperdecade(string,bpd,plow,phigh)
+      implicit none
+      character *(*) string
+      integer bpd,plow,phigh
+      include 'pwhg_bookhist-multi.h'
+      integer, parameter :: maxbins=400
+      real * 8 xx(maxbins+1)
+      integer i
+      real * 8 inc
+      xx(1)=10**plow
+      inc=1d0/REAL(bpd,KIND=8)
+      do i=2,maxbins+1
+         xx(i)=10**(plow+inc*(i-1))
+         if(plow+inc*(i-1)-phigh.gt.0) goto 30
+      enddo
+ 30   continue
+      call bookup(string,i-1,xx)
+      end
+
       subroutine getdydetadphidr(p1,p2,dy,deta,dphi,dr)
       implicit none
       include 'pwhg_math.h' 

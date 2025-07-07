@@ -28,6 +28,8 @@
       parameter (yaxis = (/0d0,1d0,0d0/))
       parameter (zaxis = (/0d0,0d0,1d0/))
       logical, save :: fixed_lepton_beam = .true.
+      integer,save :: ipoly=-1
+      real * 8 xlmin,xlmax
 
 
 C -   N.B: To check the phase space volume is correct,
@@ -37,6 +39,11 @@ C -   hc^2/(8*pi) = 1.54929*10^7.
 c~       print*, 'xborn', xborn
       ! Initialise stuff
       if(ini) then
+         if(ipoly.lt.0)then
+            ipoly=powheginput("#ipoly")
+         end if
+         call init_pdf_lepton_interpolation_beam()
+
 C -   Set initial- and final-state masses for Born and real
          do k=1,nlegborn
             kn_masses(k)=0
@@ -136,7 +143,7 @@ c~       jac = 1d0/(16d0*pi)
          jac = 1d0 * jac
       else
 !     COMMENT -- ADD IMPORTANCE SAMPLING IF NEEDED
-
+      call sample_x_lepton_poly(xborn(ixb),ipoly,xl,xljac,xlmin,xlmax)
 !     x1 = Q^2/x2/y/S
          if(ymin .eq. 0) then
             xlp = xmaxl
@@ -144,12 +151,21 @@ c~       jac = 1d0/(16d0*pi)
             xlp = min(Q2max/x/s/ymin, xmaxl)
          endif
          xlm = max(Q2min/x/s/ymax, xminl)
-         
-!xl = xlm + (xlp-xlm) * xborn(ixb)
-!jac = jac * (xlp-xlm)
+         if(xlmin.ge.xlp)then
+            jac=0.0d0
+         else if(xlmax.le.xlm)then
+            jac=0.0d0
+         else
+            if(xlmin.gt.xlm)then
+               xlm=xlmin
+            end if
+            if(xlmax.lt.xlp)then
+               xlp=xlmax
+            end if
+         end if
          call sample_x_lepton(xborn(ixb), xlm, xlp, xl, xljac)
          jac = jac * xljac
-      endif   
+      endif!fixed_lepton_beam
          
       
       kn_sborn = x * xl * s
