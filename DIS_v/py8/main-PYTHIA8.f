@@ -95,6 +95,7 @@ c particle masses for reshuffling
 
       do l=1,maxev
 
+         IF(MODULO(l,50).EQ.0) WRITE(*,*) "Events showered:",l
          call lhefreadev(iun)
          call pythia_reinit ! Call again to reset the beams.
 
